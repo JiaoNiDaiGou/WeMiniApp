@@ -1,0 +1,2 @@
+# WePicture
+a MiniProgram
