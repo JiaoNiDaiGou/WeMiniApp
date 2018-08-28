@@ -1,0 +1,6 @@
+/**index.wxss**/
+.input-text {
+  width: 750rpx;
+  height: 50rpx;
+  margin: 60rpx;
+}
