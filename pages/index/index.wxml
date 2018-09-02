@@ -1,11 +1,11 @@
 <!--pages/picture/picture.wxml-->
 <view class='input'>
 <input type='text' placeholder='名称' confirm-type='done' bindinput='bindnameconfirm' class='input-text'></input>
-  <input type="digit" placeholder="金额" confirm-type="done" bindinput='bindconfirm' class='input-text'/>
-  <input type="digit" placeholder="重量" confirm-type="done" bindinput='bindweightconfirm' class='input-text'/>
+  <input type="digit" placeholder="金额/美元" confirm-type="done" bindinput='bindconfirm' class='input-text'/>
+  <input type="digit" placeholder="重量/磅" confirm-type="done" bindinput='bindweightconfirm' class='input-text'/>
   <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" class='input-text'>
     <view class="picker">
-      产品类型：{{array[index]}}
+      价格类型：{{array[index]}}
     </view>
   </picker>
   </view>
@@ -17,6 +17,8 @@
 <image src='{{pictureUrl}}'></image>
 </view>-->
 <!-- <button open-type="share">分享</button> -->
+<button bindtap='mergeImage'>生成长图片</button>
 <button bindtap='saveImage'>保存</button>
-<canvas style="width: 750rpx; height: 3500px;" canvas-id="main" bindtap="previewImage"></canvas>
+
+<canvas width="750" height="10000" style="width: 750rpx; height: 10000rpx;" canvas-id="main" bindtap="previewImage"></canvas>
 <!--<image src='{{outputPicture}}'></image>-->

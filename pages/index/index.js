@@ -1,4 +1,4 @@
-// pages/picture/picture.js
+// pages/index/index.js
 
 Page({
 
@@ -7,12 +7,12 @@ Page({
    */
   data: {
     uploadFilePaths: {},
-    array: ['鞋', '衣服', '化妆品', '食品'],
-    array_weight: [1.1, 1.2, 1.3, 1.4],
+    array: ['10%', '20%', '30%', '40%', '50%', '60%', '70%', '80%', '90%', '100%'],
+    array_weight: [1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7 ,1.8, 1.9, 2.0],
     taxRate:0.10,
     exchangeRate:7,
-    imageWidth:400,
-    imageHeight:300,
+    imageWidth: 414,
+    imageHeight: 311,
     imageLength:0
   },
 
@@ -73,16 +73,8 @@ Page({
   },
 
   chooseimg: function () {
-    //创建Canvas画布
-    var ctx = wx.createCanvasContext('main',this)
     //把this对象复制到临时变量that.因为在函数返回response以后，this的值会被改变。
     var that = this;
-    //i为y坐标的值，此处表示起始高度
-    var i = 110
-    //imageWidth是单张图片的宽度
-    var iw = this.data.imageWidth
-    //imageHeight是单张图片的高度
-    var ih = this.data.imageHeight
     //选择图片
     wx.chooseImage({
       count: 9, // 默认9张图片
@@ -91,47 +83,13 @@ Page({
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths
+        var tempFiles = res.tempFiles
         that.setData({
           uploadFilePaths: res.tempFilePaths
         })
         console.log("所选图片的路径:"+tempFilePaths)
-
-        //循环拼接图片 此处用of不不能用in
-        for (var path of tempFilePaths) {
-          //console.log(path)
-          ctx.drawImage(path, 0, i, iw, ih)
-          i = i + ih
-        }
-        ctx.setFontSize(25)
-        var mydate = new Date();
-        var date = mydate.getFullYear() + '-' + (mydate.getMonth() + 1) + '-' + mydate.getDate();
-        //ctx.setTextAlign('center')    // 文字居中
-        ctx.setFillStyle('#2C7BB5')  // 文字颜色：蓝色
-        ctx.fillText('娇妮美国代购', 20, 25)
-        ctx.fillText('发布日期：'+date, 20, 50)
-        ctx.fillText('产品名称：'+that.data.inputName, 20, 75)
-
-        //计算价格
-        var result = that.data.inputValue
-        that.setData({
-          resultValue: (result * 1.1 * 7 * that.data.array_weight[that.data.index] + that.data.inputWeight*28).toFixed(2),
-          imageLength:i
-        })
-        //
-        console.log("所选产品的权重："+that.data.array_weight[that.data.index])
-        console.log("计算后的价格："+result * 1.1 * 7 * that.data.array_weight[that.data.index])
-        console.log("重量："+ that.data.inputWeight)
-        console.log("运费："+ that.data.inputWeight*28)
-        ctx.fillText('价格：' + that.data.resultValue + '/件', 20, 100)
-        ctx.draw()
-        
-
-        ctx.font = "35px 黑体";
-        ctx.rotate(-20 * Math.PI / 180);
-        ctx.fillStyle = "rgba(100,100,100,0.1)";
-        ctx.fillText("465dd92381", -20, 180);
-        ctx.rotate('20*Math.PI/180');  //坐标系还原
-        ctx.draw()
+        console.log("所选图片的info:" + res)
+        that.mergeImage()
       }
     })
   },
@@ -169,6 +127,68 @@ Page({
       imageUrl: this.data.outputPicture
     }
   },
+  mergeImage: function(e){
+    //创建Canvas画布
+    var ctx = wx.createCanvasContext('main', this)
+    //把this对象复制到临时变量that.因为在函数返回response以后，this的值会被改变。
+    var that = this;
+    //i为y坐标的值，此处表示起始高度
+    var i = 120
+    //imageWidth是单张图片的宽度
+    var iw = this.data.imageWidth
+    //imageHeight是单张图片的高度
+    var ih = this.data.imageHeight
+    var chooseImgwidth = 0
+    var chooseImgheight = 0
+    var targetHeight
+    //循环拼接图片 此处用of不不能用in
+    for (var path of that.data.uploadFilePaths) {
+      console.log(path)
+
+      wx.getImageInfo({
+        src: path,
+        success: function (res) {
+          that.setData({
+            chooseImgwidth: res.width,
+            chooseImgheight: res.height
+          })
+        }
+      })
+      chooseImgheight = that.data.chooseImgheight
+      chooseImgwidth = that.data.chooseImgwidth
+      console.log(chooseImgheight)
+      console.log(iw)
+      console.log(chooseImgwidth)
+      targetHeight = (chooseImgheight * iw) / chooseImgwidth
+      console.log("适配后的图片高度：" + targetHeight)
+      ctx.drawImage(path, 0, i, iw, targetHeight)
+      i = i + targetHeight
+    }
+
+    ctx.setFontSize(25)
+    var mydate = new Date();
+    var date = mydate.getFullYear() + '-' + (mydate.getMonth() + 1) + '-' + mydate.getDate();
+    //ctx.setTextAlign('center')    // 文字居中
+    ctx.setFillStyle('#2C7BB5')  // 文字颜色：蓝色
+    ctx.fillText('娇妮美国代购', 20, 35)
+    ctx.fillText('发布日期：' + date, 20, 60)
+    ctx.fillText('产品名称：' + that.data.inputName, 20, 85)
+
+    //计算价格
+    var result = that.data.inputValue
+    that.setData({
+      resultValue: (result * 1.1 * 7 * that.data.array_weight[that.data.index] + that.data.inputWeight * 28).toFixed(2),
+      //所有图片的总长度
+      imageLength: i
+    })
+    //
+    console.log("所选产品的权重：" + that.data.array_weight[that.data.index])
+    console.log("计算后的价格：" + result * 1.1 * 7 * that.data.array_weight[that.data.index])
+    console.log("重量：" + that.data.inputWeight)
+    console.log("运费：" + that.data.inputWeight * 28)
+    ctx.fillText('价格：' + that.data.resultValue + '/件', 20, 110)
+    ctx.draw()
+  },
   previewImage: function(e){
     var that = this
     var i = this.data.imageLength;
@@ -181,8 +201,8 @@ Page({
       quality: 1,
       width: iw,
       height: i,
-      destWidth: iw,
-      destHeight: i,
+      destWidth: iw * 750 / wx.getSystemInfoSync().windowWidth,
+      destHeight: i * 750 / wx.getSystemInfoSync().windowWidth,
       success(res) {
         //保存临时图片地址
         that.setData({
@@ -211,8 +231,8 @@ Page({
       quality: 1,
       width: iw,
       height: i,
-      destWidth: iw,
-      destHeight: i,
+      destWidth: iw * 750 / wx.getSystemInfoSync().windowWidth,
+      destHeight: i * 750 / wx.getSystemInfoSync().windowWidth,
       success(res) {
         //保存临时图片地址
         that.setData({
@@ -228,9 +248,19 @@ Page({
               filePath: path,
               success: function (res) {
                 console.log('图片已保存');
+                wx.showToast({
+                  title: '保存成功',
+                  icon: 'success',
+                  duration: 500
+                })
               },
               fail: function (res) {
                 console.log('保存失败');
+                wx.showToast({
+                  title: '保存失败',
+                  icon: 'fail',
+                  duration: 500
+                })
               }
             })
           }
