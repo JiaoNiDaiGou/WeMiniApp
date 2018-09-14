@@ -1,5 +1,8 @@
 <!--pages/picture/picture.wxml-->
 <view class='input'>
+
+<icon class="iconfont icon-settings" />
+
 <input type='text' placeholder='名称' confirm-type='done' bindinput='bindnameconfirm' class='input-text'></input>
   <input type="digit" placeholder="金额/美元" confirm-type="done" bindinput='bindconfirm' class='input-text'/>
   <input type="digit" placeholder="重量/磅" confirm-type="done" bindinput='bindweightconfirm' class='input-text'/>
