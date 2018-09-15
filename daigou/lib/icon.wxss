@@ -14,8 +14,386 @@
   color: #9e9595;
 }
 
-.icon-settings:before { 
+.icon-answer:before {
+  content: "\e604";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-app:before {
+  content: "\e605";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-browser:before {
+  content: "\e606";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-camera:before {
+  content: "\e608";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-cart:before {
+  content: "\e60a";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-check:before {
+  content: "\e60b";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-code:before {
+  content: "\e60c";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-computer:before {
+  content: "\e60d";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-copy:before {
+  content: "\e60e";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-delete:before {
+  content: "\e60f";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-deliver:before {
+  content: "\e611";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-display:before {
+  content: "\e612";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-down:before {
+  content: "\e613";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-download:before {
+  content: "\e614";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-edit:before {
+  content: "\e615";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-emoji:before {
+  content: "\e616";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-enclosure:before {
+  content: "\e617";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-eraser:before {
+  content: "\e618";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-favor:before {
+  content: "\e619";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-file:before {
+  content: "\e61a";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-fill:before {
+  content: "\e61c";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-fold:before {
+  content: "\e61d";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-folder:before {
+  content: "\e61f";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-font:before {
+  content: "\e620";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-hide:before {
+  content: "\e624";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-home:before {
+  content: "\e626";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-information:before {
+  content: "\e627";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-left:before {
+  content: "\e628";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-like:before {
+  content: "\e629";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-link:before {
+  content: "\e62a";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-loading:before {
+  content: "\e62b";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-lock:before {
+  content: "\e62d";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-mail:before {
+  content: "\e62e";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-mark:before {
+  content: "\e62f";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-menu:before {
+  content: "\e630";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-message:before {
+  content: "\e631";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-minus:before {
+  content: "\e632";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-more:before {
+  content: "\e633";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-my:before {
+  content: "\e635";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-notification:before {
+  content: "\e637";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-order:before {
+  content: "\e638";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-person2:before {
+  content: "\e63a";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-phone:before {
+  content: "\e63b";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-record:before {
+  content: "\e63f";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-refresh:before {
+  content: "\e640";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-rest:before {
+  content: "\e641";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-right:before {
+  content: "\e642";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-ringpause:before {
+  content: "\e643";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-rotate:before {
+  content: "\e645";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-roundcheck:before {
+  content: "\e646";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-search:before {
+  content: "\e648";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-service:before {
+  content: "\e649";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-shopping:before {
+  content: "\e64b";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-sitting:before {
   content: "\e64c";
-  font-size: 48rpx;
-  color: #080000;
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-tag:before {
+  content: "\e64d";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-telephone:before {
+  content: "\e64e";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-todown:before {
+  content: "\e64f";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-toleft:before {
+  content: "\e650";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-toright:before {
+  content: "\e651";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-top:before {
+  content: "\e653";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-unfold:before {
+  content: "\e654";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-unlock:before {
+  content: "\e655";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-upload:before {
+  content: "\e656";
+  font-size: 36rpx;
+  color: blue;
+}
+
+.icon-video:before {
+  content: "\e657";
+  font-size: 36rpx;
+  color: blue;
 }

@@ -1,7 +1,7 @@
 <!--pages/picture/picture.wxml-->
 <view class='input'>
 
-<icon class="iconfont icon-settings" />
+<icon class="iconfont icon-camera" />
 
 <input type='text' placeholder='名称' confirm-type='done' bindinput='bindnameconfirm' class='input-text'></input>
   <input type="digit" placeholder="金额/美元" confirm-type="done" bindinput='bindconfirm' class='input-text'/>
