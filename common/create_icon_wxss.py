@@ -89,7 +89,7 @@ for icon in icons:
     to_file.writelines('\n\
 .icon-' + icon_name + ':before {\n\
   content: "' + icon_unicode + '";\n\
-  font-size: 36rpx;\n\
+  font-size: 48rpx;\n\
   color: blue;\n\
 }\n\
 ')

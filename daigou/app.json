@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/tools/concat-image",
+    "pages/customer/customer-list"
   ],
   "window": {
     "backgroundTextStyle": "light",

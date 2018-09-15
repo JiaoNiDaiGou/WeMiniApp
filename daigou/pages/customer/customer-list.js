@@ -1,4 +1,4 @@
-// pages/index.js
+// pages/customer/customer-list.js
 Page({
 
   /**
@@ -61,10 +61,6 @@ Page({
    * Called when user click on the top right corner to share
    */
   onShareAppMessage: function () {
-  },
-  goToConcatImagePage: function() {
-    wx.navigateTo({
-      url: '../tools/concat-image',
-    })
+
   }
 })

@@ -1,27 +1,51 @@
 <!--pages/picture/picture.wxml-->
-<view class='input'>
-
-<icon class="iconfont icon-camera" />
-
-<input type='text' placeholder='名称' confirm-type='done' bindinput='bindnameconfirm' class='input-text'></input>
-  <input type="digit" placeholder="金额/美元" confirm-type="done" bindinput='bindconfirm' class='input-text'/>
-  <input type="digit" placeholder="重量/磅" confirm-type="done" bindinput='bindweightconfirm' class='input-text'/>
-  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" class='input-text'>
-    <view class="picker">
-      价格类型：{{array[index]}}
+<view class='container'>
+  <view class='box'>
+    <view class='row'>
+      <view class='item'>
+        <button class='iconbox-holder'>
+          <icon class='iconfont icon-evaluate' />
+          <text>商品</text>
+        </button>
+      </view>
+      <view class='item'>
+        <button class='iconbox-holder'>
+          <icon class='iconfont icon-home' />
+          <text>库存</text>
+        </button>
+      </view>
+      <view class='item'>
+        <button class='iconbox-holder'>
+          <icon class='iconfont icon-cart' />
+          <text>采购</text>
+        </button>
+      </view>
+      <view class='item'>
+        <button class='iconbox-holder'>
+          <icon class='iconfont icon-deliver' />
+          <text>发货</text>
+        </button>
+      </view>
+      <view class='item'>
+        <button class='iconbox-holder'>
+          <icon class='iconfont icon-friend' />
+          <text>客户</text>
+        </button>
+      </view>
     </view>
-  </picker>
+    <view class='row'>
+      <view class='item'>
+        <button class='iconbox-holder'>
+          <icon class='iconfont icon-search' />
+          <text>询价</text>
+        </button>
+      </view>
+      <view class='item'>
+        <button class='iconbox-holder' bindtap='goToConcatImagePage'>
+          <icon class='iconfont icon-pic' />
+          <text>拼图</text>
+        </button>
+      </view>
+    </view>
   </view>
- <!--  <view>
-  <text>{{resultValue}}</text>
-  </view>-->
-<button bindtap='chooseimg'>选择图片</button>
-<!-- <view wx:for="{{uploadFilePaths}}" wx:for-item="pictureUrl">
-<image src='{{pictureUrl}}'></image>
-</view>-->
-<!-- <button open-type="share">分享</button> -->
-<button bindtap='mergeImage'>生成长图片</button>
-<button bindtap='saveImage'>保存</button>
-
-<canvas width="750" height="10000" style="width: 750rpx; height: 10000rpx;" canvas-id="main" bindtap="previewImage"></canvas>
-<!--<image src='{{outputPicture}}'></image>-->
+ </view> 

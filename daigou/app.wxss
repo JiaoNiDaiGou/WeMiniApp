@@ -1,12 +1,49 @@
 /**app.wxss**/
+
+/**
+Get icons from
+http://www.iconfont.cn/collections/detail?spm=a313x.7781069.1998910419.d9df05512&cid=33
+**/
 @import 'lib/icon.wxss';
+@import 'lib/weui.wxss';
 
 .container {
-  height: 100%;
+  margin: 0 auto;
+}
+
+.box {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.row{
+  flex-basis: 100%;
+  display:flex;
+}
+
+.row:nth-child(2){
+  justify-content: center;
+}
+
+.row:nth-child(3){
   justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-} 
+}
+
+.row:nth-child(4){
+  justify-content: space-between;
+}
+
+.row:nth-child(5){
+  justify-content: space-between;
+}
+
+.iconbox-holder {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  text-align:center;
+  flex-direction: column;
+  margin: 4px;
+  font-size: medium;
+}
