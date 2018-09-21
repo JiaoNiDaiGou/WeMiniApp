@@ -66,5 +66,10 @@ Page({
     wx.navigateTo({
       url: '../tools/concat-image',
     })
+  },
+  goToCustomerListPage: function() {
+    wx.navigateTo({
+      url: '../customer/customer-list',
+    })
   }
 })

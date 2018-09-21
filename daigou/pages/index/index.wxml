@@ -27,7 +27,7 @@
         </button>
       </view>
       <view class='item'>
-        <button class='iconbox-holder'>
+        <button class='iconbox-holder' bindtap='goToCustomerListPage'>
           <icon class='iconfont icon-friend' />
           <text>客户</text>
         </button>
