@@ -44,6 +44,11 @@ Component({
    * Component methods
    */
   methods: {
-
+    onTypingEvent: function (e) {
+      this.setData({
+        inputVal: e.detail.value
+      })
+      this.triggerEvent('typingEvent', e.detail, {})
+    }
   }
 })

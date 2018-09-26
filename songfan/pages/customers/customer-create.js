@@ -9,6 +9,7 @@ Page({
    * Page initial data
    */
   data: {
+    id: '',
     name: '',
     phone: '',
     region: '',
@@ -20,6 +21,8 @@ Page({
     rawImagePath: null,
 
     parsingCandidates: [],
+
+    readyToCreate: false,
   },
 
   /**
@@ -83,85 +86,135 @@ Page({
    */
   onRawTextInputTyping: function (e) {
     this.setData({
-      rawText: e.detail.inputVal
+      rawText: e.detail.value
     });
+  },
+
+  onNameTyping: function (e) {
+    this.setData({
+      name: e.detail.value
+    });
+    this.checkReadyToCreate();
+  },
+
+  onPhoneTyping: function (e) {
+    this.setData({
+      phone: e.detail.value
+    });
+    this.checkReadyToCreate();
+  },
+
+  onAddressTyping: function (e) {
+    this.setData({
+      address: e.detail.value
+    });
+    this.checkReadyToCreate();
   },
 
   /**
    * When user select one parsing candidate.
    */
   onParsingCandidatesSelected: function (e) {
+    console.log('select');
+    console.log(e);
     var customer = this.data.parsingCandidates
-      .filter(t => t.id === e.detail.id)[0];
-    if (!!customer.name) {
-      this.setData({ name: customer.name })
-    }
-    if (!!customer.phone) {
-      this.setData({ phone: customer.phone })
-    }
-    if (!!customer.address) {
-      this.setData({ address: customer.address });
+      .filter(t => t.tmpindex === e.currentTarget.dataset.tmpindex)[0];
+    if (!!customer) {
+      var id = !!customer.id ? customer.id : this.data.id;
+      var name = !!customer.name ? customer.name : this.data.name;
+      var phone = !!customer.phone ? customer.phone : this.data.phone;
+      var address = !!customer.address ? customer.address : this.data.address;
+      this.setData({
+        id: id,
+        name: name,
+        phone: phone,
+        address: address,
+        parsingCandidates: []
+      });
+      this.checkReadyToCreate();
     }
   },
 
   /**
-  * Parse raw receiver info
-  */
+   * Parse raw receiver info
+   */
   parseRawTextOrImage: function () {
     console.log('parse raw customer. text=' + this.data.rawText + ', mediaId=' + this.data.rawImageMediaId);
+    wx.showLoading({
+      title: '智能解析中',
+    });
+
     var texts = !!this.data.rawText ? [this.data.rawText] : [];
     var imagePath = this.data.rawImagePath;
     if (!!imagePath) {
       console.log('upload image: ' + imagePath);
       backend.promiseOfUploadMedia(app, imagePath)
-        .then(mediaObj => {
-          console.log('upload media success. get mediaId:' + mediaObj.id)
-          this.parseRawCustomer(texts, [mediaObj.id]);
+        .then(r => {
+          var mediaId = r.res.mediaObj.id;
+          console.log('upload media success. get mediaId:' + mediaId)
+          this.parseRawCustomer(texts, [mediaId]);
         })
     } else if (texts.length > 0) {
       this.parseRawCustomer(texts, []);
     } else {
+      wx.hideLoading();
       console.log('nothing to parse.')
     }
   },
 
   parseRawCustomer: function (texts, mediaIds) {
     backend.promiseOfParseCustomer(app, texts, mediaIds)
-      .then(res => {
-        if (!res.results) {
+      .then(r => {
+        var res = r.res;
+        wx.hideLoading();
+
+        if (!res.results || res.results.length == 0) {
+          console.log('doesnt parse to any customer');
+          wx.showModal({
+            title: '没发现客户信息',
+            content: '请换张图片或内容',
+          });
+          this.setData({
+            rawText: '',
+            rawImagePath: null
+          });
           return;
         }
-        var parsingCandidates = [];
 
+
+        var parsingCandidates = [];
         for (var i = 0; i < res.results.length; i++) {
           var parsedCustomer = res.results[i].customer;
           var name = parsedCustomer.name;
           var phone = (!!parsedCustomer.phone ? parsedCustomer.phone.phone : null);
           if (!!parsedCustomer.addresses) {
             for (var j = 0; j < parsedCustomer.addresses.length; j++) {
-              var id = 'parse_' + i + '_' + j;
+              var tmpindex = 'parse_' + i + '_' + j;
               var address = parsedCustomer.addresses[j];
+              var id = parsedCustomer.id;
               parsingCandidates.push({
+                tmpindex: tmpindex,
                 id: id,
                 name: name,
                 phone: phone,
-                address: address,
-                display: utils.formatCustomerContactToString(name, phone, address)
+                address: address
               });
             }
           } else {
-            var id = 'parse_' + i + '_x';
+            var tmpindex = 'parse_' + i + '_x';
             parsingCandidates.push({
+              tmpindex: tmpindex,
               id: id,
               name: name,
-              phone: phone,
-              display: utils.formatCustomerContactToString(name, phone)
+              phone: phone
             });
           }
         }
 
         this.setData({
-          parsingCandidates: parsingCandidates
+          parsingCandidates: parsingCandidates,
+          rawText: '',
+          rawImagePath: null
         });
       });
   },
@@ -184,6 +237,48 @@ Page({
           rawImagePath: tempFilePath
         });
       }
+    })
+  },
+
+  checkReadyToCreate: function (e) {
+    var ready = !!this.data.name
+      && !!this.data.phone
+      && !!this.data.address
+      && !!this.data.address.region
+      && !!this.data.address.city
+      && !!this.data.address.zone
+      && !!this.data.address.address;
+    this.setData({
+      readyToCreate: ready
+    });
+  },
+
+  createCustomer: function (e) {
+    if (!!this.data.id) {
+      console.log('update customer ' + this.data.id + ':' + this.data.name);
+    } else {
+      console.log('create customer ' + this.data.name);
+    }
+
+    var that = this;
+
+    backend.promiseOfCreateCustomer(
+      app,
+      this.data.id,
+      this.data.name,
+      this.data.phone,
+      this.data.address
+    ).then(r => {
+      that.setData({
+        id: r.res.id
+      });
+      backend.promiseOfLoadAllCustomers(r.app)
+        .then(r => {
+          console.log('go to customer details for ' + that.data.id);
+          wx.redirectTo({
+            url: './customer-details?id=' + that.data.id,
+          })
+        });
     })
   }
 })

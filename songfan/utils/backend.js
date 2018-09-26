@@ -3,15 +3,25 @@ const utils = require('./util.js')
 const SERVER = 'https://dev-dot-fluid-crane-200921.appspot.com';
 
 /**
+ * We always return object like:
+ * {
+ *  app: app,
+ *  res: res.data
+ * }
+ */
+
+/**
  * Login Wx and sync with backend.
  */
 const promiseOfBackendLogin = (app) => {
   return new Promise(function (resolve, reject) {
     console.log('CALL wxLogin!');
 
-    app.globalData.sessionTicketId = 'eb87a303-7aa6-4bb4-9bf4-3b1861bef776';
+    // app.globalData.sessionTicketId = 'eb87a303-7aa6-4bb4-9bf4-3b1861bef776';
     if (!!app.globalData.sessionTicketId) {
-      resolve(app);
+      resolve({
+        app: app
+      });
       return;
     }
 
@@ -36,7 +46,9 @@ const promiseOfBackendLogin = (app) => {
             var sessionTicketId = res.data.ticketId;
             console.log('fetch backend server session ticket ID: ' + sessionTicketId);
             app.globalData.sessionTicketId = sessionTicketId;
-            resolve(app);
+            resolve({
+              app: app
+            });
           },
           fail: res => {
             wx.hideToast();
@@ -60,7 +72,9 @@ const promiseOfLoadAllCustomers = (app) => {
         console.log('CALL loadAllCustomers SUCCESS!');
         app.globalData.customers = res.data.results;
         console.log('totally load ' + app.globalData.customers.length + ' customers.');
-        resolve(app);
+        resolve({
+          app: app
+        });
       }
     })
   });
@@ -81,7 +95,10 @@ const promiseOfUploadMedia = (app, path) => {
         console.log('CALL uploadMedia SUCCESS!');
         // wx.uploadFile response is text.
         // convert it to json.
-        resolve(JSON.parse(res.data));
+        resolve({
+          app: app,
+          res: JSON.parse(res.data)
+        });
       }
     });
   });
@@ -103,7 +120,39 @@ const promiseOfParseCustomer = (app, texts, mediaIds) => {
       },
       success: res => {
         console.log('CALL parseCustomer SUCCESS!')
-        resolve(res.data);
+        resolve({
+          app: app,
+          res: res.data
+        });
+      }
+    });
+  });
+}
+
+const promiseOfCreateCustomer = (app, id, name, phone, address) => {
+  console.log('CALL createCustomer!')
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      method: 'PUT',
+      url: SERVER + '/api/JiaoNiDaiGou/customers/put',
+      header: {
+        'X-Wx-SessionTicket': app.globalData.sessionTicketId
+      },
+      data: {
+        id: id,
+        name: name,
+        phone: {
+          countryCode: '86',
+          phone: phone
+        },
+        addresses: [address]
+      },
+      success: res => {
+        console.log('CALL createCustomer SUCCESS!')
+        resolve({
+          app: app,
+          res: res.data
+        });
       }
     });
   });
@@ -113,5 +162,6 @@ module.exports = {
   promiseOfBackendLogin: promiseOfBackendLogin,
   promiseOfLoadAllCustomers: promiseOfLoadAllCustomers,
   promiseOfUploadMedia: promiseOfUploadMedia,
-  promiseOfParseCustomer: promiseOfParseCustomer
+  promiseOfParseCustomer: promiseOfParseCustomer,
+  promiseOfCreateCustomer: promiseOfCreateCustomer
 }

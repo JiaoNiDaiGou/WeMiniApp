@@ -11,7 +11,7 @@ App({
 
     // Login
     backend.promiseOfBackendLogin(this)
-      .then(backend.promiseOfLoadAllCustomers);
+      .then(r => backend.promiseOfLoadAllCustomers(r.app));
 
     // // 获取用户信息
     // wx.getSetting({

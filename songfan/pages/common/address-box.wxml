@@ -4,12 +4,12 @@
     <icon class='iconfont icon-location-black-36 weui-flex__item fui-address-box__icon' />
     <view class="right">
       <view class='weui-flex'>
-        <input placeholder='省' class='weui-flex__item fui-address-box__input' value='{{region}}' disabled='{{!editable}}'></input>
-        <input placeholder='市' class='weui-flex__item fui-address-box__input' value='{{city}}' disabled='{{!editable}}'></input>
-        <input placeholder='区' class='weui-flex__item fui-address-box__input' value='{{zone}}' disabled='{{!editable}}'></input>
+        <input placeholder='省' class='weui-flex__item fui-address-box__input' value='{{region}}' disabled='{{!editable}}' bindinput='onRegionTypingEvent'></input>
+        <input placeholder='市' class='weui-flex__item fui-address-box__input' value='{{city}}' disabled='{{!editable}}' bindinput='onCityTypingEvent'></input>
+        <input placeholder='区' class='weui-flex__item fui-address-box__input' value='{{zone}}' disabled='{{!editable}}' bindinput='onZoneTypingEvent'></input>
       </view>
       <view class="weui-flex">
-        <textarea placeholder='地址' class='weui-flex__item fui-address-box__textarea' value='{{address}}' disabled='{{!editable}}'></textarea>
+        <textarea placeholder='地址' class='weui-flex__item fui-address-box__textarea' value='{{address}}' disabled='{{!editable}}' bindinput='onAddressTypingEvent'></textarea>
       </view>
     </view>
   </view>

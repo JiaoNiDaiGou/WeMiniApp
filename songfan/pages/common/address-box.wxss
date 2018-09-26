@@ -29,5 +29,4 @@
   word-break: break-all;
   overflow-y: hidden;
   word-wrap: break-word;
-  height: 90px;
 }

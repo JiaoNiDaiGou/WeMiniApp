@@ -5,7 +5,7 @@
     <view wx:if='{{iconClass}}'>
       <icon class='iconfont {{iconClass}} weui-flex__item fui-text-box__icon' />
     </view>
-    <input type='text' class='weui-flex__item fui-text-box__input' placeholder='{{placeholder}}' value='{{value}}' disabled='{{!editable}}'></input>
+    <input type='text' class='weui-flex__item fui-text-box__input' placeholder='{{placeholder}}' value='{{value}}' disabled='{{!editable}}' bindinput='onTypingEvent'></input>
     </view>
   </view>
 </view>

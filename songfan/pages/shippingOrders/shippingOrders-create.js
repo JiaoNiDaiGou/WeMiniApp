@@ -86,9 +86,10 @@ Page({
     if (!!imagePath) {
       console.log('upload image: ' + imagePath);
       backend.promiseOfUploadMedia(imagePath)
-        .then(mediaObj => {
-          console.log('upload media success. get mediaId:' + mediaId.id)
-          this.parseRawReceiver(text, mediaObj.id)
+        .then(r => {
+          var mediaId = r.res.mediaId.id;
+          console.log('upload media success. get mediaId:' + mediaId);
+          this.parseRawReceiver(text, mediaId)
         })
     } else if (!!text) {
       this.parseRawReceiver(text);

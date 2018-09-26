@@ -30,13 +30,56 @@ Component({
    * Component initial data
    */
   data: {
-
   },
 
   /**
    * Component methods
    */
   methods: {
+    onRegionTypingEvent: function (e) {
+      this.setData({
+        region: e.detail.value
+      });
+      var detail = {
+        value: this.buildThisAddress()
+      }
+      this.triggerEvent('typingEvent', detail, {});
+    },
+    onCityTypingEvent: function (e) {
+      this.setData({
+        city: e.detail.value
+      });
+      var detail = {
+        value: this.buildThisAddress()
+      }
+      this.triggerEvent('typingEvent', detail, {});
+    },
+    onZoneTypingEvent: function (e) {
+      this.setData({
+        zone: e.detail.value
+      });
+      var detail = {
+        value: this.buildThisAddress()
+      }
+      this.triggerEvent('typingEvent', detail, {});
+    },
+    onAddressTypingEvent: function (e) {
+      this.setData({
+        address: e.detail.value
+      });
+      var detail = {
+        value: this.buildThisAddress()
+      }
+      this.triggerEvent('typingEvent', detail, {});
+    },
 
+    buildThisAddress: function () {
+      return {
+        region: this.data.region,
+        city: this.data.city,
+        zone: this.data.zone,
+        address: this.data.address
+      }
+    }
   }
 })
