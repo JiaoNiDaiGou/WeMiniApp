@@ -1,0 +1,9 @@
+<!--pages/customers/customer-create.wxml-->
+<view>
+  <search-bar inputStyle='textarea' bind:inputTypingEvent='onRawTextInputTyping' bind:selectSearchCandidate='onParsingCandidatesSelected' searchResultCandidates='{{parsingCandidates}}' />
+  <button class="weui-btn fui-button" type="normal" bindtap='chooseRawImage'>上传图片</button>
+  <button class="weui-btn fui-button" type="primary" bindtap='parseRawTextOrImage'>智能理解</button>
+  <text-box iconClass='icon-profile-black-36' placeholder='姓名' value='{{name}}' editable='true'></text-box>
+  <text-box iconClass='icon-phone-black-36' placeholder='电话' value='{{phone}}' editable='true'></text-box>
+  <address-box region='{{address.region}}' city='{{address.city}}' zone='{{address.zone}}' address='{{address.address}}' editable='true'></address-box>
+</view>

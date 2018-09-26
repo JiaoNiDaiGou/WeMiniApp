@@ -31,20 +31,19 @@ import requests
 import sys
 import xml.etree.ElementTree as ET
 
+colors = [ "blue", "lightgrey", "black", "grey" ]
+sizes = [ "16", "32", "48", "36", "42" ]
+to_file_paths = [ "../songfan/lib/icon.wxss" ]
+
 print('Create icon.wxss ...')
 
 from_file_path = ''
-to_file_path = ''
 for arg in sys.argv:
     if arg.startswith('FROM='):
         from_file_path = arg[len('FROM='):]
-    if arg.startswith('TO='):
-        to_file_path = arg[len('TO='):]
 
 if from_file_path == '':
     raise Exception('FROM is required.')
-if to_file_path == '':
-    raise Exception('TO is required.')
 
 print('Read ' + from_file_path + ' ...')
 
@@ -70,28 +69,31 @@ for glyph in tree.findall('glyph'):
     icon_name = glyph.attrib['glyph-name']
     icons.append([icon_name , icon_unicode])
 
-print('Generate wxss to ' + to_file_path + ' ...')
-to_file = open(to_file_path, 'w')
-to_file.writelines(from_file_contents)
-to_file.write('\n')
-to_file.writelines('\n\
-.iconfont {\n\
-  font-family: "iconfont";\n\
-  font-size: .16rem;\n\
-  font-style: normal;\n\
-  color: #9e9595;\n\
-}\n\
-')
-
-for icon in icons:
-    icon_name = icon[0]
-    icon_unicode = icon[1]
+for to_file_path in to_file_paths:
+    print('Generate wxss to ' + to_file_path + ' ...')
+    to_file = open(to_file_path, 'w+')
+    to_file.writelines(from_file_contents)
+    to_file.write('\n')
     to_file.writelines('\n\
-.icon-' + icon_name + ':before {\n\
-  content: "' + icon_unicode + '";\n\
-  font-size: 48rpx;\n\
-  color: blue;\n\
+.iconfont {\n\
+font-family: "iconfont";\n\
+font-size: .16rem;\n\
+font-style: normal;\n\
+color: #9e9595;\n\
 }\n\
 ')
 
-print('Generate icon.wxss finished. See ' + to_file_path)
+    for color in colors:
+        for size in sizes:
+            for icon in icons:
+                icon_name = icon[0] + '-' + color + '-' + size
+                icon_unicode = icon[1]
+                to_file.writelines('\n\
+.icon-' + icon_name + ':before {\n\
+content: "' + icon_unicode + '";\n\
+font-size: ' + size + 'rpx;\n\
+color: ' + color + ';\n\
+}\n\
+')
+
+    print('Generate icon.wxss finished. See ' + to_file_path)

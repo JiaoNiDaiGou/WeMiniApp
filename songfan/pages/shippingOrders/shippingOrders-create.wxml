@@ -1,0 +1,15 @@
+<!--pages/shippingOrders/shippingOrders-create.wxml-->
+<view>
+  <search-bar value="李好雨" inputStyle='textarea'  bind:inputTypingEvent='inputRawReceiverText' bind:selectSearchCandidate='selectParsedReceiverInfo' searchResultCandidates='{{parsedReceiverResultCandidates}}'  />
+  <button bindtap='chooseRawReceiverImage'>upload image</button>
+  <button bindtap='parseRawReceiverTextsOrImages'>智能理解</button>
+  
+  <view>
+    <input type='text' value='{{name}}' placeholder='姓名'></input>
+    <input type='number' value='{{phone}}' placeholder='电话'></input>
+    <input type='text' value='{{region}}' placeholder='省'></input>
+    <input type='text' value='{{city}}' placeholder='市'></input>
+    <input type='text' value='{{zone}}' placeholder='区'></input>
+    <input type='text' value='{{address}}' placeholder='地址'></input>
+  </view>
+</view>

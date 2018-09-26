@@ -1,0 +1,7 @@
+<!--pages/customers/customers-list.wxml-->
+<view class='customers-lilst-container'>
+  <search-bar bind:inputTypingEvent='filterCustomersSearchResultCandidates' bind:selectSearchCandidate='goToCustomerDetails' searchResultCandidates='{{customerSearchResultCandidates}}' />
+  <view class='buttom_button'>
+  <button class="weui-btn fui-button" type="primary" bindtap='goToCustomerCreate'>创建新客户</button>
+  </view>
+</view>

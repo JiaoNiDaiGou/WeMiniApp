@@ -1,0 +1,10 @@
+<!--pages/common/sliding-item.wxml-->
+<view>
+  <movable-area>
+    <movable-view damping='100' out-of-bounds='true' direction='horizontal' x='{{x}}' animation='false' bindchange='onChange'>
+    <view>
+      hello world
+    </view>
+    </movable-view>
+  </movable-area>
+</view>

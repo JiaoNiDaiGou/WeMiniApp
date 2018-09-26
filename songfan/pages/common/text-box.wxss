@@ -1,0 +1,14 @@
+/* pages/common/text-box.wxss */
+@import '../../lib/icon.wxss';
+@import '../../lib/weui.wxss';
+
+.fui-text-box__icon {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.fui-text-box__input {
+  margin-left: 5px;
+  margin-top: 4px;
+  font-size: 16px;
+}

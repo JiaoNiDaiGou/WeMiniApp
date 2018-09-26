@@ -1,0 +1,30 @@
+/* pages/common/search-bar.wxss */
+@import '../../lib/weui.wxss';
+
+.searchbar-result {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+.searchbar-result:before {
+  display: none;
+}
+
+.weui-cell {
+  padding: 12px 15px 12px 35px;
+}
+
+.searchbar-textarea {
+  font-size: 16px;
+  padding: 4px 0;
+  width: 100%;
+  height: 20/14em;
+  border: 0;
+  line-height: 20/14em;
+  box-sizing: content-box;
+  background: transparent;
+}
+
+.weui-search-bar__input {
+  font-size: 16px;
+}

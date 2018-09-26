@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "text-box": "../common/text-box",
+    "address-box": "../common/address-box"
+  }
+}

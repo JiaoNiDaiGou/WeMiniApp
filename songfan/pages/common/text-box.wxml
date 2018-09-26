@@ -1,0 +1,11 @@
+<!--pages/common/text-box.wxml-->
+<view class='page'>
+  <view class="page__bd page__bd_spacing">
+    <view class="weui-flex">
+    <view wx:if='{{iconClass}}'>
+      <icon class='iconfont {{iconClass}} weui-flex__item fui-text-box__icon' />
+    </view>
+    <input type='text' class='weui-flex__item fui-text-box__input' placeholder='{{placeholder}}' value='{{value}}' disabled='{{!editable}}'></input>
+    </view>
+  </view>
+</view>

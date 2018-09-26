@@ -1,0 +1,9 @@
+<!--pages/customers/customer-details.wxml-->
+<view>
+  <text-box iconClass='icon-profile-black-36' placeholder='姓名' value='{{customer.name}}'></text-box>
+  <text-box iconClass='icon-phone-black-36' placeholder='电话' value='{{customer.phone.phone}}'></text-box>
+  <view class='touch-item {{item.isTouchMove ? "touch-move-active" : ""}}' data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{customer.addresses}}" wx:key="unique" wx:for-item="address">
+    <address-box region='{{address.region}}' city='{{address.city}}' zone='{{address.zone}}' address='{{address.address}}'></address-box>
+  </view>
+  <view class="del" catchtap="del" data-index="{{index}}">删除</view>
+</view>

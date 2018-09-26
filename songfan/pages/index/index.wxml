@@ -1,0 +1,9 @@
+<!--index.wxml-->
+<view>
+  <button bindtap='goToCustomersList'>
+    Go to customers list
+  </button>
+    <button bindtap='goToShippingOrdersCreate'>
+    Create shipping order
+  </button>
+</view>

@@ -1,0 +1,6 @@
+/* pages/customers/customers-list.wxss */
+.customers-lilst-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

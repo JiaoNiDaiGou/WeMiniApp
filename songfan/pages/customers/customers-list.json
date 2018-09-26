@@ -1,0 +1,6 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "search-bar": "../common/search-bar"
+  }
+}

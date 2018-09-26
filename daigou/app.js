@@ -1,4 +1,6 @@
 //app.js
+const util = require('./utils/util.js')
+
 App({
   //onLaunch 程序初始化时调用
   onLaunch: function () {
@@ -10,7 +12,26 @@ App({
     // 登录
     wx.login({
       success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        var code = res.code;
+        console.log('Get client code ' + code);
+        if (code) {
+          wx.request({
+            url: util.BE_ENDPOINT + '/api/wx/jiaonidaigou/login',
+            data: {
+              code: code
+            },
+            success: res => {
+              var ticketId = res.ticketId;
+              console.log('Successfully fetch session ticket ' + ticketId)
+              this.globalData.sessionTicketId = ticketId;
+            },
+            fail: e => {
+              console.log(e);
+            }
+          })
+        } else {
+          console.log('Cannot get code. login failed.');
+        }
       }
     })
     // 获取用户信息
@@ -35,6 +56,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    sessionTicketId: null
   }
 })

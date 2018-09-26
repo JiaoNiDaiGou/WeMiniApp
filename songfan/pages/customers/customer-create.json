@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "search-bar": "../common/search-bar",
+    "text-box": "../common/text-box",
+    "address-box": "../common/address-box"
+  }
+}

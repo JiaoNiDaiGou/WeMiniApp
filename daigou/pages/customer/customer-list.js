@@ -1,17 +1,31 @@
 // pages/customer/customer-list.js
+const util = require('../../utils/util.js')
+const app = getApp();
+
 Page({
 
   /**
    * Page initial data
    */
   data: {
+    customers: [],
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    if (this.data.customers.length == 0) {
+      wx.request({
+        url: util.BE_ENDPOINT + '/api/customers/jiaonidaigou/getAll',
+        header: {
+          'X-Wx-SessionTicket': app.globalData.sessionTicketId
+        },
+        success: res => {
+          this.data.customers = res;
+        }
+      })
+    }
   },
 
   /**
@@ -61,5 +75,8 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  loadAllCustomers: function () {
+    
   }
 })

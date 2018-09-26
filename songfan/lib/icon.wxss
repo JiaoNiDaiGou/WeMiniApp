@@ -1,0 +1,1935 @@
+@font-face {
+  font-family: 'iconfont';  /* project id 838826 */
+  src: url('//at.alicdn.com/t/font_838826_5bh6wr4y2.eot');
+  src: url('//at.alicdn.com/t/font_838826_5bh6wr4y2.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_838826_5bh6wr4y2.woff') format('woff'),
+  url('//at.alicdn.com/t/font_838826_5bh6wr4y2.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_838826_5bh6wr4y2.svg#iconfont') format('svg');
+}
+
+.iconfont {
+font-family: "iconfont";
+font-size: .16rem;
+font-style: normal;
+color: #9e9595;
+}
+
+.icon-location-blue-16:before {
+content: "\e651";
+font-size: 16rpx;
+color: blue;
+}
+
+.icon-phone-blue-16:before {
+content: "\e652";
+font-size: 16rpx;
+color: blue;
+}
+
+.icon-search-blue-16:before {
+content: "\e65c";
+font-size: 16rpx;
+color: blue;
+}
+
+.icon-comment-blue-16:before {
+content: "\e667";
+font-size: 16rpx;
+color: blue;
+}
+
+.icon-deliver-blue-16:before {
+content: "\e671";
+font-size: 16rpx;
+color: blue;
+}
+
+.icon-evaluate-blue-16:before {
+content: "\e672";
+font-size: 16rpx;
+color: blue;
+}
+
+.icon-send-blue-16:before {
+content: "\e675";
+font-size: 16rpx;
+color: blue;
+}
+
+.icon-shop-blue-16:before {
+content: "\e676";
+font-size: 16rpx;
+color: blue;
+}
+
+.icon-pic-blue-16:before {
+content: "\e69b";
+font-size: 16rpx;
+color: blue;
+}
+
+.icon-cart-blue-16:before {
+content: "\e6af";
+font-size: 16rpx;
+color: blue;
+}
+
+.icon-profile-blue-16:before {
+content: "\e6b7";
+font-size: 16rpx;
+color: blue;
+}
+
+.icon-home-blue-16:before {
+content: "\e6b8";
+font-size: 16rpx;
+color: blue;
+}
+
+.icon-friendadd-blue-16:before {
+content: "\e6ca";
+font-size: 16rpx;
+color: blue;
+}
+
+.icon-friend-blue-16:before {
+content: "\e6cc";
+font-size: 16rpx;
+color: blue;
+}
+
+.icon-mobile-blue-16:before {
+content: "\e704";
+font-size: 16rpx;
+color: blue;
+}
+
+.icon-people-blue-16:before {
+content: "\e736";
+font-size: 16rpx;
+color: blue;
+}
+
+.icon-location-blue-32:before {
+content: "\e651";
+font-size: 32rpx;
+color: blue;
+}
+
+.icon-phone-blue-32:before {
+content: "\e652";
+font-size: 32rpx;
+color: blue;
+}
+
+.icon-search-blue-32:before {
+content: "\e65c";
+font-size: 32rpx;
+color: blue;
+}
+
+.icon-comment-blue-32:before {
+content: "\e667";
+font-size: 32rpx;
+color: blue;
+}
+
+.icon-deliver-blue-32:before {
+content: "\e671";
+font-size: 32rpx;
+color: blue;
+}
+
+.icon-evaluate-blue-32:before {
+content: "\e672";
+font-size: 32rpx;
+color: blue;
+}
+
+.icon-send-blue-32:before {
+content: "\e675";
+font-size: 32rpx;
+color: blue;
+}
+
+.icon-shop-blue-32:before {
+content: "\e676";
+font-size: 32rpx;
+color: blue;
+}
+
+.icon-pic-blue-32:before {
+content: "\e69b";
+font-size: 32rpx;
+color: blue;
+}
+
+.icon-cart-blue-32:before {
+content: "\e6af";
+font-size: 32rpx;
+color: blue;
+}
+
+.icon-profile-blue-32:before {
+content: "\e6b7";
+font-size: 32rpx;
+color: blue;
+}
+
+.icon-home-blue-32:before {
+content: "\e6b8";
+font-size: 32rpx;
+color: blue;
+}
+
+.icon-friendadd-blue-32:before {
+content: "\e6ca";
+font-size: 32rpx;
+color: blue;
+}
+
+.icon-friend-blue-32:before {
+content: "\e6cc";
+font-size: 32rpx;
+color: blue;
+}
+
+.icon-mobile-blue-32:before {
+content: "\e704";
+font-size: 32rpx;
+color: blue;
+}
+
+.icon-people-blue-32:before {
+content: "\e736";
+font-size: 32rpx;
+color: blue;
+}
+
+.icon-location-blue-48:before {
+content: "\e651";
+font-size: 48rpx;
+color: blue;
+}
+
+.icon-phone-blue-48:before {
+content: "\e652";
+font-size: 48rpx;
+color: blue;
+}
+
+.icon-search-blue-48:before {
+content: "\e65c";
+font-size: 48rpx;
+color: blue;
+}
+
+.icon-comment-blue-48:before {
+content: "\e667";
+font-size: 48rpx;
+color: blue;
+}
+
+.icon-deliver-blue-48:before {
+content: "\e671";
+font-size: 48rpx;
+color: blue;
+}
+
+.icon-evaluate-blue-48:before {
+content: "\e672";
+font-size: 48rpx;
+color: blue;
+}
+
+.icon-send-blue-48:before {
+content: "\e675";
+font-size: 48rpx;
+color: blue;
+}
+
+.icon-shop-blue-48:before {
+content: "\e676";
+font-size: 48rpx;
+color: blue;
+}
+
+.icon-pic-blue-48:before {
+content: "\e69b";
+font-size: 48rpx;
+color: blue;
+}
+
+.icon-cart-blue-48:before {
+content: "\e6af";
+font-size: 48rpx;
+color: blue;
+}
+
+.icon-profile-blue-48:before {
+content: "\e6b7";
+font-size: 48rpx;
+color: blue;
+}
+
+.icon-home-blue-48:before {
+content: "\e6b8";
+font-size: 48rpx;
+color: blue;
+}
+
+.icon-friendadd-blue-48:before {
+content: "\e6ca";
+font-size: 48rpx;
+color: blue;
+}
+
+.icon-friend-blue-48:before {
+content: "\e6cc";
+font-size: 48rpx;
+color: blue;
+}
+
+.icon-mobile-blue-48:before {
+content: "\e704";
+font-size: 48rpx;
+color: blue;
+}
+
+.icon-people-blue-48:before {
+content: "\e736";
+font-size: 48rpx;
+color: blue;
+}
+
+.icon-location-blue-36:before {
+content: "\e651";
+font-size: 36rpx;
+color: blue;
+}
+
+.icon-phone-blue-36:before {
+content: "\e652";
+font-size: 36rpx;
+color: blue;
+}
+
+.icon-search-blue-36:before {
+content: "\e65c";
+font-size: 36rpx;
+color: blue;
+}
+
+.icon-comment-blue-36:before {
+content: "\e667";
+font-size: 36rpx;
+color: blue;
+}
+
+.icon-deliver-blue-36:before {
+content: "\e671";
+font-size: 36rpx;
+color: blue;
+}
+
+.icon-evaluate-blue-36:before {
+content: "\e672";
+font-size: 36rpx;
+color: blue;
+}
+
+.icon-send-blue-36:before {
+content: "\e675";
+font-size: 36rpx;
+color: blue;
+}
+
+.icon-shop-blue-36:before {
+content: "\e676";
+font-size: 36rpx;
+color: blue;
+}
+
+.icon-pic-blue-36:before {
+content: "\e69b";
+font-size: 36rpx;
+color: blue;
+}
+
+.icon-cart-blue-36:before {
+content: "\e6af";
+font-size: 36rpx;
+color: blue;
+}
+
+.icon-profile-blue-36:before {
+content: "\e6b7";
+font-size: 36rpx;
+color: blue;
+}
+
+.icon-home-blue-36:before {
+content: "\e6b8";
+font-size: 36rpx;
+color: blue;
+}
+
+.icon-friendadd-blue-36:before {
+content: "\e6ca";
+font-size: 36rpx;
+color: blue;
+}
+
+.icon-friend-blue-36:before {
+content: "\e6cc";
+font-size: 36rpx;
+color: blue;
+}
+
+.icon-mobile-blue-36:before {
+content: "\e704";
+font-size: 36rpx;
+color: blue;
+}
+
+.icon-people-blue-36:before {
+content: "\e736";
+font-size: 36rpx;
+color: blue;
+}
+
+.icon-location-blue-42:before {
+content: "\e651";
+font-size: 42rpx;
+color: blue;
+}
+
+.icon-phone-blue-42:before {
+content: "\e652";
+font-size: 42rpx;
+color: blue;
+}
+
+.icon-search-blue-42:before {
+content: "\e65c";
+font-size: 42rpx;
+color: blue;
+}
+
+.icon-comment-blue-42:before {
+content: "\e667";
+font-size: 42rpx;
+color: blue;
+}
+
+.icon-deliver-blue-42:before {
+content: "\e671";
+font-size: 42rpx;
+color: blue;
+}
+
+.icon-evaluate-blue-42:before {
+content: "\e672";
+font-size: 42rpx;
+color: blue;
+}
+
+.icon-send-blue-42:before {
+content: "\e675";
+font-size: 42rpx;
+color: blue;
+}
+
+.icon-shop-blue-42:before {
+content: "\e676";
+font-size: 42rpx;
+color: blue;
+}
+
+.icon-pic-blue-42:before {
+content: "\e69b";
+font-size: 42rpx;
+color: blue;
+}
+
+.icon-cart-blue-42:before {
+content: "\e6af";
+font-size: 42rpx;
+color: blue;
+}
+
+.icon-profile-blue-42:before {
+content: "\e6b7";
+font-size: 42rpx;
+color: blue;
+}
+
+.icon-home-blue-42:before {
+content: "\e6b8";
+font-size: 42rpx;
+color: blue;
+}
+
+.icon-friendadd-blue-42:before {
+content: "\e6ca";
+font-size: 42rpx;
+color: blue;
+}
+
+.icon-friend-blue-42:before {
+content: "\e6cc";
+font-size: 42rpx;
+color: blue;
+}
+
+.icon-mobile-blue-42:before {
+content: "\e704";
+font-size: 42rpx;
+color: blue;
+}
+
+.icon-people-blue-42:before {
+content: "\e736";
+font-size: 42rpx;
+color: blue;
+}
+
+.icon-location-lightgrey-16:before {
+content: "\e651";
+font-size: 16rpx;
+color: lightgrey;
+}
+
+.icon-phone-lightgrey-16:before {
+content: "\e652";
+font-size: 16rpx;
+color: lightgrey;
+}
+
+.icon-search-lightgrey-16:before {
+content: "\e65c";
+font-size: 16rpx;
+color: lightgrey;
+}
+
+.icon-comment-lightgrey-16:before {
+content: "\e667";
+font-size: 16rpx;
+color: lightgrey;
+}
+
+.icon-deliver-lightgrey-16:before {
+content: "\e671";
+font-size: 16rpx;
+color: lightgrey;
+}
+
+.icon-evaluate-lightgrey-16:before {
+content: "\e672";
+font-size: 16rpx;
+color: lightgrey;
+}
+
+.icon-send-lightgrey-16:before {
+content: "\e675";
+font-size: 16rpx;
+color: lightgrey;
+}
+
+.icon-shop-lightgrey-16:before {
+content: "\e676";
+font-size: 16rpx;
+color: lightgrey;
+}
+
+.icon-pic-lightgrey-16:before {
+content: "\e69b";
+font-size: 16rpx;
+color: lightgrey;
+}
+
+.icon-cart-lightgrey-16:before {
+content: "\e6af";
+font-size: 16rpx;
+color: lightgrey;
+}
+
+.icon-profile-lightgrey-16:before {
+content: "\e6b7";
+font-size: 16rpx;
+color: lightgrey;
+}
+
+.icon-home-lightgrey-16:before {
+content: "\e6b8";
+font-size: 16rpx;
+color: lightgrey;
+}
+
+.icon-friendadd-lightgrey-16:before {
+content: "\e6ca";
+font-size: 16rpx;
+color: lightgrey;
+}
+
+.icon-friend-lightgrey-16:before {
+content: "\e6cc";
+font-size: 16rpx;
+color: lightgrey;
+}
+
+.icon-mobile-lightgrey-16:before {
+content: "\e704";
+font-size: 16rpx;
+color: lightgrey;
+}
+
+.icon-people-lightgrey-16:before {
+content: "\e736";
+font-size: 16rpx;
+color: lightgrey;
+}
+
+.icon-location-lightgrey-32:before {
+content: "\e651";
+font-size: 32rpx;
+color: lightgrey;
+}
+
+.icon-phone-lightgrey-32:before {
+content: "\e652";
+font-size: 32rpx;
+color: lightgrey;
+}
+
+.icon-search-lightgrey-32:before {
+content: "\e65c";
+font-size: 32rpx;
+color: lightgrey;
+}
+
+.icon-comment-lightgrey-32:before {
+content: "\e667";
+font-size: 32rpx;
+color: lightgrey;
+}
+
+.icon-deliver-lightgrey-32:before {
+content: "\e671";
+font-size: 32rpx;
+color: lightgrey;
+}
+
+.icon-evaluate-lightgrey-32:before {
+content: "\e672";
+font-size: 32rpx;
+color: lightgrey;
+}
+
+.icon-send-lightgrey-32:before {
+content: "\e675";
+font-size: 32rpx;
+color: lightgrey;
+}
+
+.icon-shop-lightgrey-32:before {
+content: "\e676";
+font-size: 32rpx;
+color: lightgrey;
+}
+
+.icon-pic-lightgrey-32:before {
+content: "\e69b";
+font-size: 32rpx;
+color: lightgrey;
+}
+
+.icon-cart-lightgrey-32:before {
+content: "\e6af";
+font-size: 32rpx;
+color: lightgrey;
+}
+
+.icon-profile-lightgrey-32:before {
+content: "\e6b7";
+font-size: 32rpx;
+color: lightgrey;
+}
+
+.icon-home-lightgrey-32:before {
+content: "\e6b8";
+font-size: 32rpx;
+color: lightgrey;
+}
+
+.icon-friendadd-lightgrey-32:before {
+content: "\e6ca";
+font-size: 32rpx;
+color: lightgrey;
+}
+
+.icon-friend-lightgrey-32:before {
+content: "\e6cc";
+font-size: 32rpx;
+color: lightgrey;
+}
+
+.icon-mobile-lightgrey-32:before {
+content: "\e704";
+font-size: 32rpx;
+color: lightgrey;
+}
+
+.icon-people-lightgrey-32:before {
+content: "\e736";
+font-size: 32rpx;
+color: lightgrey;
+}
+
+.icon-location-lightgrey-48:before {
+content: "\e651";
+font-size: 48rpx;
+color: lightgrey;
+}
+
+.icon-phone-lightgrey-48:before {
+content: "\e652";
+font-size: 48rpx;
+color: lightgrey;
+}
+
+.icon-search-lightgrey-48:before {
+content: "\e65c";
+font-size: 48rpx;
+color: lightgrey;
+}
+
+.icon-comment-lightgrey-48:before {
+content: "\e667";
+font-size: 48rpx;
+color: lightgrey;
+}
+
+.icon-deliver-lightgrey-48:before {
+content: "\e671";
+font-size: 48rpx;
+color: lightgrey;
+}
+
+.icon-evaluate-lightgrey-48:before {
+content: "\e672";
+font-size: 48rpx;
+color: lightgrey;
+}
+
+.icon-send-lightgrey-48:before {
+content: "\e675";
+font-size: 48rpx;
+color: lightgrey;
+}
+
+.icon-shop-lightgrey-48:before {
+content: "\e676";
+font-size: 48rpx;
+color: lightgrey;
+}
+
+.icon-pic-lightgrey-48:before {
+content: "\e69b";
+font-size: 48rpx;
+color: lightgrey;
+}
+
+.icon-cart-lightgrey-48:before {
+content: "\e6af";
+font-size: 48rpx;
+color: lightgrey;
+}
+
+.icon-profile-lightgrey-48:before {
+content: "\e6b7";
+font-size: 48rpx;
+color: lightgrey;
+}
+
+.icon-home-lightgrey-48:before {
+content: "\e6b8";
+font-size: 48rpx;
+color: lightgrey;
+}
+
+.icon-friendadd-lightgrey-48:before {
+content: "\e6ca";
+font-size: 48rpx;
+color: lightgrey;
+}
+
+.icon-friend-lightgrey-48:before {
+content: "\e6cc";
+font-size: 48rpx;
+color: lightgrey;
+}
+
+.icon-mobile-lightgrey-48:before {
+content: "\e704";
+font-size: 48rpx;
+color: lightgrey;
+}
+
+.icon-people-lightgrey-48:before {
+content: "\e736";
+font-size: 48rpx;
+color: lightgrey;
+}
+
+.icon-location-lightgrey-36:before {
+content: "\e651";
+font-size: 36rpx;
+color: lightgrey;
+}
+
+.icon-phone-lightgrey-36:before {
+content: "\e652";
+font-size: 36rpx;
+color: lightgrey;
+}
+
+.icon-search-lightgrey-36:before {
+content: "\e65c";
+font-size: 36rpx;
+color: lightgrey;
+}
+
+.icon-comment-lightgrey-36:before {
+content: "\e667";
+font-size: 36rpx;
+color: lightgrey;
+}
+
+.icon-deliver-lightgrey-36:before {
+content: "\e671";
+font-size: 36rpx;
+color: lightgrey;
+}
+
+.icon-evaluate-lightgrey-36:before {
+content: "\e672";
+font-size: 36rpx;
+color: lightgrey;
+}
+
+.icon-send-lightgrey-36:before {
+content: "\e675";
+font-size: 36rpx;
+color: lightgrey;
+}
+
+.icon-shop-lightgrey-36:before {
+content: "\e676";
+font-size: 36rpx;
+color: lightgrey;
+}
+
+.icon-pic-lightgrey-36:before {
+content: "\e69b";
+font-size: 36rpx;
+color: lightgrey;
+}
+
+.icon-cart-lightgrey-36:before {
+content: "\e6af";
+font-size: 36rpx;
+color: lightgrey;
+}
+
+.icon-profile-lightgrey-36:before {
+content: "\e6b7";
+font-size: 36rpx;
+color: lightgrey;
+}
+
+.icon-home-lightgrey-36:before {
+content: "\e6b8";
+font-size: 36rpx;
+color: lightgrey;
+}
+
+.icon-friendadd-lightgrey-36:before {
+content: "\e6ca";
+font-size: 36rpx;
+color: lightgrey;
+}
+
+.icon-friend-lightgrey-36:before {
+content: "\e6cc";
+font-size: 36rpx;
+color: lightgrey;
+}
+
+.icon-mobile-lightgrey-36:before {
+content: "\e704";
+font-size: 36rpx;
+color: lightgrey;
+}
+
+.icon-people-lightgrey-36:before {
+content: "\e736";
+font-size: 36rpx;
+color: lightgrey;
+}
+
+.icon-location-lightgrey-42:before {
+content: "\e651";
+font-size: 42rpx;
+color: lightgrey;
+}
+
+.icon-phone-lightgrey-42:before {
+content: "\e652";
+font-size: 42rpx;
+color: lightgrey;
+}
+
+.icon-search-lightgrey-42:before {
+content: "\e65c";
+font-size: 42rpx;
+color: lightgrey;
+}
+
+.icon-comment-lightgrey-42:before {
+content: "\e667";
+font-size: 42rpx;
+color: lightgrey;
+}
+
+.icon-deliver-lightgrey-42:before {
+content: "\e671";
+font-size: 42rpx;
+color: lightgrey;
+}
+
+.icon-evaluate-lightgrey-42:before {
+content: "\e672";
+font-size: 42rpx;
+color: lightgrey;
+}
+
+.icon-send-lightgrey-42:before {
+content: "\e675";
+font-size: 42rpx;
+color: lightgrey;
+}
+
+.icon-shop-lightgrey-42:before {
+content: "\e676";
+font-size: 42rpx;
+color: lightgrey;
+}
+
+.icon-pic-lightgrey-42:before {
+content: "\e69b";
+font-size: 42rpx;
+color: lightgrey;
+}
+
+.icon-cart-lightgrey-42:before {
+content: "\e6af";
+font-size: 42rpx;
+color: lightgrey;
+}
+
+.icon-profile-lightgrey-42:before {
+content: "\e6b7";
+font-size: 42rpx;
+color: lightgrey;
+}
+
+.icon-home-lightgrey-42:before {
+content: "\e6b8";
+font-size: 42rpx;
+color: lightgrey;
+}
+
+.icon-friendadd-lightgrey-42:before {
+content: "\e6ca";
+font-size: 42rpx;
+color: lightgrey;
+}
+
+.icon-friend-lightgrey-42:before {
+content: "\e6cc";
+font-size: 42rpx;
+color: lightgrey;
+}
+
+.icon-mobile-lightgrey-42:before {
+content: "\e704";
+font-size: 42rpx;
+color: lightgrey;
+}
+
+.icon-people-lightgrey-42:before {
+content: "\e736";
+font-size: 42rpx;
+color: lightgrey;
+}
+
+.icon-location-black-16:before {
+content: "\e651";
+font-size: 16rpx;
+color: black;
+}
+
+.icon-phone-black-16:before {
+content: "\e652";
+font-size: 16rpx;
+color: black;
+}
+
+.icon-search-black-16:before {
+content: "\e65c";
+font-size: 16rpx;
+color: black;
+}
+
+.icon-comment-black-16:before {
+content: "\e667";
+font-size: 16rpx;
+color: black;
+}
+
+.icon-deliver-black-16:before {
+content: "\e671";
+font-size: 16rpx;
+color: black;
+}
+
+.icon-evaluate-black-16:before {
+content: "\e672";
+font-size: 16rpx;
+color: black;
+}
+
+.icon-send-black-16:before {
+content: "\e675";
+font-size: 16rpx;
+color: black;
+}
+
+.icon-shop-black-16:before {
+content: "\e676";
+font-size: 16rpx;
+color: black;
+}
+
+.icon-pic-black-16:before {
+content: "\e69b";
+font-size: 16rpx;
+color: black;
+}
+
+.icon-cart-black-16:before {
+content: "\e6af";
+font-size: 16rpx;
+color: black;
+}
+
+.icon-profile-black-16:before {
+content: "\e6b7";
+font-size: 16rpx;
+color: black;
+}
+
+.icon-home-black-16:before {
+content: "\e6b8";
+font-size: 16rpx;
+color: black;
+}
+
+.icon-friendadd-black-16:before {
+content: "\e6ca";
+font-size: 16rpx;
+color: black;
+}
+
+.icon-friend-black-16:before {
+content: "\e6cc";
+font-size: 16rpx;
+color: black;
+}
+
+.icon-mobile-black-16:before {
+content: "\e704";
+font-size: 16rpx;
+color: black;
+}
+
+.icon-people-black-16:before {
+content: "\e736";
+font-size: 16rpx;
+color: black;
+}
+
+.icon-location-black-32:before {
+content: "\e651";
+font-size: 32rpx;
+color: black;
+}
+
+.icon-phone-black-32:before {
+content: "\e652";
+font-size: 32rpx;
+color: black;
+}
+
+.icon-search-black-32:before {
+content: "\e65c";
+font-size: 32rpx;
+color: black;
+}
+
+.icon-comment-black-32:before {
+content: "\e667";
+font-size: 32rpx;
+color: black;
+}
+
+.icon-deliver-black-32:before {
+content: "\e671";
+font-size: 32rpx;
+color: black;
+}
+
+.icon-evaluate-black-32:before {
+content: "\e672";
+font-size: 32rpx;
+color: black;
+}
+
+.icon-send-black-32:before {
+content: "\e675";
+font-size: 32rpx;
+color: black;
+}
+
+.icon-shop-black-32:before {
+content: "\e676";
+font-size: 32rpx;
+color: black;
+}
+
+.icon-pic-black-32:before {
+content: "\e69b";
+font-size: 32rpx;
+color: black;
+}
+
+.icon-cart-black-32:before {
+content: "\e6af";
+font-size: 32rpx;
+color: black;
+}
+
+.icon-profile-black-32:before {
+content: "\e6b7";
+font-size: 32rpx;
+color: black;
+}
+
+.icon-home-black-32:before {
+content: "\e6b8";
+font-size: 32rpx;
+color: black;
+}
+
+.icon-friendadd-black-32:before {
+content: "\e6ca";
+font-size: 32rpx;
+color: black;
+}
+
+.icon-friend-black-32:before {
+content: "\e6cc";
+font-size: 32rpx;
+color: black;
+}
+
+.icon-mobile-black-32:before {
+content: "\e704";
+font-size: 32rpx;
+color: black;
+}
+
+.icon-people-black-32:before {
+content: "\e736";
+font-size: 32rpx;
+color: black;
+}
+
+.icon-location-black-48:before {
+content: "\e651";
+font-size: 48rpx;
+color: black;
+}
+
+.icon-phone-black-48:before {
+content: "\e652";
+font-size: 48rpx;
+color: black;
+}
+
+.icon-search-black-48:before {
+content: "\e65c";
+font-size: 48rpx;
+color: black;
+}
+
+.icon-comment-black-48:before {
+content: "\e667";
+font-size: 48rpx;
+color: black;
+}
+
+.icon-deliver-black-48:before {
+content: "\e671";
+font-size: 48rpx;
+color: black;
+}
+
+.icon-evaluate-black-48:before {
+content: "\e672";
+font-size: 48rpx;
+color: black;
+}
+
+.icon-send-black-48:before {
+content: "\e675";
+font-size: 48rpx;
+color: black;
+}
+
+.icon-shop-black-48:before {
+content: "\e676";
+font-size: 48rpx;
+color: black;
+}
+
+.icon-pic-black-48:before {
+content: "\e69b";
+font-size: 48rpx;
+color: black;
+}
+
+.icon-cart-black-48:before {
+content: "\e6af";
+font-size: 48rpx;
+color: black;
+}
+
+.icon-profile-black-48:before {
+content: "\e6b7";
+font-size: 48rpx;
+color: black;
+}
+
+.icon-home-black-48:before {
+content: "\e6b8";
+font-size: 48rpx;
+color: black;
+}
+
+.icon-friendadd-black-48:before {
+content: "\e6ca";
+font-size: 48rpx;
+color: black;
+}
+
+.icon-friend-black-48:before {
+content: "\e6cc";
+font-size: 48rpx;
+color: black;
+}
+
+.icon-mobile-black-48:before {
+content: "\e704";
+font-size: 48rpx;
+color: black;
+}
+
+.icon-people-black-48:before {
+content: "\e736";
+font-size: 48rpx;
+color: black;
+}
+
+.icon-location-black-36:before {
+content: "\e651";
+font-size: 36rpx;
+color: black;
+}
+
+.icon-phone-black-36:before {
+content: "\e652";
+font-size: 36rpx;
+color: black;
+}
+
+.icon-search-black-36:before {
+content: "\e65c";
+font-size: 36rpx;
+color: black;
+}
+
+.icon-comment-black-36:before {
+content: "\e667";
+font-size: 36rpx;
+color: black;
+}
+
+.icon-deliver-black-36:before {
+content: "\e671";
+font-size: 36rpx;
+color: black;
+}
+
+.icon-evaluate-black-36:before {
+content: "\e672";
+font-size: 36rpx;
+color: black;
+}
+
+.icon-send-black-36:before {
+content: "\e675";
+font-size: 36rpx;
+color: black;
+}
+
+.icon-shop-black-36:before {
+content: "\e676";
+font-size: 36rpx;
+color: black;
+}
+
+.icon-pic-black-36:before {
+content: "\e69b";
+font-size: 36rpx;
+color: black;
+}
+
+.icon-cart-black-36:before {
+content: "\e6af";
+font-size: 36rpx;
+color: black;
+}
+
+.icon-profile-black-36:before {
+content: "\e6b7";
+font-size: 36rpx;
+color: black;
+}
+
+.icon-home-black-36:before {
+content: "\e6b8";
+font-size: 36rpx;
+color: black;
+}
+
+.icon-friendadd-black-36:before {
+content: "\e6ca";
+font-size: 36rpx;
+color: black;
+}
+
+.icon-friend-black-36:before {
+content: "\e6cc";
+font-size: 36rpx;
+color: black;
+}
+
+.icon-mobile-black-36:before {
+content: "\e704";
+font-size: 36rpx;
+color: black;
+}
+
+.icon-people-black-36:before {
+content: "\e736";
+font-size: 36rpx;
+color: black;
+}
+
+.icon-location-black-42:before {
+content: "\e651";
+font-size: 42rpx;
+color: black;
+}
+
+.icon-phone-black-42:before {
+content: "\e652";
+font-size: 42rpx;
+color: black;
+}
+
+.icon-search-black-42:before {
+content: "\e65c";
+font-size: 42rpx;
+color: black;
+}
+
+.icon-comment-black-42:before {
+content: "\e667";
+font-size: 42rpx;
+color: black;
+}
+
+.icon-deliver-black-42:before {
+content: "\e671";
+font-size: 42rpx;
+color: black;
+}
+
+.icon-evaluate-black-42:before {
+content: "\e672";
+font-size: 42rpx;
+color: black;
+}
+
+.icon-send-black-42:before {
+content: "\e675";
+font-size: 42rpx;
+color: black;
+}
+
+.icon-shop-black-42:before {
+content: "\e676";
+font-size: 42rpx;
+color: black;
+}
+
+.icon-pic-black-42:before {
+content: "\e69b";
+font-size: 42rpx;
+color: black;
+}
+
+.icon-cart-black-42:before {
+content: "\e6af";
+font-size: 42rpx;
+color: black;
+}
+
+.icon-profile-black-42:before {
+content: "\e6b7";
+font-size: 42rpx;
+color: black;
+}
+
+.icon-home-black-42:before {
+content: "\e6b8";
+font-size: 42rpx;
+color: black;
+}
+
+.icon-friendadd-black-42:before {
+content: "\e6ca";
+font-size: 42rpx;
+color: black;
+}
+
+.icon-friend-black-42:before {
+content: "\e6cc";
+font-size: 42rpx;
+color: black;
+}
+
+.icon-mobile-black-42:before {
+content: "\e704";
+font-size: 42rpx;
+color: black;
+}
+
+.icon-people-black-42:before {
+content: "\e736";
+font-size: 42rpx;
+color: black;
+}
+
+.icon-location-grey-16:before {
+content: "\e651";
+font-size: 16rpx;
+color: grey;
+}
+
+.icon-phone-grey-16:before {
+content: "\e652";
+font-size: 16rpx;
+color: grey;
+}
+
+.icon-search-grey-16:before {
+content: "\e65c";
+font-size: 16rpx;
+color: grey;
+}
+
+.icon-comment-grey-16:before {
+content: "\e667";
+font-size: 16rpx;
+color: grey;
+}
+
+.icon-deliver-grey-16:before {
+content: "\e671";
+font-size: 16rpx;
+color: grey;
+}
+
+.icon-evaluate-grey-16:before {
+content: "\e672";
+font-size: 16rpx;
+color: grey;
+}
+
+.icon-send-grey-16:before {
+content: "\e675";
+font-size: 16rpx;
+color: grey;
+}
+
+.icon-shop-grey-16:before {
+content: "\e676";
+font-size: 16rpx;
+color: grey;
+}
+
+.icon-pic-grey-16:before {
+content: "\e69b";
+font-size: 16rpx;
+color: grey;
+}
+
+.icon-cart-grey-16:before {
+content: "\e6af";
+font-size: 16rpx;
+color: grey;
+}
+
+.icon-profile-grey-16:before {
+content: "\e6b7";
+font-size: 16rpx;
+color: grey;
+}
+
+.icon-home-grey-16:before {
+content: "\e6b8";
+font-size: 16rpx;
+color: grey;
+}
+
+.icon-friendadd-grey-16:before {
+content: "\e6ca";
+font-size: 16rpx;
+color: grey;
+}
+
+.icon-friend-grey-16:before {
+content: "\e6cc";
+font-size: 16rpx;
+color: grey;
+}
+
+.icon-mobile-grey-16:before {
+content: "\e704";
+font-size: 16rpx;
+color: grey;
+}
+
+.icon-people-grey-16:before {
+content: "\e736";
+font-size: 16rpx;
+color: grey;
+}
+
+.icon-location-grey-32:before {
+content: "\e651";
+font-size: 32rpx;
+color: grey;
+}
+
+.icon-phone-grey-32:before {
+content: "\e652";
+font-size: 32rpx;
+color: grey;
+}
+
+.icon-search-grey-32:before {
+content: "\e65c";
+font-size: 32rpx;
+color: grey;
+}
+
+.icon-comment-grey-32:before {
+content: "\e667";
+font-size: 32rpx;
+color: grey;
+}
+
+.icon-deliver-grey-32:before {
+content: "\e671";
+font-size: 32rpx;
+color: grey;
+}
+
+.icon-evaluate-grey-32:before {
+content: "\e672";
+font-size: 32rpx;
+color: grey;
+}
+
+.icon-send-grey-32:before {
+content: "\e675";
+font-size: 32rpx;
+color: grey;
+}
+
+.icon-shop-grey-32:before {
+content: "\e676";
+font-size: 32rpx;
+color: grey;
+}
+
+.icon-pic-grey-32:before {
+content: "\e69b";
+font-size: 32rpx;
+color: grey;
+}
+
+.icon-cart-grey-32:before {
+content: "\e6af";
+font-size: 32rpx;
+color: grey;
+}
+
+.icon-profile-grey-32:before {
+content: "\e6b7";
+font-size: 32rpx;
+color: grey;
+}
+
+.icon-home-grey-32:before {
+content: "\e6b8";
+font-size: 32rpx;
+color: grey;
+}
+
+.icon-friendadd-grey-32:before {
+content: "\e6ca";
+font-size: 32rpx;
+color: grey;
+}
+
+.icon-friend-grey-32:before {
+content: "\e6cc";
+font-size: 32rpx;
+color: grey;
+}
+
+.icon-mobile-grey-32:before {
+content: "\e704";
+font-size: 32rpx;
+color: grey;
+}
+
+.icon-people-grey-32:before {
+content: "\e736";
+font-size: 32rpx;
+color: grey;
+}
+
+.icon-location-grey-48:before {
+content: "\e651";
+font-size: 48rpx;
+color: grey;
+}
+
+.icon-phone-grey-48:before {
+content: "\e652";
+font-size: 48rpx;
+color: grey;
+}
+
+.icon-search-grey-48:before {
+content: "\e65c";
+font-size: 48rpx;
+color: grey;
+}
+
+.icon-comment-grey-48:before {
+content: "\e667";
+font-size: 48rpx;
+color: grey;
+}
+
+.icon-deliver-grey-48:before {
+content: "\e671";
+font-size: 48rpx;
+color: grey;
+}
+
+.icon-evaluate-grey-48:before {
+content: "\e672";
+font-size: 48rpx;
+color: grey;
+}
+
+.icon-send-grey-48:before {
+content: "\e675";
+font-size: 48rpx;
+color: grey;
+}
+
+.icon-shop-grey-48:before {
+content: "\e676";
+font-size: 48rpx;
+color: grey;
+}
+
+.icon-pic-grey-48:before {
+content: "\e69b";
+font-size: 48rpx;
+color: grey;
+}
+
+.icon-cart-grey-48:before {
+content: "\e6af";
+font-size: 48rpx;
+color: grey;
+}
+
+.icon-profile-grey-48:before {
+content: "\e6b7";
+font-size: 48rpx;
+color: grey;
+}
+
+.icon-home-grey-48:before {
+content: "\e6b8";
+font-size: 48rpx;
+color: grey;
+}
+
+.icon-friendadd-grey-48:before {
+content: "\e6ca";
+font-size: 48rpx;
+color: grey;
+}
+
+.icon-friend-grey-48:before {
+content: "\e6cc";
+font-size: 48rpx;
+color: grey;
+}
+
+.icon-mobile-grey-48:before {
+content: "\e704";
+font-size: 48rpx;
+color: grey;
+}
+
+.icon-people-grey-48:before {
+content: "\e736";
+font-size: 48rpx;
+color: grey;
+}
+
+.icon-location-grey-36:before {
+content: "\e651";
+font-size: 36rpx;
+color: grey;
+}
+
+.icon-phone-grey-36:before {
+content: "\e652";
+font-size: 36rpx;
+color: grey;
+}
+
+.icon-search-grey-36:before {
+content: "\e65c";
+font-size: 36rpx;
+color: grey;
+}
+
+.icon-comment-grey-36:before {
+content: "\e667";
+font-size: 36rpx;
+color: grey;
+}
+
+.icon-deliver-grey-36:before {
+content: "\e671";
+font-size: 36rpx;
+color: grey;
+}
+
+.icon-evaluate-grey-36:before {
+content: "\e672";
+font-size: 36rpx;
+color: grey;
+}
+
+.icon-send-grey-36:before {
+content: "\e675";
+font-size: 36rpx;
+color: grey;
+}
+
+.icon-shop-grey-36:before {
+content: "\e676";
+font-size: 36rpx;
+color: grey;
+}
+
+.icon-pic-grey-36:before {
+content: "\e69b";
+font-size: 36rpx;
+color: grey;
+}
+
+.icon-cart-grey-36:before {
+content: "\e6af";
+font-size: 36rpx;
+color: grey;
+}
+
+.icon-profile-grey-36:before {
+content: "\e6b7";
+font-size: 36rpx;
+color: grey;
+}
+
+.icon-home-grey-36:before {
+content: "\e6b8";
+font-size: 36rpx;
+color: grey;
+}
+
+.icon-friendadd-grey-36:before {
+content: "\e6ca";
+font-size: 36rpx;
+color: grey;
+}
+
+.icon-friend-grey-36:before {
+content: "\e6cc";
+font-size: 36rpx;
+color: grey;
+}
+
+.icon-mobile-grey-36:before {
+content: "\e704";
+font-size: 36rpx;
+color: grey;
+}
+
+.icon-people-grey-36:before {
+content: "\e736";
+font-size: 36rpx;
+color: grey;
+}
+
+.icon-location-grey-42:before {
+content: "\e651";
+font-size: 42rpx;
+color: grey;
+}
+
+.icon-phone-grey-42:before {
+content: "\e652";
+font-size: 42rpx;
+color: grey;
+}
+
+.icon-search-grey-42:before {
+content: "\e65c";
+font-size: 42rpx;
+color: grey;
+}
+
+.icon-comment-grey-42:before {
+content: "\e667";
+font-size: 42rpx;
+color: grey;
+}
+
+.icon-deliver-grey-42:before {
+content: "\e671";
+font-size: 42rpx;
+color: grey;
+}
+
+.icon-evaluate-grey-42:before {
+content: "\e672";
+font-size: 42rpx;
+color: grey;
+}
+
+.icon-send-grey-42:before {
+content: "\e675";
+font-size: 42rpx;
+color: grey;
+}
+
+.icon-shop-grey-42:before {
+content: "\e676";
+font-size: 42rpx;
+color: grey;
+}
+
+.icon-pic-grey-42:before {
+content: "\e69b";
+font-size: 42rpx;
+color: grey;
+}
+
+.icon-cart-grey-42:before {
+content: "\e6af";
+font-size: 42rpx;
+color: grey;
+}
+
+.icon-profile-grey-42:before {
+content: "\e6b7";
+font-size: 42rpx;
+color: grey;
+}
+
+.icon-home-grey-42:before {
+content: "\e6b8";
+font-size: 42rpx;
+color: grey;
+}
+
+.icon-friendadd-grey-42:before {
+content: "\e6ca";
+font-size: 42rpx;
+color: grey;
+}
+
+.icon-friend-grey-42:before {
+content: "\e6cc";
+font-size: 42rpx;
+color: grey;
+}
+
+.icon-mobile-grey-42:before {
+content: "\e704";
+font-size: 42rpx;
+color: grey;
+}
+
+.icon-people-grey-42:before {
+content: "\e736";
+font-size: 42rpx;
+color: grey;
+}

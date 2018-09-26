@@ -1,3 +1,6 @@
+const BE_ENDPOINT = "https://jiaonidaigou-dot-fluid-crane-200921.appspot.com";
+const BE_HEADER = "X-Wx-SessionTicket";
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -15,5 +18,6 @@ const formatNumber = n => {
 }
 
 module.exports = {
+  BE_ENDPOINT: BE_ENDPOINT,
   formatTime: formatTime
 }
