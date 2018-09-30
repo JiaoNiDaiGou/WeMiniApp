@@ -23,6 +23,7 @@ Page({
     parsingCandidates: [],
 
     readyToCreate: false,
+    showProgressBar: false,
   },
 
   /**
@@ -115,8 +116,6 @@ Page({
    * When user select one parsing candidate.
    */
   onParsingCandidatesSelected: function (e) {
-    console.log('select');
-    console.log(e);
     var customer = this.data.parsingCandidates
       .filter(t => t.tmpindex === e.currentTarget.dataset.tmpindex)[0];
     if (!!customer) {
@@ -129,7 +128,9 @@ Page({
         name: name,
         phone: phone,
         address: address,
-        parsingCandidates: []
+        parsingCandidates: [],
+        rawText: '',
+        rawImagePath: null
       });
       this.checkReadyToCreate();
     }
@@ -139,20 +140,30 @@ Page({
    * Parse raw receiver info
    */
   parseRawTextOrImage: function () {
+    var that = this;
     console.log('parse raw customer. text=' + this.data.rawText + ', mediaId=' + this.data.rawImageMediaId);
     wx.showLoading({
-      title: '智能解析中',
+      title: '开始上传图片',
     });
+
+    var progressHandle = (res) => {
+      wx.showLoading({
+        title: '已经上传 ' + res.progress + '%'
+      })
+    }
 
     var texts = !!this.data.rawText ? [this.data.rawText] : [];
     var imagePath = this.data.rawImagePath;
     if (!!imagePath) {
       console.log('upload image: ' + imagePath);
-      backend.promiseOfUploadMedia(app, imagePath)
+      backend.promiseOfUploadMedia(app, imagePath, progressHandle)
         .then(r => {
-          var mediaId = r.res.mediaObj.id;
+          var mediaId = r.res.id;
           console.log('upload media success. get mediaId:' + mediaId)
-          this.parseRawCustomer(texts, [mediaId]);
+          wx.showLoading({
+            title: '智能解析中',
+          })
+          that.parseRawCustomer(texts, [mediaId]);
         })
     } else if (texts.length > 0) {
       this.parseRawCustomer(texts, []);
@@ -212,9 +223,7 @@ Page({
         }
 
         this.setData({
-          parsingCandidates: parsingCandidates,
-          rawText: '',
-          rawImagePath: null
+          parsingCandidates: parsingCandidates
         });
       });
   },

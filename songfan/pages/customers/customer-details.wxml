@@ -1,9 +1,15 @@
 <!--pages/customers/customer-details.wxml-->
 <view>
-  <text-box iconClass='icon-profile-black-36' placeholder='姓名' value='{{customer.name}}'></text-box>
-  <text-box iconClass='icon-phone-black-36' placeholder='电话' value='{{customer.phone.phone}}'></text-box>
-  <view class='touch-item {{item.isTouchMove ? "touch-move-active" : ""}}' data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{customer.addresses}}" wx:key="unique" wx:for-item="address">
-    <address-box region='{{address.region}}' city='{{address.city}}' zone='{{address.zone}}' address='{{address.address}}'></address-box>
+<text-box iconClass='icon-tag-black-36' placeholder='ID' value='{{customer.id}}'></text-box>
+  <text-box iconClass='icon-profile-black-36' placeholder='姓名' value='{{customer.name}}' editable='true'></text-box>
+  <text-box iconClass='icon-phone-black-36' placeholder='电话' value='{{customer.phone.phone}}' editable='true'></text-box>
+  <view wx:for="{{customer.addresses}}" wx:key="unique" wx:for-item="address">
+    <address-box region='{{address.region}}' city='{{address.city}}' zone='{{address.zone}}' address='{{address.address}}' editable='true'></address-box>
   </view>
-  <view class="del" catchtap="del" data-index="{{index}}">删除</view>
+  <view class="weui-btn-area">
+    <view wx:if='{{canUpdate}}'>
+      <button class="weui-btn fui-button" type="primary" bindtap='goToShippingOrderCreate'>更新客户信息</button>
+    </view>
+    <button class="weui-btn fui-button" type="primary" bindtap='goToShippingOrderCreate'>发货</button>
+  </view>
 </view>

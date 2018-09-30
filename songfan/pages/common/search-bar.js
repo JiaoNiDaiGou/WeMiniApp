@@ -9,24 +9,43 @@ Component({
      * - id: id of the item
      * - display: the string to display in selection.
      */
-    searchResultCandidates: {
+    searchCandidates: {
       type: Array,
       value: []
     },
 
-    inputPlaceholder: {
+    /**
+     * The style how to display the searching candidates.
+     * Possible values are:
+     * dropDown (default)
+     * badgeRight
+     */
+    searchCandidatesDisplayStyle: {
+      type: String,
+      value: 'dropDown'
+    },
+
+    /**
+     * The number of searching candidates to display.
+     * If using dropDown styple, you can set a large limit.
+     * If using badgeRight styple, suggest limit to 3.
+     */
+    searchCandidatesDisplayLimit: {
+      type: Number,
+      value: 30
+    },
+
+    /**
+     * Input text box placeholder.
+     */
+    placeholder: {
       type: String,
       value: '搜索'
     },
 
-    /**
-     * input style can be:
-     * bar
-     * textarea
-     */
-    inputStyle: {
+    inputValue: {
       type: String,
-      value: 'bar'
+      value: ''
     }
   },
 
@@ -34,8 +53,7 @@ Component({
    * Component initial data
    */
   data: {
-    inputShowed: false,
-    inputVal: "",
+    inputShowed: false
   },
 
   /**
@@ -50,32 +68,29 @@ Component({
 
     hideInput: function () {
       this.setData({
-        inputVal: "",
+        inputValue: "",
         inputShowed: false
       });
     },
 
     clearInput: function () {
       this.setData({
-        inputVal: ""
+        inputValue: ""
       });
     },
 
     inputTyping: function (e) {
-      var inputVal = e.detail.value;
+      var inputValue = e.detail.value;
       this.setData({
-        inputVal: inputVal
+        inputValue: inputValue
       });
-      this.triggerEvent('inputTypingEvent', { inputVal: inputVal }, {})
+      this.triggerEvent('inputTypingEvent', { inputValue: inputValue }, {})
     },
 
-    selectSearchCandidate: function (e) {
+    searchCandidateSelected: function (e) {
       var selectedId = e.currentTarget.id;
       console.log('select id: ' + selectedId);
-      this.triggerEvent('selectSearchCandidate', { id: selectedId }, {});
-      this.setData({
-        searchResultCandidates: []
-      });
+      this.triggerEvent('candidateSelectedEvent', { id: selectedId }, {});
     }
   },
 })

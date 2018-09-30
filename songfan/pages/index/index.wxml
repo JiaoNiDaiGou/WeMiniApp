@@ -1,5 +1,7 @@
 <!--index.wxml-->
-<view>
-  <button class="weui-btn fui-button" type="normal" bindtap='goToCustomersList'>用户</button>
-  <button class="weui-btn fui-button" type="normal" bindtap='goToShippingOrdersCreate'>快递单</button>
+<view class='flex-ui'>
+  <view class="weui-btn-area">
+    <button class="weui-btn fui-button" type="normal" bindtap='goToCustomersList'>发货</button>
+    <button class="weui-btn fui-button" type="normal" bindtap='goToShippingOrdersList'>快递单详情</button>
+  </view>
 </view>

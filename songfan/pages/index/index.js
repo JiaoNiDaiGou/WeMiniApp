@@ -7,7 +7,10 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+
+    value: 'aa',
+    suggestions: [],
   },
   //事件处理函数
   bindViewTap: function() {
@@ -58,10 +61,10 @@ Page({
       url: '../customers/customers-list',
     })
   },
-  goToShippingOrdersCreate: function() {
-    console.log('go to shippingOrders-create');
+  goToShippingOrdersList: function() {
+    console.log('go to shippingOrders-list');
     wx.navigateTo({
-      url: '../shippingOrders/shippingOrders-create',
+      url: '../shippingOrders/shippingOrders-list',
     })
   }
 })

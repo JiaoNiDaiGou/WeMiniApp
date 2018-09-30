@@ -3,7 +3,7 @@
 @import './lib/weui.wxss';
 
 view {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .container {
@@ -17,5 +17,11 @@ view {
 }
 
 .fui-button {
-  font-size: 16px;
+  font-size: 18px;
+}
+
+.fui-lightborder {
+  border-bottom-color: lightgrey;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
 }

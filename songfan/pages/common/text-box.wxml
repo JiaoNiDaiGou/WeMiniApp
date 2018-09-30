@@ -1,11 +1,16 @@
 <!--pages/common/text-box.wxml-->
-<view class='page'>
-  <view class="page__bd page__bd_spacing">
-    <view class="weui-flex">
-    <view wx:if='{{iconClass}}'>
-      <icon class='iconfont {{iconClass}} weui-flex__item fui-text-box__icon' />
-    </view>
-    <input type='text' class='weui-flex__item fui-text-box__input' placeholder='{{placeholder}}' value='{{value}}' disabled='{{!editable}}' bindinput='onTypingEvent'></input>
-    </view>
+<view class="weui-flex {{ editable && inputFocus ? 'fui-text-box__border' : '' }}">
+
+  <view wx:if='{{iconClass}}'>
+    <icon class='iconfont {{iconClass}} weui-flex__item fui-text-box__icon' />
+  </view>
+
+  <input type='text' type='{{inputStyle}}' class='fui-text-box__input' placeholder='{{placeholder}}' value='{{value}}' disabled='{{!editable}}' bindinput='inputTyping' bindtap='inputFocus' bindblur='inputBlur'></input>
+</view>
+
+
+<view style="flex-direction: row; display: flex; vertical-align: middle; style='margin-left: 5px; margin-right: 5px;">
+  <view wx:for='{{suggestions}}' wx:key='unique' wx:for-item='suggestion'>
+    <view class="weui-badge weui-flex__item fui-text-box__suggestion-badge" bindtap='tapSuggestion' data-id='{{suggestion.id}}'>{{suggestion.display}}</view>
   </view>
 </view>

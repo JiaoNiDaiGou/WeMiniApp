@@ -1,0 +1,28 @@
+<!--pages/shippingOrders/shippingOrders-list.wxml-->
+<view>
+  <view class="weui-btn-area">
+    <picker bindchange="onStatusChange" value="{{index}}" range="{{statusNames}}">
+      <button type="normal" style='color:green'>{{statusNames[curStatusIndex]}}</button>
+    </picker>
+  </view>
+
+  <view class='fui-shippingOrders-list__main_box'>
+    <view wx:for='{{shippingOrdersByStatus[statusValues[curStatusIndex]]}}' wx:key='unique' wx:for-item='shippingOrder'>
+      <view class='fui-lightborder' data-shippOrderId='{{shippingOrder.id}}' bindlongtap='onItemLongTap'>
+        <view style='margin-top: 10px;'></view>
+
+        <view class="weui-badge weui-flex__item" style='background-color: green;'>{{statusNames[shippingOrder.statusIndex]}}</view>
+        <text-box iconClass='icon-tag-black-36' placeholder='姓名' value='{{shippingOrder.id}}'></text-box>
+        <text-box iconClass='icon-profile-black-36' placeholder='姓名' value='{{shippingOrder.receiver.name}}'></text-box>
+        <text-box iconClass='icon-phone-black-36' placeholder='电话' value='{{shippingOrder.receiver.phone.phone}}'></text-box>
+        <text-box iconClass='icon-time-black-36' placeholder='创建日期' value='{{shippingOrder.renderableCreationTime}}'></text-box>
+        <address-box region='{{shippingOrder.receiver.addresses[0].region}}' city='{{shippingOrder.receiver.addresses[0].city}}' zone='{{shippingOrder.receiver.addresses[0].zone}}' address='{{shippingOrder.receiver.addresses[0].address}}'></address-box>
+        <product-entry-list-box products='{{shippingOrder.renderableProducts}}'></product-entry-list-box>
+        <text-box iconClass='icon-profile-black-36' placeholder='总重量' value='{{shippingOrder.totalWeightLb}}'></text-box>
+        <text-box iconClass='icon-profile-black-36' placeholder='总价格' value='{{shippingOrder.totalPrice}}'></text-box>
+
+        <view style='margin-bottom: 10px;'></view>
+      </view>
+    </view>
+  </view>
+</view>

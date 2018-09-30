@@ -1,23 +1,19 @@
-/* pages/common/text-box.wxss */
+/* pages/common/picker-box.wxss */
 @import '../../lib/icon.wxss';
 @import '../../lib/weui.wxss';
 
-.fui-text-box__icon {
+.fui-picker-box__icon {
   margin-left: 10px;
   margin-right: 10px;
 }
 
-.fui-text-box__input {
+.fui-picker-box__picker {
   margin-left: 10px;
   margin-top: 5px;
   font-size: 18px;
 }
 
-.fui-text-box__border {
-  border: 2px groove lightgreen
-}
-
-.fui-text-box__suggestion-badge {
+.fui-picker-box__suggestion-badge {
   margin: 3px;
   font-size: 14px;
   background-color: green;

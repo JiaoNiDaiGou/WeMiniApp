@@ -1,0 +1,17 @@
+<!--pages/common/picker-box.wxml-->
+<view>
+  <view wx:if='{{iconClass}}'>
+    <icon class='iconfont {{iconClass}} weui-flex__item fui-picker-box__icon' />
+  </view>
+  <view class='weui-flex'>
+    <picker bindchange="pickChanged" value="{{curIndex}}" range="{{range}}" class='weui-flex__item fui-picker-box__picker'>
+      <view class="weui-select weui-select_in-select-after">{{range[curIndex]}}</view>
+    </picker>
+  </view>
+</view>
+<!-- <view class="weui-flex"> -->
+<view style="flex-direction: row; display: flex; vertical-align: middle; style='margin-left: 5px; margin-right: 5px;">
+  <view wx:for='{{suggestions}}' wx:key='unique' wx:for-item='suggestion'>
+    <view class="weui-badge weui-flex__item fui-picker-box__suggestion-badge" bindtap='tapSuggestion' data-index='{{suggestion}}'>{{range[suggestion]}}</view>
+  </view>
+</view>

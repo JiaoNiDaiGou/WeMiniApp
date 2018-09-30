@@ -1,5 +1,6 @@
 // pages/customers/customer-details.js
 const utils = require('../../utils/util.js')
+const backend = require('../../utils/backend.js')
 const app = getApp()
 
 Page({
@@ -8,9 +9,10 @@ Page({
    * Page initial data
    */
   data: {
+    oriCustomer: null,
     customer: null,
-    openShippingOrders: [],
-    openShippingOrdersNextToken: null,
+    shippingOrders: [],
+    canUpdate: false
   },
 
   /**
@@ -22,24 +24,10 @@ Page({
     var customer = app.globalData.customers
       .filter(t => t.id === options.id)[0];
     this.setData({
-      customer: customer
+      customer: customer,
+      oriCustomer: customer
     })
-
-    // Load open shipping orders:
-    console.log('Load undelivered orders for ' + customer.name);
-    wx.request({
-      method: 'GET',
-      url: utils.BE_SERVER + '/api/shippingOrders/query?customerPhone=' + customer.phone.phone,
-      header: {
-        'X-Wx-SessionTicket': app.globalData.sessionTicketId
-      },
-      success: res => {
-        this.setData({
-          openShippingOrders: res.data.results,
-          openShippingOrdersNextToken: !!res.data.pageToken ? res.data.pageToken : null
-        });
-      }
-    })
+    this.loadShippingOrders()
   },
 
   /**
@@ -74,7 +62,26 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
+    var customerId = this.data.customer.id;
+    var that = this;
 
+    console.log('refresh customer ' + customerId);
+
+    wx.showNavigationBarLoading();
+    backend.promiseOfGetCustomerById(app, customerId)
+      .then(r => {
+        that.loadShippingOrders()
+
+        wx.hideNavigationBarLoading();
+        wx.stopPullDownRefresh();
+        that.setData({
+          customer: r.res.data
+        });
+        wx.showToast({
+          title: '客户信息已刷新',
+          duration: 1000,
+        })
+      })
   },
 
   /**
@@ -91,12 +98,35 @@ Page({
 
   },
 
+  loadShippingOrders: function () {
+    backend.promiseOfQueryShippingOrders(
+        app, 
+        this.data.customer.id,
+        true,
+        null,
+        10)
+      .then(r => {
+        if (r.res.statusCode != 200) {
+          console.log(r);
+          return
+        }
+        var shippingOrders = r.res.data.results;
+        if (!!shippingOrders && shippingOrders.length > 0) {
+          console.log('load ' + shippingOrders.length + ' orders for ' + this.data.customer.name);
+          this.setData({
+            shippingOrders: shippingOrders
+          })
+        }
+      })
+  },
+
   /**
    * Go to create shipping order page.
    */
-  goToCreateShippingOrder: function(e) {
+  goToShippingOrderCreate: function (e) {
+    console.log('go to ShippingOrderCreate');
     wx.redirectTo({
-      url: '../shippingOrders/shippingOrders-create',
+      url: '../shippingOrders/shippingOrders-create?customerId=' + this.data.customer.id + '&name=' + this.data.customer.name + '&phone=' + this.data.customer.phone.phone + '&region=' + this.data.customer.addresses[0].region + '&city=' + this.data.customer.addresses[0].city + '&zone=' + this.data.customer.addresses[0].zone + '&address=' + this.data.customer.addresses[0].address
     })
   }
 })

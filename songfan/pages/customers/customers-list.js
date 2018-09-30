@@ -9,7 +9,7 @@ Page({
    * Page initial data
    */
   data: {
-    customerSearchResultCandidates: [],
+    customerSearchCandidates: [],
   },
 
   /**
@@ -28,10 +28,6 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-    // Force to load search candidates again
-    this.setData({
-      customerSearchResultCandidates: this.data.customerSearchResultCandidates
-    })
   },
 
   /**
@@ -78,21 +74,19 @@ Page({
   onShareAppMessage: function () {
 
   },
-
-
-
+  
   /**
    * Filter customers search results.
    */
-  filterCustomersSearchResultCandidates: function (e) {
-    var inputVal = e.detail.inputVal;
-    if (inputVal == '') {
+  filterCustomersSearchCandidates: function (e) {
+    var inputValue = e.detail.inputValue;
+    if (inputValue == '') {
       this.setData({
-        customerSearchResultCandidates: []
+        customerSearchCandidates: []
       });
     } else {
-      var customerSearchResultCandidates = app.globalData.customers
-        .filter(t => t.name.includes(inputVal) || t.phone.phone.includes(inputVal))
+      var customerSearchCandidates = app.globalData.customers
+        .filter(t => t.name.includes(inputValue) || t.phone.phone.includes(inputValue))
         .slice(0, 20)
         .map(t => {
           return {
@@ -101,7 +95,7 @@ Page({
           }
         });
       this.setData({
-        customerSearchResultCandidates: customerSearchResultCandidates
+        customerSearchCandidates: customerSearchCandidates
       });
     }
   },

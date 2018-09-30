@@ -17,19 +17,13 @@ const promiseOfBackendLogin = (app) => {
   return new Promise(function (resolve, reject) {
     console.log('CALL wxLogin!');
 
-    // app.globalData.sessionTicketId = 'eb87a303-7aa6-4bb4-9bf4-3b1861bef776';
+    // app.globalData.sessionTicketId = '16e15fa5-e354-4a95-a2c5-48e8afbdf938';
     if (!!app.globalData.sessionTicketId) {
       resolve({
         app: app
       });
       return;
     }
-
-    wx.showToast({
-      title: '登陆娇妮代购中',
-      icon: 'loading',
-      mask: true,
-    });
     wx.login({
       success: res => {
         console.log('fetch client jscode ' + res.code);
@@ -41,17 +35,12 @@ const promiseOfBackendLogin = (app) => {
           },
           success: res => {
             console.log('CALL wxLogin SUCCESS!');
-
-            wx.hideToast();
             var sessionTicketId = res.data.ticketId;
             console.log('fetch backend server session ticket ID: ' + sessionTicketId);
             app.globalData.sessionTicketId = sessionTicketId;
             resolve({
               app: app
             });
-          },
-          fail: res => {
-            wx.hideToast();
           }
         })
       }
@@ -80,27 +69,101 @@ const promiseOfLoadAllCustomers = (app) => {
   });
 }
 
-const promiseOfUploadMedia = (app, path) => {
+const promiseOfLoadProductsHints = (app) => {
+  console.log('CALL loadProductsHints!')
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      method: 'GET',
+      url: SERVER + '/api/JiaoNiDaiGou/products/hints',
+      header: {
+        'X-Wx-SessionTicket': app.globalData.sessionTicketId
+      },
+      success: res => {
+        console.log('CALL loadProductsHints SUCCESS!');
+
+        var hints = res.data;
+
+        // fulfill
+        hints.forEach(hint => {
+          var category = hint.left;
+          var categoryIndex = utils.findProductCategoryIndexByValue(category);
+          var brand = hint.middle;
+          utils.incTableCount(app.globalData.productBrandToCategoryHints, brand, categoryIndex);
+          var names = hint.right;
+          names.forEach(name => {
+            utils.incTableCount(app.globalData.productNameToBrandHints, name, brand);
+            utils.incTableCount(app.globalData.productNameToCategoryHints, name, categoryIndex);
+          })
+        })
+
+        // sort
+        app.globalData.productBrandToCategoryHints.forEach(t => t.val.sort((a, b) => b.val - a.val))
+        app.globalData.productNameToBrandHints.forEach(t => t.val.sort((a, b) => b.val - a.val))
+        app.globalData.productNameToCategoryHints.forEach(t => t.val.sort((a, b) => b.val - a.val))
+
+        resolve({
+          app: app
+        })
+      }
+    })
+  })
+}
+
+const promiseOfGetCustomerById = (app, customerId) => {
+  console.log('CALL getCustomerById!');
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      method: 'GET',
+      url: SERVER + '/api/JiaoNiDaiGou/customers/get/' + customerId,
+      header: {
+        'X-Wx-SessionTicket': app.globalData.sessionTicketId
+      },
+      success: res => {
+        console.log('CALL wxLogin SUCCESS!');
+        resolve({
+          app: app,
+          res: res.data
+        });
+      }
+    });
+  });
+}
+
+const promiseOfUploadMedia = (app, path, progressHandle) => {
   var ext = path.split('.').pop();
   console.log('CALL uploadMedia!')
   return new Promise(function (resolve, reject) {
-    wx.uploadFile({
-      url: SERVER + '/api/media/directUpload?ext=' + ext,
+    var uploadTask = wx.uploadFile({
+      url: SERVER + '/api/media/formDirectUpload?ext=' + ext,
       filePath: path,
       header: {
         'X-Wx-SessionTicket': app.globalData.sessionTicketId,
       },
-      name: path,
+      name: 'file',
       success: res => {
         console.log('CALL uploadMedia SUCCESS!');
+        console.log(res);
         // wx.uploadFile response is text.
         // convert it to json.
         resolve({
           app: app,
           res: JSON.parse(res.data)
         });
+      },
+      fail: res => {
+        reject({
+          app: app,
+          res: res
+        });
       }
     });
+
+    if (!!progressHandle) {
+      uploadTask.onProgressUpdate(res => {
+        progressHandle(res);
+      });
+    }
+
   });
 }
 
@@ -116,7 +179,8 @@ const promiseOfParseCustomer = (app, texts, mediaIds) => {
       data: {
         domain: 'CUSTOMER',
         texts: texts,
-        mediaIds: mediaIds
+        mediaIds: mediaIds,
+        limit: 5
       },
       success: res => {
         console.log('CALL parseCustomer SUCCESS!')
@@ -158,10 +222,70 @@ const promiseOfCreateCustomer = (app, id, name, phone, address) => {
   });
 }
 
+const promiseOfInitShippingOrder = (app, receiverCustomerId, address, products, totalWeight) => {
+  console.log('CALL InitShippingOrder!');
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      method: 'POST',
+      url: SERVER + '/api/shippingOrders/init',
+      header: {
+        'X-Wx-SessionTicket': app.globalData.sessionTicketId
+      },
+      data: {
+        receiverCustomerId: receiverCustomerId,
+        address: address,
+        productEntries: products,
+        total_weight_lb : !!totalWeight ? totalWeight : 0
+      },
+      success: res => {
+        console.log('CALL InitShippingOrder SUCCESS!')
+        resolve({
+          app: app,
+          res: res
+        })
+      }
+    })
+  });
+}
+
+const promiseOfQueryShippingOrders = (app, customerId, includeDelivered, status, limit) => {
+  console.log('CALL queryShippingOrders!')
+  var url = SERVER + '/api/shippingOrders/query?limit=' + (!!limit ? limit : 0);
+  if (!!customerId) {
+    url += '&customerId=' + customerId
+  }
+  if (!!includeDelivered) {
+    url += '&includeDelivered=' + includeDelivered
+  }
+  if (!!status) {
+    url += '&status=' + status
+  }
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      method: 'GET',
+      url: url,
+      header: {
+        'X-Wx-SessionTicket': app.globalData.sessionTicketId
+      },
+      success: res => {
+        console.log('CALL queryShippingOrders SUCCESS!')
+        resolve({
+          app: app,
+          res: res
+        })
+      }
+    })
+  })
+}
+
 module.exports = {
   promiseOfBackendLogin: promiseOfBackendLogin,
+  promiseOfCreateCustomer: promiseOfCreateCustomer,
+  promiseOfGetCustomerById: promiseOfGetCustomerById,
+  promiseOfInitShippingOrder: promiseOfInitShippingOrder,
   promiseOfLoadAllCustomers: promiseOfLoadAllCustomers,
-  promiseOfUploadMedia: promiseOfUploadMedia,
+  promiseOfLoadProductsHints: promiseOfLoadProductsHints,
   promiseOfParseCustomer: promiseOfParseCustomer,
-  promiseOfCreateCustomer: promiseOfCreateCustomer
+  promiseOfQueryShippingOrders: promiseOfQueryShippingOrders,
+  promiseOfUploadMedia: promiseOfUploadMedia,
 }
