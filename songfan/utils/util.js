@@ -56,7 +56,6 @@ const shippingOrderStatus = [
 ]
 
 const productCategories = [
-  { name: '商品类别', value: 'UNKONWN' },
   { name: '饰品', value: 'ACCESSORIES' },
   { name: '母婴用品', value: 'BABY_PRODUCTS' },
   { name: '包包', value: 'BAGS' },
@@ -71,7 +70,8 @@ const productCategories = [
   { name: '鞋', value: 'SHOES' },
   { name: '小电器', value: 'SMALL_APPLIANCES' },
   { name: '玩具', value: 'TOYS' },
-  { name: '手表', value: 'WATCHES' }
+  { name: '手表', value: 'WATCHES' },
+  { name: '未知类别', value: 'UNKONWN' }
 ]
 
 const findProductCategoryIndexByValue = (val) => {

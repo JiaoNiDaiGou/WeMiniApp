@@ -24,11 +24,17 @@ Component({
     },
 
     /**
-     * Input box placeholder
+     * Input box index
+     * -1 means display placeholder
      */
     curIndex: {
       type: Number,
-      value: 0
+      value: -1
+    },
+
+    placeholder: {
+      type: String,
+      value: 'placeholder'
     },
 
     /**
@@ -46,6 +52,21 @@ Component({
     suggestionsLimit: {
       type: Number,
       value: 4
+    },
+
+    hasBottomBorder: {
+      type: Boolean,
+      value: false
+    },
+
+    valuePrefix: {
+      type: String,
+      value: ''
+    },
+    
+    valueSuffix: {
+      type: String,
+      value: ''
     }
   },
 

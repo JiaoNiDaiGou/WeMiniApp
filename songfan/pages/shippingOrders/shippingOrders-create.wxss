@@ -1,2 +1,3 @@
 /* pages/shippingOrders/shippingOrders-create.wxss */
 @import '../../lib/weui.wxss';
+@import '../../app.wxss';

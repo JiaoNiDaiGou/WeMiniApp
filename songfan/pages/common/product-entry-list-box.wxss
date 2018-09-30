@@ -1,2 +1,11 @@
 /* pages/common/product-list-box.wxss */
 @import '../../lib/weui.wxss';
+@import '../../app.wxss';
+
+.fui-product-entry-list-box__icon {
+  margin-right: 10px;
+}
+
+.fui-product-entry-list-box {
+  justify-content: flex-start;
+}

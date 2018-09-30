@@ -53,6 +53,11 @@ Component({
     suggestionsLimit: {
       type: Number,
       value: 4
+    },
+
+    hasBottomBorder: {
+      type: Boolean,
+      value: false
     }
   },
 

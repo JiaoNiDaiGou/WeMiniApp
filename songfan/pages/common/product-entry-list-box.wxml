@@ -1,15 +1,16 @@
 <!--pages/common/product-list-box.wxml-->
-<view wx:for="{{products}}" wx:key="unique" wx:for-item="product">
-  <view class='weui-flex' style='margin-left: 10px; margin-right: 10px;'>
-    <view style="display: inline-block; vertical-align: middle; style='margin-left: 5px; margin-right: 5px;">
-      <view class="weui-badge weui-flex__item" style='background-color: green;'>{{product.categoryName}}</view>
-    </view>
-    <view style='margin-left: 10px; margin-right: 10px;'>
-      {{product.brand}} {{product.name}}
-    </view>
-    <view style="display: inline-block; vertical-align: middle; style='margin-left: 5px; margin-right: 5px;">
-      <view class="weui-badge weui-flex__item" style='margin-left: 5px; margin-right: 5px;'>{{product.quantity}}</view>
-      <view class="weui-badge weui-flex__item" style='margin-left: 5px; margin-right: 5px;'>${{product.price}}</view>
+<view class="weui-flex fui-container fui-product-entry-list-box">
+  <icon class='iconfont icon-cart-black-36 fui-product-entry-list-box__icon' />
+  <view class='fui-product-entry-list-box'>
+    <view wx:for="{{products}}" wx:key="unique" wx:for-item="product">
+      <view class='fui-badge-box'>
+        <view class="weui-badge fui-badge-box__item">{{product.categoryName}}</view>
+        <view class='weui-flex__item'>
+          {{product.brand}} {{product.name}}
+        </view>
+        <view class="weui-badge fui-badge-box__item">{{product.quantity}}</view>
+        <view class="weui-badge fui-badge-box__item">${{product.price}}</view>
+      </view>
     </view>
   </view>
 </view>

@@ -6,14 +6,11 @@ view {
   font-size: 18px;
 }
 
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+.fui-container {
+  margin-left: 10px;
+  margin-right: 10px;
   align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
+  justify-content: center;
 }
 
 .fui-button {
@@ -24,4 +21,29 @@ view {
   border-bottom-color: lightgrey;
   border-bottom-style: solid;
   border-bottom-width: 1px;
+}
+
+.fui-separator-above {
+  margin-top: 10px;
+}
+
+.fui-separator-below {
+  margin-bottom: 10px;
+}
+
+.fui-badge-box {
+  display: flex;
+  flex-flow: row;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  vertical-align: middle;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.fui-badge-box__item {
+  margin: 3px;
+  font-size: 14px;
+  background-color: green;
 }

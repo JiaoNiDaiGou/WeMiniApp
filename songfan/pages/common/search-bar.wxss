@@ -1,5 +1,6 @@
 /* pages/common/search-bar.wxss */
 @import '../../lib/weui.wxss';
+@import '../../app.wxss';
 
 .searchbar-result {
   margin-top: 0;

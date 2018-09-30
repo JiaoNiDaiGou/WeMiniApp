@@ -23,6 +23,10 @@ Component({
     editable: {
       type: Boolean,
       value: false
+    },
+    hasBottomBorder: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -85,7 +89,8 @@ Component({
     },
 
     onAddressLineChanged: function (e) {
-      var height = e.detail.lineCount * e.detail.lineHeight + 0.5;
+      console.log(e);
+      var height = (e.detail.lineCount + 1) * e.detail.lineHeight + 0.5;
       this.setData({ addressLineHeight: height })
     },
 

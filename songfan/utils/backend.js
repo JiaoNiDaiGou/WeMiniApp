@@ -17,7 +17,7 @@ const promiseOfBackendLogin = (app) => {
   return new Promise(function (resolve, reject) {
     console.log('CALL wxLogin!');
 
-    // app.globalData.sessionTicketId = '16e15fa5-e354-4a95-a2c5-48e8afbdf938';
+    app.globalData.sessionTicketId = '561a6439-f2f0-4e9a-8c83-6b6a29b05c2e';
     if (!!app.globalData.sessionTicketId) {
       resolve({
         app: app

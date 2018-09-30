@@ -22,12 +22,12 @@ Page({
     productCategoryNames: [],
 
     curProductBrand: '',
-    curProductCategoryIndex: 0,
+    curProductCategoryIndex: -1,
     curProductName: '',
     curProductQuantity: 1,
-    curProductPrice: 30,
+    curProductPrice: '',
 
-    curTotalWeight: 0,
+    curTotalWeight: '',
 
     canAddCurProduct: false,
     canInitializeShippingOrder: false,
@@ -54,7 +54,7 @@ Page({
       address: !!options.address ? options.address : '',
       productCategoryNames: productCategoryNames,
       curProductQuantity: 1,
-      curProductPrice: 30
+      curProductPrice: '30'
     });
   },
 
@@ -109,7 +109,7 @@ Page({
 
   onCurTotalWeightTyping: function (e) {
     this.setData({
-      curTotalWeight: parseFloat(e.detail.value)
+      curTotalWeight: e.detail.value
     });
   },
 
@@ -139,6 +139,7 @@ Page({
     wx.showLoading({
       title: '正在下单',
     })
+    var totalWeight = parseFloat(this.data.curTotalWeight)
     backend.promiseOfInitShippingOrder(
       app,
       this.data.customerId,
@@ -149,7 +150,7 @@ Page({
         address: this.data.address
       },
       products,
-      this.data.curTotalWeight
+      totalWeight
     ).then(r => {
       wx.hideLoading()
       if (r.res.statusCode != 200) {
@@ -259,7 +260,7 @@ Page({
           })
         }
       })
-      hintBrands = hintBrands.sort((a, b) => b.val - a.val).slice(0, 5).map(t => {
+      hintBrands = hintBrands.sort((a, b) => b.val - a.val).slice(0, 10).map(t => {
         return {
           id: t.key,
           display: t.key
@@ -273,7 +274,7 @@ Page({
           })
         }
       })
-      hintCategoryIndexes = hintCategoryIndexes.sort((a, b) => b.val - a.val).slice(0, 3).map(t => t.key)
+      hintCategoryIndexes = hintCategoryIndexes.sort((a, b) => b.val - a.val).slice(0, 4).map(t => t.key)
     }
 
     this.setData({
@@ -290,21 +291,22 @@ Page({
   },
 
   onCurProductPriceTyping: function (e) {
-    var price = parseInt(e.detail.value.substring(1));
+    var price = e.detail.value.substring(1);
     this.setData({
       curProductPrice: price
     });
   },
 
   addCurrentProduct: function (e) {
+    var price = parseFloat(this.data.curProductPrice)
     var canAdd =
       !!this.data.curProductBrand
       && this.data.curProductCategoryIndex >= 0
       && this.data.curProductCategoryIndex < this.data.productCategoryNames.length
       && !!this.data.curProductName
       && this.data.curProductQuantity > 0
-      && this.data.curProductPrice > 0
-      && this.data.curProductPrice <= 1000;
+      && price > 0
+      && price <= 1000;
 
     if (!canAdd) {
       wx.showToast({
@@ -321,10 +323,10 @@ Page({
     var product = {
       brand: this.data.curProductBrand,
       categoryIndex: this.data.curProductCategoryIndex,
-      category: category,
+      categoryName: category,
       name: this.data.curProductName,
       quantity: this.data.curProductQuantity,
-      price: this.data.curProductPrice
+      price: price
     };
     var products = this.data.products;
     products.push(product);

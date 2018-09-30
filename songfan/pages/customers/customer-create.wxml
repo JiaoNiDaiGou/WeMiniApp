@@ -22,6 +22,7 @@
       </view>
     </view>
   </view>
+  
   <text-box iconClass='icon-profile-black-36' placeholder='姓名' value='{{name}}' editable='true' bind:typingEvent='onNameTyping'></text-box>
   <text-box iconClass='icon-phone-black-36' placeholder='电话' value='{{phone}}' editable='true' bind:typingEvent='onPhoneTyping'></text-box>
   <address-box region='{{address.region}}' city='{{address.city}}' zone='{{address.zone}}' address='{{address.address}}' editable='true' bind:typingEvent='onAddressTyping'></address-box>

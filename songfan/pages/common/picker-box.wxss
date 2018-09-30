@@ -1,20 +1,13 @@
 /* pages/common/picker-box.wxss */
 @import '../../lib/icon.wxss';
 @import '../../lib/weui.wxss';
+@import '../../app.wxss';
 
 .fui-picker-box__icon {
-  margin-left: 10px;
   margin-right: 10px;
 }
 
 .fui-picker-box__picker {
   margin-left: 10px;
-  margin-top: 5px;
   font-size: 18px;
-}
-
-.fui-picker-box__suggestion-badge {
-  margin: 3px;
-  font-size: 14px;
-  background-color: green;
 }

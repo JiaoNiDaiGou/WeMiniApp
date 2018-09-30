@@ -1,14 +1,15 @@
-<!--pages/common/address-box.wxml-->
-<view class="fui-address-box__container {{ editable && inputFocus > 0 ? 'fui-address-box__border' : '' }}">
+<view class='fui-separator-above' />
+<view class="weui-flex fui-container {{ editable && inputFocus > 0 ? 'fui-address-box__border' : '' }}">
   <icon class='iconfont icon-location-black-36 weui-flex__item fui-address-box__icon' />
-  <view class="right">
+  <view>
     <view class='weui-flex'>
       <input placeholder='省' class='weui-flex__item fui-address-box__input' value='{{region}}' disabled='{{!editable}}' bindinput='onRegionTypingEvent' bindblur='inputBlur1' bindtap='inputFocus1'></input>
       <input placeholder='市' class='weui-flex__item fui-address-box__input' value='{{city}}' disabled='{{!editable}}' bindinput='onCityTypingEvent' bindblur='inputBlur2' bindtap='inputFocus2'></input>
       <input placeholder='区' class='weui-flex__item fui-address-box__input' value='{{zone}}' disabled='{{!editable}}' bindinput='onZoneTypingEvent' bindblur='inputBlur3' bindtap='inputFocus3'></input>
     </view>
     <view class="weui-flex">
-      <textarea placeholder='地址' class='weui-flex__item fui-address-box__textarea' value='{{address}}' disabled='{{!editable}}' bindinput='onAddressTypingEvent' bindlinechange='onAddressLineChanged' style="{{('height:' + txtHeight + 'px')}}" auto-height='true' bindblur='inputBlur4' bindtap='inputFocus4'></textarea>
+      <textarea placeholder='地址' class="weui-flex__item fui-address-box__textarea {{hasBottomBorder?'fui-lightborder':''}}" value='{{address}}' disabled='{{!editable}}' bindinput='onAddressTypingEvent' bindlinechange='onAddressLineChanged' auto-height='true' style="{{'height:' + addressLineHeight + 'px;'}}" bindblur='inputBlur4' bindtap='inputFocus4'></textarea>
     </view>
   </view>
 </view>
+<view class='fui-separator-above' />
