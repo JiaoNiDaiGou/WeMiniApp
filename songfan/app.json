@@ -6,7 +6,8 @@
     "pages/customers/customer-details",
     "pages/shippingOrders/shippingOrders-create",
     "pages/customers/customer-create",
-    "pages/shippingOrders/shippingOrders-list"
+    "pages/shippingOrders/shippingOrders-list",
+    "pages/shoppingLists/shoppingLists-list"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -164,7 +164,7 @@ Page({
           content: '快递单号:' + r.res.data.teddyFormattedId,
           success: res => {
             wx.redirectTo({
-              url: './shippingOrders-list?statusIndex=3',
+              url: './shippingOrders-list?statusIndex=2',
             })
           }
         })
@@ -174,7 +174,7 @@ Page({
           content: '单号:' + r.res.data.id,
           success: res => {
             wx.redirectTo({
-              url: './shippingOrders-list?statusIndex=1',
+              url: './shippingOrders-list?statusIndex=0',
             })
           }
         })
@@ -334,7 +334,7 @@ Page({
     this.setData({
       products: products,
       curProductBrand: '',
-      curProductCategoryIndex: 0,
+      curProductCategoryIndex: -1,
       curProductName: '',
       curProductQuantity: 1,
       curProductProce: 30,

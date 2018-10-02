@@ -26,6 +26,6 @@
 
 <modal title="确认发货吗 重量(Lb)可之后再填)" hidden="{{modalHidden}}" bindcancel="onModalCancel" bindconfirm="onModalConfirm">
   <view>
-    <input class="input" type='digit' value="{{curTotalWeight}}" bindinput="onCurTotalWeightTyping"></input>
+    <input class="input" type='digit' value="{{curTotalWeight}}" auto-focus='{{!modalHidden}}' bindinput="onCurTotalWeightTyping"></input>
   </view>
 </modal>

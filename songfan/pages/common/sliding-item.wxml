@@ -1,9 +1,0 @@
-<!--pages/common/sliding-item.wxml-->
-<view class='weui-flex'>
-  <movable-area>
-    <movable-view damping='20' out-of-bounds='true' direction='horizontal' x='{{x}}' animation='true' bindchange='onChange'>
-    <view>
-    </view>
-    </movable-view>
-  </movable-area>
-</view>

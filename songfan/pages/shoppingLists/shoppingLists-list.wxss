@@ -1,0 +1,3 @@
+/* pages/shoppingLists/shoppingLists-list.wxss */
+@import '../../lib/weui.wxss';
+@import '../../app.wxss';

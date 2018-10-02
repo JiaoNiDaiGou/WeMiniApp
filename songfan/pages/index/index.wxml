@@ -3,5 +3,6 @@
   <view class="weui-btn-area">
     <button class="weui-btn fui-button" type="normal" bindtap='goToCustomersList'>发货</button>
     <button class="weui-btn fui-button" type="normal" bindtap='goToShippingOrdersList'>快递单详情</button>
+    <button class="weui-btn fui-button" type="normal" bindtap='goToShoppingListsList'>采购</button>
   </view>
 </view>

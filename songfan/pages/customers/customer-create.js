@@ -128,9 +128,7 @@ Page({
         name: name,
         phone: phone,
         address: address,
-        parsingCandidates: [],
-        rawText: '',
-        rawImagePath: null
+        parsingCandidates: []
       });
       this.checkReadyToCreate();
     }

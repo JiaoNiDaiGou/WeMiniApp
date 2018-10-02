@@ -7,6 +7,11 @@
   margin-right: 10px;
 }
 
+.fui-text-box__prefix {
+  margin-left: 10px;
+  font-size: 18px;
+}
+
 .fui-text-box__input {
   margin-left: 10px;
   margin-right: 10px;

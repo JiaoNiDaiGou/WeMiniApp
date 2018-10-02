@@ -13,8 +13,12 @@ Page({
 
     curStatusIndex: 0,
     shippingOrdersByStatus: {},
-    
-    curActionableShippingOrderId: '',
+
+    curActionItem: null,
+    curActionItemTotalWeight: '',
+
+    modalHidden: true,
+    shippingOrderCreateModalHidden: true,
   },
 
   /**
@@ -25,27 +29,27 @@ Page({
     this.setData({
       curStatusIndex: initStatusIndex
     });
-    this.loadShippingOrder(initStatusIndex)
-  },
-
-  loadShippingOrder: function (statusIndex) {
-    var that = this;
     wx.showLoading({
       title: '加载发货单',
     })
+    this.loadShippingOrder(initStatusIndex, () => wx.hideLoading())
+  },
+
+  loadShippingOrder: function (statusIndex, callback) {
+    var that = this;
     var status = this.data.statusValues[statusIndex];
 
     backend.promiseOfQueryShippingOrders(app, null, false, status, 200)
       .then(r => {
         var shippingOrders = r.res.data.results;
-        
-        var shippingOrdersByStatus = this.data.shippingOrdersByStatus;
 
+        var shippingOrdersByStatus = this.data.shippingOrdersByStatus;
         var curShippingOrders = shippingOrdersByStatus[status];
         if (!curShippingOrders) {
           curShippingOrders = [];
         }
         shippingOrders.forEach(order => {
+          // Enhance
           var exists = curShippingOrders.findIndex(t => t.id == order.id) >= 0;
           if (!exists) {
             var enhancedOrder = order;
@@ -54,20 +58,21 @@ Page({
             order.statusIndex = this.data.statusValues.indexOf(status)
             order.renderableProducts = utils.convertToRenderableProducts(order.productEntries);
             order.renderableCreationTime = order.creationTime == 0 ? '' : utils.formatTime(new Date(parseFloat(order.creationTime)))
+            order.canDelete = status == 'INIT' || status == 'PACKED'
+            order.canExternalShip = status == 'INIT' || status == 'PACKED'
+
             curShippingOrders.push(enhancedOrder);
           }
         })
         curShippingOrders.sort((a, b) => b.creationTime - a.creationTime)
-
         shippingOrdersByStatus[status] = curShippingOrders
-
         that.setData({
           shippingOrdersByStatus: shippingOrdersByStatus
         })
 
-        console.log('load ' + shippingOrders.length + ' orders with status ' + status)
-        console.log(that.data.shippingOrdersByStatus)
-        wx.hideLoading();
+        if (!!callback) {
+          callback()
+        }
       })
   },
 
@@ -103,7 +108,8 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
-
+    var index = this.data.curStatusIndex;
+    this.loadShippingOrder(index);
   },
 
   /**
@@ -120,18 +126,111 @@ Page({
 
   },
 
-  onItemLongTap: function (e) {
-    var shippingOrderId = e.currentTarget.dataset.shippingOrder;
-    this.setData({
-      curActionableShippingOrderId: shippingOrderId
-    })
-  },
-
   onStatusChange: function (e) {
     var curStatusIndex = e.detail.value;
     this.setData({
       curStatusIndex: curStatusIndex
     });
     this.loadShippingOrder(curStatusIndex);
+  },
+
+  actionShippingOrder: function (e) {
+    console.log(e)
+    var shippOrderId = e.currentTarget.dataset.shipporderid;
+    var curAcitonItem = this.data.shippingOrdersByStatus[this.data.statusValues[this.data.curStatusIndex]].find(t => t.id == shippOrderId);
+    console.log('select cur action item id:' + shippOrderId)
+    this.setData({
+      curAcitonItem: curAcitonItem,
+      modalHidden: false
+    })
+  },
+
+  curActionItemExternalShip: function (e) {
+    var that = this;
+    this.setData({
+      modalHidden: true,
+      shippingOrderCreateModalHidden: false
+    })
+  },
+
+  curActionItemDelete: function (e) {
+    var that = this;
+    var id = this.data.curAcitonItem.id;
+    backend.promiseOfDeleteShippingOrder(app, id)
+      .then(r => {
+        var item = r.res.data;
+        this.setData({
+          modalHidden: true
+        })
+        var shippingOrdersByStatus = that.data.shippingOrdersByStatus
+        var status = that.data.statusValues[that.data.curStatusIndex]
+        var shippingOrders = shippingOrdersByStatus[status]
+        console.log(shippingOrders)
+        shippingOrders = utils.removeItemsById(shippingOrders, id, t => t.id)
+        console.log(shippingOrders)
+        shippingOrdersByStatus[status] = shippingOrders
+        that.setData({
+          shippingOrdersByStatus: shippingOrdersByStatus
+        })
+        wx.showToast({
+          title: '已删除',
+          duration: 800
+        })
+        wx.pageScrollTo({
+          scrollTop: 0
+        })
+      })
+  },
+
+  onModalConfirm: function (e) {
+    this.setData({
+      modalHidden: true
+    })
+  },
+
+  onModalCancel: function (e) {
+    this.setData({
+      modalHidden: true
+    })
+  },
+
+  onShippingOrderModalCancel: function (e) {
+    this.setData({
+      shippingOrderModalHidden: true
+    })
+  },
+
+  onShippingOrderModalConfirm: function (e) {
+    this.setData({
+      shippingOrderModalHidden: true
+    })
+    wx.showLoading({
+      title: '正在下单',
+    })
+    var totalWeight = parseFloat(this.data.curActionItemTotalWeight)
+    backend.promiseOfExternalCreateShippingOrder(app, this.data.curAcitonItem.id, totalWeight)
+      .then(r => {
+        wx.hideLoading()
+        if (r.res.statusCode != 200) {
+          console.log(r.res);
+          return
+        }
+        console.log('get shippingOrder ID: ' + r.res.data.id)
+        wx.showModal({
+          title: '小熊下单成功',
+          content: '快递单号:' + r.res.data.teddyFormattedId,
+          success: res => {
+            wx.redirectTo({
+              url: './shippingOrders-list?statusIndex=2',
+            })
+          }
+        })
+      })
+  },
+
+  onCurActionItemTotalWeightTyping: function (e) {
+    this.setData({
+      curActionItemTotalWeight: e.detail.value
+    });
   }
 })

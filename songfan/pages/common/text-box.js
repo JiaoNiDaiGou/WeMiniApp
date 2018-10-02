@@ -58,6 +58,16 @@ Component({
     hasBottomBorder: {
       type: Boolean,
       value: false
+    },
+
+    valuePrefix: {
+      type: String,
+      value: '',
+    },
+
+    valueSuffix: {
+      type: String,
+      value: '',
     }
   },
 

@@ -1,7 +1,6 @@
 {
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "search-bar": "../common/search-bar",
-    "sliding-item": "../common/sliding-item"
+    "search-bar": "../common/search-bar"
   }
 }

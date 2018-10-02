@@ -1,6 +1,13 @@
 const utils = require('./util.js')
 
+// const SERVER = 'https://fluid-crane-200921.appspot.com';
 const SERVER = 'https://dev-dot-fluid-crane-200921.appspot.com';
+
+
+// TODO:
+// return
+// resolve (app:app, res:res) not (res:res.data)
+// handle res.statusCode != 200 case
 
 /**
  * We always return object like:
@@ -15,15 +22,24 @@ const SERVER = 'https://dev-dot-fluid-crane-200921.appspot.com';
  */
 const promiseOfBackendLogin = (app) => {
   return new Promise(function (resolve, reject) {
-    console.log('CALL wxLogin!');
+    if (!app.globalData.userInfo) {
+      console.log('fetch userinfo')
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+        }
+      })
+    }
 
-    app.globalData.sessionTicketId = '561a6439-f2f0-4e9a-8c83-6b6a29b05c2e';
+    console.log('CALL wxLogin!');
+    app.globalData.sessionTicketId = '24f2eb8e-8e9e-4c5f-9f89-faa025130532';
     if (!!app.globalData.sessionTicketId) {
       resolve({
         app: app
       });
       return;
     }
+
     wx.login({
       success: res => {
         console.log('fetch client jscode ' + res.code);
@@ -222,6 +238,49 @@ const promiseOfCreateCustomer = (app, id, name, phone, address) => {
   });
 }
 
+const promiseOfDeleteShippingOrder = (app, id) => {
+  console.log('CALL DeleteShippingOrder');
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      method: 'DELETE',
+      url: SERVER + '/api/shippingOrders/' + id + '/delete',
+      header: {
+        'X-Wx-SessionTicket': app.globalData.sessionTicketId
+      },
+      success: res => {
+        console.log('CALL DeleteShippingOrder SUCCESS!')
+        resolve({
+          app: app,
+          res: res
+        })
+      }
+    })
+  })
+}
+
+const promiseOfExternalCreateShippingOrder = (app, id, totalWeight) => {
+  console.log('CALL ExternalCreateShippingOrder')
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      method: 'POST',
+      url: SERVER + '/api/shippingOrders/' + id + '/externalCreate',
+      header: {
+        'X-Wx-SessionTicket': app.globalData.sessionTicketId
+      },
+      data: {
+        totalWeightLb: totalWeight
+      },
+      success: res => {
+        console.log('CALL ExternalCreateShippingOrder SUCCESS!')
+        resolve({
+          app: app,
+          res: res
+        })
+      }
+    })
+  })
+}
+
 const promiseOfInitShippingOrder = (app, receiverCustomerId, address, products, totalWeight) => {
   console.log('CALL InitShippingOrder!');
   return new Promise(function (resolve, reject) {
@@ -235,7 +294,7 @@ const promiseOfInitShippingOrder = (app, receiverCustomerId, address, products, 
         receiverCustomerId: receiverCustomerId,
         address: address,
         productEntries: products,
-        total_weight_lb : !!totalWeight ? totalWeight : 0
+        total_weight_lb: !!totalWeight ? totalWeight : 0
       },
       success: res => {
         console.log('CALL InitShippingOrder SUCCESS!')
@@ -246,6 +305,131 @@ const promiseOfInitShippingOrder = (app, receiverCustomerId, address, products, 
       }
     })
   });
+}
+
+const promiseOfQueryShoppingList = (app, status, onlyActive) => {
+  console.log('CALL queryShoppingList!')
+  var url = SERVER + '/api/shoppingLists/query?onlyActive=' + onlyActive;
+  if (!!status) {
+    url += 'status=' + status
+  }
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      method: 'GET',
+      url: url,
+      header: {
+        'X-Wx-SessionTicket': app.globalData.sessionTicketId
+      },
+      success: res => {
+        console.log('CALL QueryShoppingList SUCCESS!')
+        resolve({
+          app: app,
+          res: res
+        })
+      }
+    })
+  })
+}
+
+const promiseOfExpireShoppingList = (app, id) => {
+  console.log('CALL expireShoppingList')
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      method: 'POST',
+      url: SERVER + '/api/shoppingLists/' + id + '/expire',
+      data: {
+        expireName: app.globalData.userInfo.nickName
+      },
+      header: {
+        'X-Wx-SessionTicket': app.globalData.sessionTicketId
+      },
+      success: res => {
+        console.log('CALL expireShoppingList SUCCESS')
+        resolve({
+          app: app,
+          res: res
+        })
+      }
+    })
+  })
+}
+
+const promiseOfInitShoppingList = (app, productEntries) => {
+  console.log('CALL initShoppingList')
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      method: 'POST',
+      url: SERVER + '/api/shoppingLists/init',
+      data: {
+        creatorName: app.globalData.userInfo.nickName,
+        productEntries: productEntries,
+        mediaIds: mediaIds
+      },
+      header: {
+        'X-Wx-SessionTicket': app.globalData.sessionTicketId
+      },
+      success: res => {
+        console.log('CALL initShoppingList SUCCESS')
+        resolve({
+          app: app,
+          res: res
+        })
+      }
+    })
+  })
+}
+
+const promiseOfPurchaseShoppingList = (app, id, totalPrice, source, mediaIds) => {
+  console.log('CALL purchaseShoppingList')
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      method: 'POST',
+      url: SERVER + '/api/shoppingLists/' + id + '/purchase',
+      data: {
+        purchaserName: app.globalData.userInfo.nickName,
+        totalPurchasePrice: {
+          unit: 'USD',
+          value: totalPrice
+        },
+        purchasingSource: source,
+        mediaIds: mediaIds
+      },
+      header: {
+        'X-Wx-SessionTicket': app.globalData.sessionTicketId
+      },
+      success: res => {
+        console.log('CALL purchaseShoppingList SUCCESS')
+        resolve({
+          app: app,
+          res: res
+        })
+      }
+    })
+  })
+}
+
+const promiseOfAssignShoppingList = (app, id) => {
+  console.log('CALL assignShoppingList')
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      method: 'POST',
+      url: SERVER + '/api/shoppingLists/' + id + '/assign',
+      data: {
+        ownerName: app.globalData.userInfo.nickName
+      },
+      header: {
+        'X-Wx-SessionTicket': app.globalData.sessionTicketId
+      },
+      success: res => {
+        console.log('CALL assignShoppingList SUCCESS')
+        console.log(res)
+        resolve({
+          app: app,
+          res: res
+        })
+      }
+    })
+  })
 }
 
 const promiseOfQueryShippingOrders = (app, customerId, includeDelivered, status, limit) => {
@@ -279,13 +463,20 @@ const promiseOfQueryShippingOrders = (app, customerId, includeDelivered, status,
 }
 
 module.exports = {
+  promiseOfAssignShoppingList: promiseOfAssignShoppingList,
   promiseOfBackendLogin: promiseOfBackendLogin,
   promiseOfCreateCustomer: promiseOfCreateCustomer,
+  promiseOfDeleteShippingOrder: promiseOfDeleteShippingOrder,
+  promiseOfExternalCreateShippingOrder: promiseOfExternalCreateShippingOrder,
+  promiseOfExpireShoppingList: promiseOfExpireShoppingList,
   promiseOfGetCustomerById: promiseOfGetCustomerById,
   promiseOfInitShippingOrder: promiseOfInitShippingOrder,
+  promiseOfInitShoppingList: promiseOfInitShoppingList,
   promiseOfLoadAllCustomers: promiseOfLoadAllCustomers,
   promiseOfLoadProductsHints: promiseOfLoadProductsHints,
   promiseOfParseCustomer: promiseOfParseCustomer,
+  promiseOfPurchaseShoppingList: promiseOfPurchaseShoppingList,
   promiseOfQueryShippingOrders: promiseOfQueryShippingOrders,
-  promiseOfUploadMedia: promiseOfUploadMedia,
+  promiseOfQueryShoppingList: promiseOfQueryShoppingList,
+  promiseOfUploadMedia: promiseOfUploadMedia, 
 }

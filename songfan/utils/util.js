@@ -45,6 +45,15 @@ const formatCustomerContactToString = (name, phone, address) => {
   return n.trim();
 }
 
+const shoppingListItemStatus = [
+  { name: '新建', value: 'INIT' },
+  { name: '待采购', value: 'OWNERSHIP_ASSIGNED' },
+  { name: '已采购', value: 'PURCHASED' },
+  { name: '已入库', value: 'IN_HOUSE' },
+  { name: '过期废弃', value: 'EXPIRED' },
+  { name: '未知', value: 'UNKONWN' }
+]
+
 const shippingOrderStatus = [
   { name: '新建', value: 'INIT' },
   { name: '装箱', value: 'PACKED' },
@@ -52,7 +61,8 @@ const shippingOrderStatus = [
   { name: '小熊处理', value: 'EXTERNAL_SHPPING_PENDING' },
   { name: '到达国内', value: 'CN_TRACKING_NUMBER_ASSIGNED' },
   { name: '最后递送', value: 'CN_POSTMAN_ASSIGNED' },
-  { name: '已送达', value: 'DELIVERED' }
+  { name: '已送达', value: 'DELIVERED' },
+  { name: '未知', value: 'UNKONWN' }
 ]
 
 const productCategories = [
@@ -134,7 +144,7 @@ const convertToRenderableProducts = (entries) => {
     var brand = entry.product.brand;
     var name = entry.product.name;
     var quantity = entry.quantity;
-    var price = entry.sellPrice.value;
+    var price = !!entry.sellPrice ? entry.sellPrice.value : 0;
     return {
       categoryValue: categoryValue,
       categoryName: categoryName,
@@ -147,6 +157,37 @@ const convertToRenderableProducts = (entries) => {
   })
 }
 
+const mergeItemsByIdOverride = (alist, blist, extractId) => {
+  var toReturn = [];
+  if (!!blist) {
+    toReturn.push(...blist)
+  }
+  if (!!alist) {
+    alist.forEach(t => {
+      var tId = extractId(t)
+      var exists = toReturn.some(m => extractId(m) == tId)
+      if (!exists) {
+        toReturn.push(t)
+      }
+    })
+  }
+  return toReturn;
+}
+
+const removeItemsById = (list, idToDelete, extractId) => {
+  var toReturn = [];
+  if (!list) {
+    return toReturn;
+  }
+  list.forEach(t => {
+    var tId = extractId(t)
+    if (tId != idToDelete) {
+      toReturn.push(t)
+    }
+  })
+  return toReturn
+}
+
 module.exports = {
   productCategories: productCategories,
   formatTime: formatTime,
@@ -157,5 +198,8 @@ module.exports = {
   findProductCategoryIndexByValue: findProductCategoryIndexByValue,
   findProductCategoryIndexByName: findProductCategoryIndexByName,
   convertToRenderableProducts: convertToRenderableProducts,
-  shippingOrderStatus: shippingOrderStatus
+  shippingOrderStatus: shippingOrderStatus,
+  shoppingListItemStatus: shoppingListItemStatus,
+  mergeItemsByIdOverride: mergeItemsByIdOverride,
+  removeItemsById: removeItemsById
 }

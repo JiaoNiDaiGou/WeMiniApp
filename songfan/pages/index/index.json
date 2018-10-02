@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "text-box": "../common/text-box",
-    "sliding-item": "../common/sliding-item"
+    "text-box": "../common/text-box"
   }
 }

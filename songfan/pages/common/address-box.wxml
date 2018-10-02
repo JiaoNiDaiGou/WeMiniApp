@@ -8,7 +8,13 @@
       <input placeholder='区' class='weui-flex__item fui-address-box__input' value='{{zone}}' disabled='{{!editable}}' bindinput='onZoneTypingEvent' bindblur='inputBlur3' bindtap='inputFocus3'></input>
     </view>
     <view class="weui-flex">
-      <textarea placeholder='地址' class="weui-flex__item fui-address-box__textarea {{hasBottomBorder?'fui-lightborder':''}}" value='{{address}}' disabled='{{!editable}}' bindinput='onAddressTypingEvent' bindlinechange='onAddressLineChanged' auto-height='true' style="{{'height:' + addressLineHeight + 'px;'}}" bindblur='inputBlur4' bindtap='inputFocus4'></textarea>
+      <view wx:if='{{editable}}'>
+        <textarea placeholder='地址' class="weui-flex__item fui-address-box__textarea {{hasBottomBorder?'fui-lightborder':''}}" value='{{address}}' bindinput='onAddressTypingEvent' bindlinechange='onAddressLineChanged' auto-height='true'
+          style="{{'height:' + addressLineHeight + 'px;'}}" bindblur='inputBlur4' bindtap='inputFocus4'></textarea>
+      </view>
+      <view wx:else>
+        <text class="weui-flex__item fui-address-box__textarea {{hasBottomBorder?'fui-lightborder':''}}">{{address}}</text>
+      </view>
     </view>
   </view>
 </view>

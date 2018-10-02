@@ -3,12 +3,20 @@
   <view wx:if='{{iconClass}}'>
     <icon class='iconfont {{iconClass}} weui-flex__item fui-text-box__icon' />
   </view>
+  <view wx:if='{{!!valuePrefix}}'>
+    <text class='weui-flex__item fui-text-box__prefix'>{{valuePrefix}}</text>
+  </view>
   <input type='text' type='{{inputStyle}}' class='fui-text-box__input weui-flex__item' placeholder='{{placeholder}}' value='{{value}}' disabled='{{!editable}}' bindinput='inputTyping' bindtap='inputFocus' bindblur='inputBlur'></input>
+  <view wx:if='{{!!valueSuffix}}'>
+    <text class='weui-flex__item fui-text-box__prefix'>{{valueSuffix}}</text>
+  </view>
 </view>
 
-<view class="fui-badge-box weui-flex">
-  <view wx:for='{{suggestions}}' wx:key='unique' wx:for-item='suggestion'>
-    <view class="weui-badge fui-badge-box__item weui-flex__item" bindtap='tapSuggestion' data-id='{{suggestion.id}}'>{{suggestion.display}}</view>
+<view wx:if='{{!!suggestions && suggestions.length > 0}}'>
+  <view class="fui-badge-box weui-flex">
+    <view wx:for='{{suggestions}}' wx:key='unique' wx:for-item='suggestion'>
+      <view class="weui-badge fui-badge-box__item weui-flex__item" bindtap='tapSuggestion' data-id='{{suggestion.id}}'>{{suggestion.display}}</view>
+    </view>
   </view>
 </view>
 

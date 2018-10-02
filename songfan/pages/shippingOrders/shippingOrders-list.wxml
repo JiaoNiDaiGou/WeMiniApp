@@ -5,12 +5,10 @@
       <button type="normal" style='color:green'>{{statusNames[curStatusIndex]}}</button>
     </picker>
   </view>
-
+  
   <view class='fui-shippingOrders-list__main_box'>
     <view wx:for='{{shippingOrdersByStatus[statusValues[curStatusIndex]]}}' wx:key='unique' wx:for-item='shippingOrder'>
-      <view class='fui-lightborder' data-shippOrderId='{{shippingOrder.id}}' bindlongtap='onItemLongTap'>
-        <view style='margin-top: 10px;'></view>
-
+      <view class='fui-lightborder fui-active-box' data-shippOrderId='{{shippingOrder.id}}' bindlongpress='actionShippingOrder'>
         <view class="weui-badge weui-flex__item" style='background-color: green;'>{{statusNames[shippingOrder.statusIndex]}}</view>
         <text-box iconClass='icon-tag-black-36' placeholder='姓名' value='{{shippingOrder.id}}'></text-box>
         <text-box iconClass='icon-profile-black-36' placeholder='姓名' value='{{shippingOrder.receiver.name}}'></text-box>
@@ -20,9 +18,20 @@
         <product-entry-list-box products='{{shippingOrder.renderableProducts}}'></product-entry-list-box>
         <text-box iconClass='icon-evaluate-black-36' placeholder='总重量' value='{{!!shippingOrder.totalWeightLb ? shippingOrder.totalWeightLb + " 磅" : ""}}'></text-box>
         <text-box iconClass='icon-moneybag-black-36' placeholder='总价格' value='{{!!shippingOrder.totalPrice ? "$" + shippingOrder.totalPrice.value : ""}}'></text-box>
-
-        <view style='margin-bottom: 10px;'></view>
       </view>
     </view>
   </view>
 </view>
+
+<modal title="订购单 {{curAcitonItem.id}}" hidden="{{modalHidden}}" bindcancel="onModalCancel" bindconfirm="onModalConfirm">
+  <view class="weui-btn-area">
+    <button wx:if='{{curAcitonItem.canExternalShip}}' type="normal" class='fui-modal-button' style='color: green' bindtap='curActionItemExternalShip'>小熊发货</button>
+    <button wx:if='{{curAcitonItem.canDelete}}' type="normal" class='fui-modal-button' style='color: red' bindtap='curActionItemDelete'>删除</button>
+  </view>
+</modal>
+
+<modal title="确认发货吗 重量必填" hidden="{{shippingOrderCreateModalHidden}}" bindcancel="onShippingOrderModalCancel" bindconfirm="onShippingOrderModalConfirm">
+  <view>
+    <input class="input" type='digit' auto-focus='{{!shippingOrderCreateModalHidden}}' value="{{curActionItemTotalWeight}}" bindinput="onCurActionItemTotalWeightTyping"></input>
+  </view>
+</modal>
