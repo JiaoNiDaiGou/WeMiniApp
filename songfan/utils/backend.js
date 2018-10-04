@@ -32,7 +32,7 @@ const promiseOfBackendLogin = (app) => {
     }
 
     console.log('CALL wxLogin!');
-    app.globalData.sessionTicketId = '24f2eb8e-8e9e-4c5f-9f89-faa025130532';
+    app.globalData.sessionTicketId = '98e7b596-b4e7-4467-a9cc-9edff1c78554';
     if (!!app.globalData.sessionTicketId) {
       resolve({
         app: app
@@ -163,7 +163,9 @@ const promiseOfUploadMedia = (app, path, progressHandle) => {
         // convert it to json.
         resolve({
           app: app,
-          res: JSON.parse(res.data)
+          res: {
+            data: JSON.parse(res.data)
+          }
         });
       },
       fail: res => {
@@ -451,14 +453,37 @@ const promiseOfQueryShippingOrders = (app, customerId, includeDelivered, status,
       header: {
         'X-Wx-SessionTicket': app.globalData.sessionTicketId
       },
-      success: res => {
-        console.log('CALL queryShippingOrders SUCCESS!')
-        resolve({
-          app: app,
-          res: res
-        })
-      }
+      success: res => successResolve('queryShippingOrders', resolve, app, res)
     })
+  })
+}
+
+const promiseOfPostFeedback = (app, content, mediaIds) => {
+  console.log('CALL postFeedback')
+  return new Promise((resolve, reject) => {
+    wx.request({
+      method: 'POST',
+      url: SERVER + '/api/sys/feedback/post',
+      header: {
+        'X-Wx-SessionTicket': app.globalData.sessionTicketId
+      },
+      data: {
+        requesterName: !!app.globalData.userInfo ? app.globalData.userInfo.nickName : '',
+        content: content,
+        mediaIds: !!mediaIds ? mediaIds : [] 
+      },
+      success: res => successResolve('postFeedback', resolve, app, res)
+    })
+  })
+}
+
+const successResolve = (apiName, resolve, app, res) => {
+  console.log('CALL ' + apiName + ' SUCCESS! response.statusCode=' + res.statusCode)
+  // TODO:
+  // Let's treat all things as success, we should check 2xx3xx/4xx/5xx
+  resolve({
+    app: app,
+    res: res
   })
 }
 
@@ -478,5 +503,6 @@ module.exports = {
   promiseOfPurchaseShoppingList: promiseOfPurchaseShoppingList,
   promiseOfQueryShippingOrders: promiseOfQueryShippingOrders,
   promiseOfQueryShoppingList: promiseOfQueryShoppingList,
-  promiseOfUploadMedia: promiseOfUploadMedia, 
+  promiseOfUploadMedia: promiseOfUploadMedia,
+  promiseOfPostFeedback: promiseOfPostFeedback
 }

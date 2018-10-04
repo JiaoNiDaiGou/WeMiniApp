@@ -24,12 +24,13 @@ App({
           })
       })
   },
+
   globalData: {
     userInfo: null,
-    userName: '',
     sessionTicketId: null,
     productNameToBrandHints: [],
     productNameToCategoryHints: [],
     productBrandToCategoryHints: [],
+    xx: 'xxef'
   }
 })

@@ -1,0 +1,11 @@
+<!--pages/common/image-uploader.wxml-->
+<view class='fui-container weui-flex'>
+  <view wx:for='{{3}}' wx:key='unique' wx:for-index='j' class='weui-flex__item fui-image-uploader-box'>
+    <view wx:for='{{images.length/3}}' wx:key='unique' wx:for-index='i'>
+      <view data-imageidx='{{i*3+j}}' bindtap='{{(i*3+j == images.length - 1) ? "onLastImageTap" : "onImageTap"}}' style="position: relative;margin-left:5px; margin-right:5px;">
+        <image class='fui-image-uploader-image' style='background-color: {{i*3+j == images.length - 1?"grey": "orange"}}' src='{{i*3+j < images.length - 1 ? images[i*3+j].path : ""}}' mode='aspectFit'></image>
+        <view wx:if='{{i*3+j<images.length-1}}' class="weui-badge fui-image-uploader-image-progress" style="background-color: {{images[i*3+j].uploadingProgress==100?'green':'red'}}">{{images[i*3+j].uploadingProgress != 100 ? images[i*3+j].uploadingProgress : "✓"}}</view>
+      </view>
+    </view>
+  </view>
+</view>

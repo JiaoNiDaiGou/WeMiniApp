@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "text-box": "../common/text-box"
+    "text-box": "../common/text-box",
+    "image-uploader": "../common/image-uploader",
+    "feedback-modal": "../common/feedback-modal"
   }
 }

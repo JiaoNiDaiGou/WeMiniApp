@@ -1,0 +1,21 @@
+/* pages/common/image-uploader.wxss */
+@import '../../lib/icon.wxss';
+@import '../../lib/weui.wxss';
+@import '../../app.wxss';
+
+.fui-image-uploader-box {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.fui-image-uploader-image {
+  width: 90%;
+  height: 120px;
+  background-color: lightblue;
+}
+
+.fui-image-uploader-image-progress {
+  position: absolute;
+  top: -0.4em;
+  right: -.4em;
+}

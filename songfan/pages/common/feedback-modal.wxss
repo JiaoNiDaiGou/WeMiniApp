@@ -1,0 +1,4 @@
+/* pages/common/feedback-modal.wxss */
+@import '../../lib/icon.wxss';
+@import '../../lib/weui.wxss';
+@import '../../app.wxss';

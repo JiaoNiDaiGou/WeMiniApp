@@ -156,7 +156,7 @@ Page({
       console.log('upload image: ' + imagePath);
       backend.promiseOfUploadMedia(app, imagePath, progressHandle)
         .then(r => {
-          var mediaId = r.res.id;
+          var mediaId = r.res.data.id;
           console.log('upload media success. get mediaId:' + mediaId)
           wx.showLoading({
             title: '智能解析中',

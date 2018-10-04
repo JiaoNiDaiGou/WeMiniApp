@@ -1,13 +1,24 @@
 //index.js
-//获取应用实例
+const utils = require('../../utils/util.js');
 const app = getApp()
 
 Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+
+
+    showFeedback: false
   },
-  onLoad: function () {
+  onLoad: function () { },
+  
+  onShow: function () {
+    utils.enableFeedbackShake(this)
   },
+  
+  onFeedbackDone: function (e) {
+    utils.onFeedbackDone(this)
+  },
+
   goToCustomersList: function () {
     console.log('go to customers-list');
     wx.navigateTo({
@@ -24,6 +35,12 @@ Page({
     console.log('go to shoppingLists-list')
     wx.navigateTo({
       url: '../shoppingLists/shoppingLists-list',
+    })
+  },
+  showmodal: function (e) {
+    console.log(e)
+    this.setData({
+      showModal: true
     })
   }
 })

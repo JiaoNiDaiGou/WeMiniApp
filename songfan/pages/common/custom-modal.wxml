@@ -1,0 +1,12 @@
+<view class='fui-custom-modal-mask' wx:if='{{show}}'>
+  <view class='fui-custom-modal-content'>
+    <view wx:if='{{title}}' class='fui-conainer weui-flex'>
+      <text class='weui-flex__item fui-custom-modal-title'>{{title}}</text>
+    </view>
+    <slot></slot>
+    <view class='fui-conainer weui-flex'>
+      <button wx:if='{{showCancelButton}}' type='normal' style='color: grey;' bindtap='onCancel' class='weui-flex__item fui-custom-modal-button'>取消</button>
+      <button wx:if='{{showConfirmButton}}' type='primary' bindtap='onConfirm' class='weui-flex__item fui-custom-modal-button'>确定</button>
+    </view>
+  </view>
+</view>

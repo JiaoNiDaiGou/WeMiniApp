@@ -188,6 +188,22 @@ const removeItemsById = (list, idToDelete, extractId) => {
   return toReturn
 }
 
+const enableFeedbackShake= (page) => {
+  wx.onAccelerometerChange(function (e) {
+    if (e.x > 1 && e.y > 1 && !page.data.showFeedback) {
+      page.setData({
+        showFeedback: true
+      })
+    }
+  })
+}
+
+const onFeedbackDone = (page) => {
+  page.setData({
+    showFeedback: false
+  })
+}
+
 module.exports = {
   productCategories: productCategories,
   formatTime: formatTime,
@@ -201,5 +217,7 @@ module.exports = {
   shippingOrderStatus: shippingOrderStatus,
   shoppingListItemStatus: shoppingListItemStatus,
   mergeItemsByIdOverride: mergeItemsByIdOverride,
-  removeItemsById: removeItemsById
+  removeItemsById: removeItemsById,
+  enableFeedbackShake: enableFeedbackShake,
+  onFeedbackDone: onFeedbackDone
 }

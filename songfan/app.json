@@ -8,7 +8,7 @@
     "pages/customers/customer-create",
     "pages/shippingOrders/shippingOrders-list",
     "pages/shoppingLists/shoppingLists-list"
-  ],
+],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

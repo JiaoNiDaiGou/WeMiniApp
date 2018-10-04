@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "custom-modal": "./custom-modal",
+    "image-uploader": "./image-uploader"
+  }
+}
