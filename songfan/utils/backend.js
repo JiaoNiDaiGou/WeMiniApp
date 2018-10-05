@@ -3,12 +3,6 @@ const utils = require('./util.js')
 // const SERVER = 'https://fluid-crane-200921.appspot.com';
 const SERVER = 'https://dev-dot-fluid-crane-200921.appspot.com';
 
-
-// TODO:
-// return
-// resolve (app:app, res:res) not (res:res.data)
-// handle res.statusCode != 200 case
-
 /**
  * We always return object like:
  * {
@@ -32,7 +26,7 @@ const promiseOfBackendLogin = (app) => {
     }
 
     console.log('CALL wxLogin!');
-    app.globalData.sessionTicketId = '98e7b596-b4e7-4467-a9cc-9edff1c78554';
+    app.globalData.sessionTicketId = 'c1a4e9d8-b1bb-4eee-9942-635f0a2075b6';
     if (!!app.globalData.sessionTicketId) {
       resolve({
         app: app
@@ -64,85 +58,116 @@ const promiseOfBackendLogin = (app) => {
   });
 }
 
-const promiseOfLoadAllCustomers = (app) => {
-  console.log('CALL parseCustomer!')
-  return new Promise(function (resolve, reject) {
+
+const callGet = (apiName, app, api) => callBackend(apiName, app, 'GET', api)
+const callPost = (apiName, app, api) => callBackend(apiName, app, 'POST', api)
+const callPut = (apiName, app, api) => callBackend(apiName, app, 'PUT', api)
+const callDelete = (apiName, app, api) => callBackend(apiName, app, 'DELETE', api)
+
+const callBackend = (apiName, app, verb, api) => {
+  console.log('CALL ' + apiName)
+  return new Promise((resolve, reject) => {
     wx.request({
-      method: 'GET',
-      url: SERVER + '/api/JiaoNiDaiGou/customers/getAll?limit=1000',
+      method: verb,
+      url: SERVER + api.path,
       header: {
         'X-Wx-SessionTicket': app.globalData.sessionTicketId
       },
+      data: api.data,
       success: res => {
-        console.log('CALL loadAllCustomers SUCCESS!');
-        app.globalData.customers = res.data.results;
-        console.log('totally load ' + app.globalData.customers.length + ' customers.');
-        resolve({
-          app: app
-        });
-      }
-    })
-  });
-}
+        console.log('CALL ' + apiName + ' SUCCESS! response.statusCode=' + res.statusCode)
 
-const promiseOfLoadProductsHints = (app) => {
-  console.log('CALL loadProductsHints!')
-  return new Promise(function (resolve, reject) {
-    wx.request({
-      method: 'GET',
-      url: SERVER + '/api/JiaoNiDaiGou/products/hints',
-      header: {
-        'X-Wx-SessionTicket': app.globalData.sessionTicketId
-      },
-      success: res => {
-        console.log('CALL loadProductsHints SUCCESS!');
+        // TODO:
+        // Let's treat all things as success, we should check 2xx3xx/4xx/5xx
 
-        var hints = res.data;
-
-        // fulfill
-        hints.forEach(hint => {
-          var category = hint.left;
-          var categoryIndex = utils.findProductCategoryIndexByValue(category);
-          var brand = hint.middle;
-          utils.incTableCount(app.globalData.productBrandToCategoryHints, brand, categoryIndex);
-          var names = hint.right;
-          names.forEach(name => {
-            utils.incTableCount(app.globalData.productNameToBrandHints, name, brand);
-            utils.incTableCount(app.globalData.productNameToCategoryHints, name, categoryIndex);
-          })
-        })
-
-        // sort
-        app.globalData.productBrandToCategoryHints.forEach(t => t.val.sort((a, b) => b.val - a.val))
-        app.globalData.productNameToBrandHints.forEach(t => t.val.sort((a, b) => b.val - a.val))
-        app.globalData.productNameToCategoryHints.forEach(t => t.val.sort((a, b) => b.val - a.val))
+        if (!!api.onSuccess) {
+          api.onSuccess(res)
+        }
 
         resolve({
-          app: app
+          app: app,
+          res: res
         })
       }
     })
   })
 }
 
+const promiseOfLoadAllCustomers = (app) => {
+  return callGet('loadAllCustomers', app, {
+    path: '/api/JiaoNiDaiGou/customers/getAll?limit=1000',
+    onSuccess: res => {
+      console.log('load ' + res.data.results.length + ' customers')
+      app.globalData.customers = res.data.results
+    }
+  })
+}
+
 const promiseOfGetCustomerById = (app, customerId) => {
-  console.log('CALL getCustomerById!');
-  return new Promise(function (resolve, reject) {
-    wx.request({
-      method: 'GET',
-      url: SERVER + '/api/JiaoNiDaiGou/customers/get/' + customerId,
-      header: {
-        'X-Wx-SessionTicket': app.globalData.sessionTicketId
+  return callGet('getCustomerById', app, {
+    path: '/api/JiaoNiDaiGou/customers/get/' + customerId
+  })
+}
+
+const promiseOfParseCustomer = (app, texts, mediaIds) => {
+  return callPost('parseCustomer', app, {
+    path: '/api/parse',
+    data: {
+      domain: 'CUSTOMER',
+      texts: texts,
+      mediaIds: mediaIds,
+      limit: 5
+    }
+  })
+}
+
+const promiseOfCreateCustomer = (app, id, name, phone, address) => {
+  return callPut('createCustomer', app, {
+    path: '/api/JiaoNiDaiGou/customers/put',
+    data: {
+      id: id,
+      name: name,
+      phone: {
+        countryCode: '86',
+        phone: phone
       },
-      success: res => {
-        console.log('CALL wxLogin SUCCESS!');
-        resolve({
-          app: app,
-          res: res.data
-        });
-      }
-    });
-  });
+      addresses: [address]
+    }
+  })
+}
+
+const promiseOfUpdateCustomer = (app, customer) => {
+  return callPut('updateCustomer', app, {
+    path: '/api/JiaoNiDaiGou/customers/put',
+    data: customer
+  })
+}
+
+const promiseOfLoadProductsHints = (app) => {
+  return callGet('loadProductHints', app, {
+    path: '/api/JiaoNiDaiGou/products/hints',
+    onSuccess: res => {
+      var hints = res.data;
+
+      // fulfill
+      hints.forEach(hint => {
+        var category = hint.left;
+        var categoryIndex = utils.findProductCategoryIndexByValue(category);
+        var brand = hint.middle;
+        utils.incTableCount(app.globalData.productBrandToCategoryHints, brand, categoryIndex);
+        var names = hint.right;
+        names.forEach(name => {
+          utils.incTableCount(app.globalData.productNameToBrandHints, name, brand);
+          utils.incTableCount(app.globalData.productNameToCategoryHints, name, categoryIndex);
+        })
+      })
+
+      // sort
+      app.globalData.productBrandToCategoryHints.forEach(t => t.val.sort((a, b) => b.val - a.val))
+      app.globalData.productNameToBrandHints.forEach(t => t.val.sort((a, b) => b.val - a.val))
+      app.globalData.productNameToCategoryHints.forEach(t => t.val.sort((a, b) => b.val - a.val))
+    }
+  })
 }
 
 const promiseOfUploadMedia = (app, path, progressHandle) => {
@@ -185,305 +210,111 @@ const promiseOfUploadMedia = (app, path, progressHandle) => {
   });
 }
 
-const promiseOfParseCustomer = (app, texts, mediaIds) => {
-  console.log('CALL parseCustomer!')
-  return new Promise(function (resolve, reject) {
-    wx.request({
-      method: 'POST',
-      url: SERVER + '/api/parse',
-      header: {
-        'X-Wx-SessionTicket': app.globalData.sessionTicketId
-      },
-      data: {
-        domain: 'CUSTOMER',
-        texts: texts,
-        mediaIds: mediaIds,
-        limit: 5
-      },
-      success: res => {
-        console.log('CALL parseCustomer SUCCESS!')
-        resolve({
-          app: app,
-          res: res.data
-        });
-      }
-    });
-  });
-}
-
-const promiseOfCreateCustomer = (app, id, name, phone, address) => {
-  console.log('CALL createCustomer!')
-  return new Promise(function (resolve, reject) {
-    wx.request({
-      method: 'PUT',
-      url: SERVER + '/api/JiaoNiDaiGou/customers/put',
-      header: {
-        'X-Wx-SessionTicket': app.globalData.sessionTicketId
-      },
-      data: {
-        id: id,
-        name: name,
-        phone: {
-          countryCode: '86',
-          phone: phone
-        },
-        addresses: [address]
-      },
-      success: res => {
-        console.log('CALL createCustomer SUCCESS!')
-        resolve({
-          app: app,
-          res: res.data
-        });
-      }
-    });
-  });
-}
-
 const promiseOfDeleteShippingOrder = (app, id) => {
-  console.log('CALL DeleteShippingOrder');
-  return new Promise(function (resolve, reject) {
-    wx.request({
-      method: 'DELETE',
-      url: SERVER + '/api/shippingOrders/' + id + '/delete',
-      header: {
-        'X-Wx-SessionTicket': app.globalData.sessionTicketId
-      },
-      success: res => {
-        console.log('CALL DeleteShippingOrder SUCCESS!')
-        resolve({
-          app: app,
-          res: res
-        })
-      }
-    })
+  return callDelete('deleteShippingOrder', app, {
+    path: '/api/shippingOrders/' + id + '/delete'
   })
 }
 
 const promiseOfExternalCreateShippingOrder = (app, id, totalWeight) => {
-  console.log('CALL ExternalCreateShippingOrder')
-  return new Promise(function (resolve, reject) {
-    wx.request({
-      method: 'POST',
-      url: SERVER + '/api/shippingOrders/' + id + '/externalCreate',
-      header: {
-        'X-Wx-SessionTicket': app.globalData.sessionTicketId
-      },
-      data: {
-        totalWeightLb: totalWeight
-      },
-      success: res => {
-        console.log('CALL ExternalCreateShippingOrder SUCCESS!')
-        resolve({
-          app: app,
-          res: res
-        })
-      }
-    })
+  return callPost('externalCreateShippingOrder', app, {
+    path: '/api/shippingOrders/' + id + '/externalCreate',
+    data: {
+      totalWeightLb: totalWeight
+    }
   })
 }
 
 const promiseOfInitShippingOrder = (app, receiverCustomerId, address, products, totalWeight) => {
-  console.log('CALL InitShippingOrder!');
-  return new Promise(function (resolve, reject) {
-    wx.request({
-      method: 'POST',
-      url: SERVER + '/api/shippingOrders/init',
-      header: {
-        'X-Wx-SessionTicket': app.globalData.sessionTicketId
-      },
-      data: {
-        receiverCustomerId: receiverCustomerId,
-        address: address,
-        productEntries: products,
-        total_weight_lb: !!totalWeight ? totalWeight : 0
-      },
-      success: res => {
-        console.log('CALL InitShippingOrder SUCCESS!')
-        resolve({
-          app: app,
-          res: res
-        })
-      }
-    })
-  });
+  return callPost('initShippingOrder', app, {
+    path: '/api/shippingOrders/init',
+    data: {
+      receiverCustomerId: receiverCustomerId,
+      address: address,
+      productEntries: products,
+      total_weight_lb: !!totalWeight ? totalWeight : 0
+    }
+  })
 }
 
 const promiseOfQueryShoppingList = (app, status, onlyActive) => {
-  console.log('CALL queryShoppingList!')
-  var url = SERVER + '/api/shoppingLists/query?onlyActive=' + onlyActive;
+  var path = '/api/shoppingLists/query?onlyActive=' + onlyActive;
   if (!!status) {
-    url += 'status=' + status
+    path += 'status=' + status
   }
-  return new Promise(function (resolve, reject) {
-    wx.request({
-      method: 'GET',
-      url: url,
-      header: {
-        'X-Wx-SessionTicket': app.globalData.sessionTicketId
-      },
-      success: res => {
-        console.log('CALL QueryShoppingList SUCCESS!')
-        resolve({
-          app: app,
-          res: res
-        })
-      }
-    })
+  return callGet('queryShoppingList', app, {
+    path: path
   })
 }
 
 const promiseOfExpireShoppingList = (app, id) => {
-  console.log('CALL expireShoppingList')
-  return new Promise(function (resolve, reject) {
-    wx.request({
-      method: 'POST',
-      url: SERVER + '/api/shoppingLists/' + id + '/expire',
-      data: {
-        expireName: app.globalData.userInfo.nickName
-      },
-      header: {
-        'X-Wx-SessionTicket': app.globalData.sessionTicketId
-      },
-      success: res => {
-        console.log('CALL expireShoppingList SUCCESS')
-        resolve({
-          app: app,
-          res: res
-        })
-      }
-    })
+  return callPost('expireShoppingList', app, {
+    path: '/api/shoppingLists/' + id + '/expire',
+    data: {
+      expireName: app.globalData.userInfo.nickName
+    }
   })
 }
 
 const promiseOfInitShoppingList = (app, productEntries) => {
-  console.log('CALL initShoppingList')
-  return new Promise(function (resolve, reject) {
-    wx.request({
-      method: 'POST',
-      url: SERVER + '/api/shoppingLists/init',
-      data: {
-        creatorName: app.globalData.userInfo.nickName,
-        productEntries: productEntries,
-        mediaIds: mediaIds
-      },
-      header: {
-        'X-Wx-SessionTicket': app.globalData.sessionTicketId
-      },
-      success: res => {
-        console.log('CALL initShoppingList SUCCESS')
-        resolve({
-          app: app,
-          res: res
-        })
-      }
-    })
+  return callPost('initShoppingList', app, {
+    path: '/api/shoppingLists/init',
+    data: {
+      creatorName: app.globalData.userInfo.nickName,
+      productEntries: productEntries,
+      mediaIds: mediaIds
+    }
   })
 }
 
 const promiseOfPurchaseShoppingList = (app, id, totalPrice, source, mediaIds) => {
-  console.log('CALL purchaseShoppingList')
-  return new Promise(function (resolve, reject) {
-    wx.request({
-      method: 'POST',
-      url: SERVER + '/api/shoppingLists/' + id + '/purchase',
-      data: {
-        purchaserName: app.globalData.userInfo.nickName,
-        totalPurchasePrice: {
-          unit: 'USD',
-          value: totalPrice
-        },
-        purchasingSource: source,
-        mediaIds: mediaIds
+  return callPost('purchaseShoppingList', app, {
+    path: '/api/shoppingLists/' + id + '/purchase',
+    data: {
+      purchaserName: app.globalData.userInfo.nickName,
+      totalPurchasePrice: {
+        unit: 'USD',
+        value: totalPrice
       },
-      header: {
-        'X-Wx-SessionTicket': app.globalData.sessionTicketId
-      },
-      success: res => {
-        console.log('CALL purchaseShoppingList SUCCESS')
-        resolve({
-          app: app,
-          res: res
-        })
-      }
-    })
+      purchasingSource: source,
+      mediaIds: mediaIds
+    }
   })
 }
 
 const promiseOfAssignShoppingList = (app, id) => {
-  console.log('CALL assignShoppingList')
-  return new Promise(function (resolve, reject) {
-    wx.request({
-      method: 'POST',
-      url: SERVER + '/api/shoppingLists/' + id + '/assign',
-      data: {
-        ownerName: app.globalData.userInfo.nickName
-      },
-      header: {
-        'X-Wx-SessionTicket': app.globalData.sessionTicketId
-      },
-      success: res => {
-        console.log('CALL assignShoppingList SUCCESS')
-        console.log(res)
-        resolve({
-          app: app,
-          res: res
-        })
-      }
-    })
+  return callPost('assignShoppingList', {
+    path: '/api/shoppingLists/' + id + '/assign',
+    data: {
+      ownerName: app.globalData.userInfo.nickName
+    }
   })
 }
 
 const promiseOfQueryShippingOrders = (app, customerId, includeDelivered, status, limit) => {
-  console.log('CALL queryShippingOrders!')
-  var url = SERVER + '/api/shippingOrders/query?limit=' + (!!limit ? limit : 0);
+  var path = '/api/shippingOrders/query?limit=' + (!!limit ? limit : 0);
   if (!!customerId) {
-    url += '&customerId=' + customerId
+    path += '&customerId=' + customerId
   }
   if (!!includeDelivered) {
-    url += '&includeDelivered=' + includeDelivered
+    path += '&includeDelivered=' + includeDelivered
   }
   if (!!status) {
-    url += '&status=' + status
+    path += '&status=' + status
   }
-  return new Promise(function (resolve, reject) {
-    wx.request({
-      method: 'GET',
-      url: url,
-      header: {
-        'X-Wx-SessionTicket': app.globalData.sessionTicketId
-      },
-      success: res => successResolve('queryShippingOrders', resolve, app, res)
-    })
+  return callGet('queryShippingOrders', app, {
+    path: path
   })
 }
 
 const promiseOfPostFeedback = (app, content, mediaIds) => {
-  console.log('CALL postFeedback')
-  return new Promise((resolve, reject) => {
-    wx.request({
-      method: 'POST',
-      url: SERVER + '/api/sys/feedback/post',
-      header: {
-        'X-Wx-SessionTicket': app.globalData.sessionTicketId
-      },
-      data: {
-        requesterName: !!app.globalData.userInfo ? app.globalData.userInfo.nickName : '',
-        content: content,
-        mediaIds: !!mediaIds ? mediaIds : [] 
-      },
-      success: res => successResolve('postFeedback', resolve, app, res)
-    })
-  })
-}
-
-const successResolve = (apiName, resolve, app, res) => {
-  console.log('CALL ' + apiName + ' SUCCESS! response.statusCode=' + res.statusCode)
-  // TODO:
-  // Let's treat all things as success, we should check 2xx3xx/4xx/5xx
-  resolve({
-    app: app,
-    res: res
+  return callPost('postFeedback', app, {
+    path: '/api/sys/feedback/post',
+    data: {
+      requesterName: !!app.globalData.userInfo ? app.globalData.userInfo.nickName : '',
+      content: content,
+      mediaIds: !!mediaIds ? mediaIds : []
+    }
   })
 }
 
@@ -504,5 +335,6 @@ module.exports = {
   promiseOfQueryShippingOrders: promiseOfQueryShippingOrders,
   promiseOfQueryShoppingList: promiseOfQueryShoppingList,
   promiseOfUploadMedia: promiseOfUploadMedia,
-  promiseOfPostFeedback: promiseOfPostFeedback
+  promiseOfPostFeedback: promiseOfPostFeedback,
+  promiseOfUpdateCustomer: promiseOfUpdateCustomer
 }

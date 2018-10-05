@@ -1,6 +1,9 @@
-<custom-modal title='提交反馈' show='{{show}}' bind:cancel='onCancel' bind:confirm='onConfirm' height='60%'>
+<!-- <custom-modal title='提交反馈' show='{{show}}' bind:cancel='onCancel' bind:confirm='onConfirm' height='60%'>
+
+</custom-modal> -->
+<modal title="提交反馈" hidden="{{!show}}" bindcancel="onCancel" bindconfirm="onConfirm">
   <view class='fui-container'>
     <textarea value='{{content}}' bindinput='onInput'></textarea>
     <image-uploader eagerUpload='{{false}}' images='{{images}}'></image-uploader>
   </view>
-</custom-modal>
+</modal>

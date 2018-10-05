@@ -31,6 +31,6 @@ App({
     productNameToBrandHints: [],
     productNameToCategoryHints: [],
     productBrandToCategoryHints: [],
-    xx: 'xxef'
+    customers: []
   }
 })

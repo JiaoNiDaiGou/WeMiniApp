@@ -40,23 +40,20 @@ Page({
    * Lifecycle function--Called when page unload
    */
   onUnload: function () {
-
   },
 
   /**
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
-    console.log('refresh customers');
     wx.showNavigationBarLoading();
     backend.promiseOfLoadAllCustomers(app)
-      .then(app => {
-        console.log('finish refreshing customers');
+      .then(r => {
         wx.hideNavigationBarLoading();
         wx.stopPullDownRefresh();
         wx.showToast({
           title: '客户列表已刷新',
-          duration: 1000,
+          duration: 800,
         })
       })
   },
@@ -79,11 +76,11 @@ Page({
    * Filter customers search results.
    */
   filterCustomersSearchCandidates: function (e) {
-    var inputValue = e.detail.inputValue;
-    if (inputValue == '') {
+    var inputValue = e.detail.inputValue
+    if (!inputValue) {
       this.setData({
         customerSearchCandidates: []
-      });
+      })
     } else {
       var customerSearchCandidates = app.globalData.customers
         .filter(t => t.name.includes(inputValue) || t.phone.phone.includes(inputValue))
@@ -99,10 +96,7 @@ Page({
       });
     }
   },
-
-  /**
-   * Natigate to customer detail page.
-   */
+  
   goToCustomerDetails: function (e) {
     var customerId = e.detail.id;
     console.log('go to CustomerDetails for ' + customerId)

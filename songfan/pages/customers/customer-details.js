@@ -9,25 +9,27 @@ Page({
    * Page initial data
    */
   data: {
-    oriCustomer: null,
     customer: null,
     shippingOrders: [],
-    canUpdate: false
+    defaultShippingAddressIdx: 0,
+
+    canUpdate: false,
+
+    curActionAddressIdx: -1,
+    modalHidden: true,
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    var id = options.id;
-    console.log('load customer details for ' + id);
-    var customer = app.globalData.customers
-      .filter(t => t.id === options.id)[0];
-    this.setData({
-      customer: customer,
-      oriCustomer: customer
+    var id = options.id
+    wx.showLoading({
+      title: '加载客户信息',
     })
-    this.loadShippingOrders()
+    this.refreshCustomer(id, () => {
+      wx.hideLoading()
+    })
   },
 
   /**
@@ -62,26 +64,15 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
-    var customerId = this.data.customer.id;
-    var that = this;
-
-    console.log('refresh customer ' + customerId);
-
+    var customerId = this.data.customer.id
     wx.showNavigationBarLoading();
-    backend.promiseOfGetCustomerById(app, customerId)
-      .then(r => {
-        that.loadShippingOrders()
-
-        wx.hideNavigationBarLoading();
-        wx.stopPullDownRefresh();
-        that.setData({
-          customer: r.res.data
-        });
-        wx.showToast({
-          title: '客户信息已刷新',
-          duration: 1000,
-        })
+    this.refreshCustomer(customerId, () => {
+      wx.hideNavigationBarLoading()
+      wx.showToast({
+        title: '客户信息已刷新',
+        duration: 1000,
       })
+    })
   },
 
   /**
@@ -98,19 +89,32 @@ Page({
 
   },
 
-  loadShippingOrders: function () {
-    backend.promiseOfQueryShippingOrders(
-        app, 
-        this.data.customer.id,
-        true,
-        null,
-        10)
+  onAddressLongPress: function (e) {
+    var curActionAddressIdx = e.currentTarget.dataset.addressidx
+    this.setData({
+      curActionAddressIdx: curActionAddressIdx,
+      modalHidden: false
+    })
+  },
+
+  onModalDone: function (e) {
+    this.setData({
+      modalHidden: true
+    })
+  },
+
+  refreshCustomer: function (id, callback) {
+    var that = this
+    var promiseOfGetCustomerById = backend.promiseOfGetCustomerById(app, id)
       .then(r => {
-        if (r.res.statusCode != 200) {
-          console.log(r);
-          return
-        }
-        var shippingOrders = r.res.data.results;
+        var customer = r.res.data
+        that.setData({
+          customer: customer
+        })
+      })
+    var promiseOfQueryShippingOrders = backend.promiseOfQueryShippingOrders(app, id, true, null, 10)
+      .then(r => {
+        var shippingOrders = r.res.data.results
         if (!!shippingOrders && shippingOrders.length > 0) {
           console.log('load ' + shippingOrders.length + ' orders for ' + this.data.customer.name);
           this.setData({
@@ -118,15 +122,63 @@ Page({
           })
         }
       })
+
+    if (!!callback) {
+      Promise.all([promiseOfGetCustomerById, promiseOfQueryShippingOrders]).then(() => callback())
+    }
   },
 
-  /**
-   * Go to create shipping order page.
-   */
+  curActionAddressSetDefault: function (e) {
+    this.setData({
+      defaultShippingAddressIdx: this.data.curActionAddressIdx,
+      modalHidden: true
+    })
+  },
+
+  curActionAddressDelete: function (e) {
+    var customer = this.data.customer
+    var addresses = customer.addresses
+    if (addresses.length <= 1) {
+      return
+    }
+    var idx = this.data.curActionAddressIdx
+    var defaultShippingAddressIdx = this.data.defaultShippingAddressIdx
+    if (defaultShippingAddressIdx == idx) {
+      defaultShippingAddressIdx = 0
+    }
+    customer.addresses.splice(idx, 1)
+    this.updateCustomer(customer)
+    this.setData({
+      modalHidden: true,
+      defaultShippingAddressIdx: defaultShippingAddressIdx
+    })
+  },
+
+  updateCustomer: function (customer) {
+    var that = this
+    backend.promiseOfUpdateCustomer(app, customer)
+      .then(r => {
+        var updatedCustomer = r.res.data
+        that.setData({
+          customer: updatedCustomer
+        })
+        wx.showToast({
+          title: '客户信息已更新',
+        })
+      })
+  },
+
   goToShippingOrderCreate: function (e) {
     console.log('go to ShippingOrderCreate');
+    var address = this.data.customer.addresses[this.data.defaultShippingAddressIdx]
     wx.redirectTo({
-      url: '../shippingOrders/shippingOrders-create?customerId=' + this.data.customer.id + '&name=' + this.data.customer.name + '&phone=' + this.data.customer.phone.phone + '&region=' + this.data.customer.addresses[0].region + '&city=' + this.data.customer.addresses[0].city + '&zone=' + this.data.customer.addresses[0].zone + '&address=' + this.data.customer.addresses[0].address
+      url: '../shippingOrders/shippingOrders-create?customerId=' + this.data.customer.id
+        + '&name=' + this.data.customer.name
+        + '&phone=' + this.data.customer.phone.phone
+        + '&region=' + address.region
+        + '&city=' + address.city
+        + '&zone=' + address.zone
+        + '&address=' + address.address
     })
   }
 })

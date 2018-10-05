@@ -3,6 +3,8 @@ const backend = require('../../utils/backend.js');
 const utils = require('../../utils/util.js');
 const app = getApp();
 
+const LAST_KEY = '@last';
+
 Component({
   /**
    * Component properties
@@ -26,47 +28,100 @@ Component({
    * Component initial data
    */
   data: {
-    // A list of image items.
-    // imageItem: {
+    // imageKeys are an array of image keys, which has order.
+    // images is a map[imageKey, image object]
+    // A image object contains: 
+    // {
     //   path: local path
     //   mediaId: cloud mediaId
     //   uploading: boolean
     //   uploadingProgress
     // }
-    images: [
-      {
-        path: "",
+    imageKeys: [LAST_KEY],
+    images: {
+      LAST_KEY: {
+        path: '',
         mediaId: null,
         uploading: false,
-        uploadingProgress: 0
+        uplodingProgress: 0
       }
-    ],
+    },
+
+    modalHidden: true,
+
+    curActionImageIdx: -1
   },
 
   /**
    * Component methods
    */
   methods: {
+    onCurImageDelete: function (e) {
+      var curActionImageIdx = this.data.curActionImageIdx
+      var imageKeys = this.data.imageKeys
+      var images = this.data.images
+      if (curActionImageIdx < 0 || curActionImageIdx >= imageKeys.length - 1) {
+        return
+      }
+      var imageKey = imageKeys[curActionImageIdx]
+      imageKeys.splice(curActionImageIdx, 1)
+      delete images[imageKey]
+      this.setData({
+        modalHidden: true,
+        imageKeys: imageKeys,
+        images: images
+      })
+    },
+
+    onModalTap: function (e) {
+      this.setData({
+        modalHidden: true
+      })
+    },
+
+    onImageLongTap: function (e) {
+      var idx = e.currentTarget.dataset.imageidx
+      var imageKeys = this.data.imageKeys
+      var isLastImage = idx == imageKeys.length - 1
+      if (isLastImage) {
+        return
+      }
+      this.setData({
+        curActionImageIdx: idx,
+        modalHidden: false
+      })
+    },
+
     /**
      * When user press the image.
      */
     onImageTap: function (e) {
       var idx = e.currentTarget.dataset.imageidx
-      var path = this.data.images[idx].path
-      var urls = this.data.images.map(t => t.path)
-      console.log(idx)
-      wx.previewImage({
-        current: path,
-        urls: urls,
-      })
-    },
+      if (idx >= this.data.imageKeys.length) {
+        return
+      }
 
-    /**
-     * When user press uploadImage.
-     */
-    onLastImageTap: function (e) {
-      console.log(this.data.eagerUpload)
-      
+      var imageKeys = this.data.imageKeys
+      var isLastImage = idx == imageKeys.length - 1
+
+      // Tap non-last image
+      if (!isLastImage) {
+        var images = this.data.images
+        var image = images[imageKeys[idx]]
+        var path = image.path
+        var urls = []
+        for (var i = 0; i < imageKeys.length - 1; i++) {
+          var image = images[imageKeys[i]]
+          urls.push(image.path)
+        }
+        wx.previewImage({
+          current: path,
+          urls: urls,
+        })
+        return
+      }
+
+      // Tap last image
       var that = this;
       wx.chooseImage({
         count: 9,
@@ -74,23 +129,31 @@ Component({
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
         success: res => {
           if (res.tempFilePaths && res.tempFilePaths.length > 0) {
-            var selectedImages = res.tempFilePaths.map(t => {
-              return {
+
+            var imageKeys = that.data.imageKeys
+            var newUploadStartIdx = imageKeys.length - 1
+            imageKeys = imageKeys.slice(0, imageKeys.length - 1)
+
+            var selectedImageKeys = []
+            var thatImages = that.data.images
+            res.tempFilePaths.forEach(t => {
+              var key = utils.uuid()
+              var imageObj = {
                 path: t,
                 mediaId: null,
                 uploading: false,
                 uploadingProgress: 0
               }
+              thatImages[key] = imageObj
+              imageKeys.push(key)
             })
-            var images = that.data.images;
-            var newUploadStartIdx = images.length - 1
-            var last = images[images.length - 1]
-            images = images.slice(0, images.length - 1)
-            images.push(...selectedImages)
-            var newUploadEndIdx = images.length - 1
-            images.push(last)
+
+            var newUploadEndIdx = imageKeys.length - 1
+            imageKeys.push(LAST_KEY)
+
             that.setData({
-              images: images
+              imageKeys: imageKeys,
+              images: thatImages
             });
 
             if (!!that.data.eagerUpload) {
@@ -105,23 +168,25 @@ Component({
 
     uploadImage: function (idx) {
       var that = this;
-      var image = this.data.images[idx]
+      var imageKeys = this.data.imageKeys
+      var images = this.data.images
+      var imageKey = imageKeys[idx]
+      var image = images[imageKey]
+
       if (!!image.mediaId || image.uploading) {
         return
       }
-      console.log(image)
+
       image.uploding = true
       image.uploadingProgress = 0;
-      var images = this.data.images;
-      images[idx] = image
+      images[imageKey] = image
       this.setData({
         images: images
       })
 
       var progressHandle = (res) => {
-        console.log(res.progress)
         var thatImages = that.data.images
-        thatImages[idx].uploadingProgress = res.progress
+        thatImages[imageKey].uploadingProgress = res.progress
         that.setData({
           images: thatImages
         })
@@ -131,9 +196,11 @@ Component({
         .then(r => {
           var mediaId = r.res.data.id;
           var thatImages = that.data.images
-          thatImages[idx].mediaId = mediaId
+          var thatImageKeys = that.data.imageKeys
+          thatImages[imageKey].mediaId = mediaId
+
           // Sync all images
-          thatImages.forEach(x => {
+          that.data.imageKeys.map(x => thatImages[x]).forEach(x => {
             if (!!x.mediaId) {
               x.uploading = false
               x.uploadingProgress = 100

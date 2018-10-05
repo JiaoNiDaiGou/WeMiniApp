@@ -3,8 +3,11 @@
   <text-box iconClass='icon-tag-black-36' placeholder='ID' value='{{customer.id}}' hasBottomBorder='true'></text-box>
   <text-box iconClass='icon-profile-black-36' placeholder='姓名' value='{{customer.name}}' editable='true' hasBottomBorder='true'></text-box>
   <text-box iconClass='icon-phone-black-36' placeholder='电话' value='{{customer.phone.phone}}' editable='true' hasBottomBorder='true'></text-box>
-  <view wx:for="{{customer.addresses}}" wx:key="unique" wx:for-item="address">
-    <address-box region='{{address.region}}' city='{{address.city}}' zone='{{address.zone}}' address='{{address.address}}' editable='true'></address-box>
+  <view wx:for="{{customer.addresses}}" wx:key="unique" wx:for-item="address" wx:for-index='idx'>
+    <view style="position: relative;">
+      <address-box data-addressidx='{{idx}}' region='{{address.region}}' city='{{address.city}}' zone='{{address.zone}}' address='{{address.address}}' editable='true' bindlongpress='onAddressLongPress'> </address-box>
+      <view wx:if='{{idx==defaultShippingAddressIdx}}' class="weui-badge fui-customer-details-default-address" style="background-color: green;}}">优先发货地址</view>
+    </view>
   </view>
   <view class="weui-btn-area">
     <view wx:if='{{canUpdate}}'>
@@ -13,3 +16,10 @@
     <button class="weui-btn fui-button" type="primary" bindtap='goToShippingOrderCreate'>发货</button>
   </view>
 </view>
+
+<modal hidden="{{modalHidden}}" bindcancel="onModalDone" bindconfirm="onModalDone">
+  <view class="weui-btn-area">
+    <button wx:if='{{curActionAddressIdx > 0}}' type="normal" class='fui-modal-button' style='color: green' bindtap='curActionAddressSetDefault'>设为优先发货地址</button>
+    <button wx:if='{{customer.addresses.length > 1}}' type="warn" class='fui-modal-button' bindtap='curActionAddressDelete'>删除</button>
+  </view>
+</modal>

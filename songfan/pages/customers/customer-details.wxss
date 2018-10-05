@@ -2,3 +2,9 @@
 @import '../../lib/icon.wxss';
 @import '../../lib/weui.wxss';
 @import '../../app.wxss';
+
+.fui-customer-details-default-address {
+  position: absolute;
+  top: -0.4em;
+  right: -.4em;
+}

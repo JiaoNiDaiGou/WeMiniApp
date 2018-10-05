@@ -190,7 +190,7 @@ const removeItemsById = (list, idToDelete, extractId) => {
 
 const enableFeedbackShake= (page) => {
   wx.onAccelerometerChange(function (e) {
-    if (e.x > 1 && e.y > 1 && !page.data.showFeedback) {
+    if (e.x > 0.8 && e.y > 0.8 && !page.data.showFeedback) {
       page.setData({
         showFeedback: true
       })
@@ -202,6 +202,15 @@ const onFeedbackDone = (page) => {
   page.setData({
     showFeedback: false
   })
+}
+
+const uuid = () => {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 }
 
 module.exports = {
@@ -219,5 +228,6 @@ module.exports = {
   mergeItemsByIdOverride: mergeItemsByIdOverride,
   removeItemsById: removeItemsById,
   enableFeedbackShake: enableFeedbackShake,
-  onFeedbackDone: onFeedbackDone
+  onFeedbackDone: onFeedbackDone,
+  uuid: uuid
 }

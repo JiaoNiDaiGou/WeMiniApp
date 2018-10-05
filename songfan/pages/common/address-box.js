@@ -89,7 +89,6 @@ Component({
     },
 
     onAddressLineChanged: function (e) {
-      console.log(e);
       var height = (e.detail.lineCount + 1) * e.detail.lineHeight + 0.5;
       this.setData({ addressLineHeight: height })
     },
