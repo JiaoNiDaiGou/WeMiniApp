@@ -60,7 +60,6 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-
   },
 
   /**
@@ -127,9 +126,8 @@ Page({
   },
 
   filterShoppingList: function (e) {
-    var searchText = e.detail.value;
-    var status = this.data.statusValues[this.data.curStatusIndex];
-    var shoppingList = this.data.shoppingList[status];
+    var searchText = e.detail.inputValue;
+    var shoppingList = this.data.shoppingList[this.data.curPageIndex];
     var displayedShoppingList = this.buildDisplayedShoppingList(searchText, shoppingList);
     this.setData({
       curSearchText: searchText,
@@ -138,18 +136,46 @@ Page({
   },
 
   buildDisplayedShoppingList: function (searchText, shoppingList) {
-    if (!!searchText) {
+    if (!searchText) {
       return shoppingList;
     }
 
     return shoppingList
       .filter(shoppingListItem => {
-        return shoppingListItem.productEntries.some(productEntry => {
-          var product = productEntry.product;
-          return (!!product.name && product.name.includes(searchText))
-            || (!!product.brand && product.brand.includes(searchText))
-        });
+        if (!!shoppingListItem.message && shoppingListItem.message.includes(searchText)) {
+          return true
+        }
+        if (!!shoppingListItem.productEntries && shoppingListItem.productEntries.length > 0) {
+          var has = shoppingListItem.productEntries.some(productEntry => {
+            var product = productEntry.product;
+            return (!!product.name && product.name.includes(searchText))
+              || (!!product.brand && product.brand.includes(searchText))
+          })
+          if (has) {
+            return true
+          }
+        }
+        return false
       })
+  },
+
+  onCreateShoppingListItemTap: function (e) {
+    wx.navigateTo({
+      url: './shoppingLists-create',
+    })
+  },
+
+  onImageTap: function (e) {
+    var itemId = e.currentTarget.dataset.itemid
+    var url = e.currentTarget.dataset.url
+    // TODO:
+    // Figure out how to cache
+    var item = this.data.displayedShoppingList.find(t => t.id == itemId)
+    var urls = item.mediaUrls
+    wx.previewImage({
+      current: url,
+      urls: urls
+    })
   },
 
   onPageIndexChange: function (e) {
@@ -281,6 +307,11 @@ Page({
             t.renderableInHouseTime = utils.formatTimestamp(parseFloat(t.inHouseTime))
           }
           t.renderableProducts = (!!t.productEntries && t.productEntries.length > 0) ? utils.convertToRenderableProducts(t.productEntries) : []
+          if (!!t.mediaIds && t.mediaIds.length > 0) {
+            // TODO:
+            // use Google download URL
+            t.mediaUrls = t.mediaIds.map(t => backend.buildMediaDownloadUrl(t))
+          }
           return t;
         });
       mergedShoppingList = utils.mergeItemsByIdOverride(mergedShoppingList, shoppingList, t => t.id)

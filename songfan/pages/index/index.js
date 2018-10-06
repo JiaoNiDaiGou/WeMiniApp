@@ -38,9 +38,20 @@ Page({
     })
   },
   showmodal: function (e) {
-    console.log(e)
     this.setData({
       showModal: true
     })
+  },
+
+  onImgUploaded: function (e) {
+    console.log('image uploaded:')
+    console.log(e)
+    console.log('\n')
+  },
+
+  onImgListChanged: function (e) {
+    console.log('image list changed7:')
+    console.log(e)
+    console.log('\n')
   }
 })

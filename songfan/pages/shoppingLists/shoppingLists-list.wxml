@@ -4,12 +4,13 @@
 
   <view class="weui-btn-area">
     <picker bindchange="onPageIndexChange" value="{{curPageIndex}}" range='{{pageNames}}'>
-      <button type="normal" style='color:green'>{{pageNames[curPageIndex]}}</button>
+      <button type="normal" style='color:green' class='fui-modal-button'>{{pageNames[curPageIndex]}}</button>
     </picker>
+    <button type="primary" bindtap='onCreateShoppingListItemTap' class='fui-modal-button'>添加采购任务</button>
   </view>
 
   <view wx:for='{{displayedShoppingList}}' wx:key='unique' wx:for-item='item'>
-    <view data-shoppingListItemId='{{item.id}}' class='fui-active-box' bindlongpress='actionShoppingList'>
+    <view data-shoppingListItemId='{{item.id}}' class='fui-active-box fui-lightborder' bindlongpress='actionShoppingList'>
 
       <view class="weui-badge weui-flex__item" style='margin-left: 10px; background-color: {{statusBadgeColor[item.status]}};'>{{item.statusName}}</view>
       <text-box iconClass='icon-tag-black-36' value='ID: {{item.id}}' />
@@ -20,9 +21,12 @@
       <text-box wx:if='{{!!item.renderablePurchasingTime}}' iconClass='icon-time-black-36' value='采购时间: {{item.renderablePurchasingTime}}' />
       <text-box wx:if='{{!!item.purchasingSource}}' iconClass='icon-people-black-36' value='采购来源: {{item.purchasingSource}}' />
       <text-box wx:if='{{!!item.renderableInHouseTime}}' iconClass='icon-time-black-36' value='入库时间: {{item.renderableInHouseTime}}' />
+      <text-box wx:if='{{!!item.message}}' iconClass='icon-comment-black-36' value='{{item.message}}' />
       <product-entry-list-box wx:if='{{!!item.renderableProducts && item.renderableProducts.length > 0}}' products='{{item.renderableProducts}}' />
       <text-box wx:if='{{!!item.expireTime}}' iconClass='icon-time-black-36' value='撤销时间: {{item.expireTime}}' />
-      <text-box value='' hasBottomBorder='true' />
+      <view wx:if='{{!!item.mediaUrls && item.mediaUrls.length > 0}}' wx:for='{{item.mediaUrls}}' wx:key='unique' wx:for-item='url'>
+        <image data-itemid='{{item.id}}' data-url='{{url}}' src='{{url}}' mode='aspectFit' bindtap='onImageTap' />
+      </view>
     </view>
   </view>
 

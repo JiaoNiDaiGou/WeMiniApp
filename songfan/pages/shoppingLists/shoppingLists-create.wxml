@@ -1,0 +1,8 @@
+<!--pages/shoppingLists/shoppingLists-create.wxml-->
+<view class='fui-container'>
+  <textarea placeholder='内容' class="weui-flex__item fui-address-box__textarea fui-lightborder}}" value='{{content}}' bindinput='onContentInput' style="height: 200px; margin-left:10px; margin-right:10px;}}"></textarea>
+  <image-uploader eagerUpload='{{true}}' bind:imagesChanged='onImagesChanged'></image-uploader>
+  <view class="weui-btn-area">
+    <button type="primary" bindtap='onConfimTap'>确认</button>
+  </view>
+</view>

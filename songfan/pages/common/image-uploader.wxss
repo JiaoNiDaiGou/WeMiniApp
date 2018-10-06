@@ -19,3 +19,7 @@
   top: -0.4em;
   right: -.4em;
 }
+
+.fui-image-uploader-box-scoll-x {
+  display: inline-block;
+}

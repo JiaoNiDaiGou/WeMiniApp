@@ -21,6 +21,12 @@ Component({
     columnSize: {
       type: Number,
       value: 3,
+    },
+
+    // Possible values are : grid, scroll-x
+    style: {
+      type: String,
+      value: 'grid'
     }
   },
 
@@ -96,6 +102,8 @@ Component({
      * When user press the image.
      */
     onImageTap: function (e) {
+      this.refreshAllUploadingProgress()
+
       var idx = e.currentTarget.dataset.imageidx
       if (idx >= this.data.imageKeys.length) {
         return
@@ -161,6 +169,8 @@ Component({
                 that.uploadImage(idx)
               }
             }
+
+            that.triggerImagesChangedEvent()
           }
         }
       })
@@ -201,7 +211,7 @@ Component({
 
           // Sync all images
           that.data.imageKeys.map(x => thatImages[x]).forEach(x => {
-            if (!!x.mediaId) {
+            if (!!x && !!x.mediaId) {
               x.uploading = false
               x.uploadingProgress = 100
             }
@@ -209,7 +219,47 @@ Component({
           that.setData({
             images: thatImages
           })
+
+          that.triggerImagesChangedEvent()
         })
     },
-  }
+
+    refreshAllUploadingProgress: function () {
+      var changed = false;
+      var images = this.data.images
+      this.data.imageKeys.forEach(key => {
+        var image = images[key]
+        if (!!image && !!image.mediaId) {
+          if (image.uploading == true || image.uploadingProgress != 100) {
+            changed = true
+            image.uploading = false
+            image.uploadingProgress = 100
+            images[key] = image
+          }
+        }
+      })
+      if (changed) {
+        this.setData({
+          images: images
+        })
+      }
+    },
+
+    triggerImagesChangedEvent: function () {
+      var imageKeys = this.data.imageKeys
+      if (imageKeys.length <= 1) {
+        return
+      }
+
+      var images = this.data.images
+      var event = imageKeys.slice(0, imageKeys.length - 1).map(key => {
+        var image = images[key]
+        return {
+          path: image.path,
+          mediaId: image.mediaId
+        }
+      })
+      this.triggerEvent('imagesChanged', { images: event })
+    }
+  },
 })

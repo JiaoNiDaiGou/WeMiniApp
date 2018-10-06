@@ -3,6 +3,8 @@ const utils = require('./util.js')
 // const SERVER = 'https://fluid-crane-200921.appspot.com';
 const SERVER = 'https://dev-dot-fluid-crane-200921.appspot.com';
 
+const LOCAL_SESSION_TICKET_ID_KEY = "sys.sessionTicketId";
+
 /**
  * We always return object like:
  * {
@@ -25,15 +27,23 @@ const promiseOfBackendLogin = (app) => {
       })
     }
 
-    console.log('CALL wxLogin!');
-    app.globalData.sessionTicketId = 'e0816abe-275b-4aed-96e3-202b4b8af6b6';
-    if (!!app.globalData.sessionTicketId) {
-      resolve({
-        app: app
-      });
-      return;
+    // Load sessionTicketId from local
+    var nowMillis = new Date().getTime()
+    var expireMillis = nowMillis - 3 * 60 * 1000 // -3m
+    var ticketJson = wx.getStorageSync(LOCAL_SESSION_TICKET_ID_KEY)
+    if (!!ticketJson) {
+      var ticket = JSON.parse(ticketJson)
+      if (!!ticket && ticket.ts > expireMillis) {
+        console.log('fetch session ticket ID from local cache ' + ticket.ticket)
+        app.globalData.sessionTicketId = ticket.ticket;
+        resolve({
+          app: app
+        })
+        return
+      }
     }
 
+    console.log('CALL wxLogin!');
     wx.login({
       success: res => {
         console.log('fetch client jscode ' + res.code);
@@ -48,6 +58,10 @@ const promiseOfBackendLogin = (app) => {
             var sessionTicketId = res.data.ticketId;
             console.log('fetch backend server session ticket ID: ' + sessionTicketId);
             app.globalData.sessionTicketId = sessionTicketId;
+            wx.setStorageSync(LOCAL_SESSION_TICKET_ID_KEY, JSON.stringify({
+              ts: nowMillis,
+              ticket: sessionTicketId
+            }))
             resolve({
               app: app
             });
@@ -118,7 +132,7 @@ const promiseOfParseCustomer = (app, texts, mediaIds) => {
 }
 
 const promiseOfCreateCustomer = (app, id, name, phone, address) => {
-  return callPut('createCustomer', app, {
+  return callPost('createCustomer', app, {
     path: '/api/JiaoNiDaiGou/customers/create',
     data: {
       id: id,
@@ -133,7 +147,7 @@ const promiseOfCreateCustomer = (app, id, name, phone, address) => {
 }
 
 const promiseOfUpdateCustomer = (app, customer) => {
-  return callPut('updateCustomer', app, {
+  return callPost('updateCustomer', app, {
     path: '/api/JiaoNiDaiGou/customers/update',
     data: customer
   })
@@ -158,7 +172,6 @@ const promiseOfUploadMedia = (app, path, progressHandle) => {
       name: 'file',
       success: res => {
         console.log('CALL uploadMedia SUCCESS!');
-        console.log(res);
         // wx.uploadFile response is text.
         // convert it to json.
         resolve({
@@ -231,13 +244,14 @@ const promiseOfExpireShoppingList = (app, id) => {
   })
 }
 
-const promiseOfInitShoppingList = (app, productEntries) => {
+const promiseOfInitShoppingList = (app, message, mediaIds, productEntries) => {
   return callPost('initShoppingList', app, {
     path: '/api/shoppingLists/init',
     data: {
       creatorName: app.globalData.userInfo.nickName,
       productEntries: productEntries,
-      mediaIds: mediaIds
+      mediaIds: mediaIds,
+      message: message
     }
   })
 }
@@ -293,7 +307,12 @@ const promiseOfPostFeedback = (app, content, mediaIds) => {
   })
 }
 
+const buildMediaDownloadUrl = (mediaId) => {
+  return SERVER + '/api/media/directDownload?mediaId=' + mediaId
+}
+
 module.exports = {
+  buildMediaDownloadUrl: buildMediaDownloadUrl,
   promiseOfAssignShoppingList: promiseOfAssignShoppingList,
   promiseOfBackendLogin: promiseOfBackendLogin,
   promiseOfCreateCustomer: promiseOfCreateCustomer,

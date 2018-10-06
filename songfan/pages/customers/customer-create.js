@@ -174,10 +174,9 @@ Page({
   parseRawCustomer: function (texts, mediaIds) {
     backend.promiseOfParseCustomer(app, texts, mediaIds)
       .then(r => {
-        var res = r.res;
+        var results = r.res.data.results
         wx.hideLoading();
-
-        if (!res.results || res.results.length == 0) {
+        if (!results || results.length == 0) {
           console.log('doesnt parse to any customer');
           wx.showModal({
             title: '没发现客户信息',
@@ -192,8 +191,8 @@ Page({
 
 
         var parsingCandidates = [];
-        for (var i = 0; i < res.results.length; i++) {
-          var parsedCustomer = res.results[i].customer;
+        for (var i = 0; i < results.length; i++) {
+          var parsedCustomer = results[i].customer;
           var name = parsedCustomer.name;
           var phone = (!!parsedCustomer.phone ? parsedCustomer.phone.phone : null);
           if (!!parsedCustomer.addresses) {
