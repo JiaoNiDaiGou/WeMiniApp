@@ -33,8 +33,11 @@ view {
 }
 
 .fui-badge-box {
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
   vertical-align: middle;
+  flex-wrap: wrap;
 }
 
 .fui-badge-box__item {

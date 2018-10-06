@@ -3,7 +3,7 @@
   <icon class='iconfont icon-cart-black-36 fui-product-entry-list-box__icon' />
   <view class='fui-product-entry-list-box'>
     <view wx:for="{{products}}" wx:key="unique" wx:for-item="product">
-      <view class='weui-flex__item fui-badge-box'>
+      <view class='weui-flex__item fui-product-entry-list-box-badge'>
         <view class="weui-badge fui-badge-box__item">{{product.categoryName}}</view>
         {{product.brand}} {{product.name}}
         <view class="weui-badge fui-badge-box__item">{{product.quantity}}件</view>

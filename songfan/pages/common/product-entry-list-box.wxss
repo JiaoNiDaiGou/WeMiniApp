@@ -9,3 +9,7 @@
 .fui-product-entry-list-box {
   justify-content: flex-start;
 }
+
+.fui-product-entry-list-box-badge {
+  display: inline-block
+}

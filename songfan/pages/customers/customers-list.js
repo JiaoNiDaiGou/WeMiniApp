@@ -71,7 +71,7 @@ Page({
   onShareAppMessage: function () {
 
   },
-  
+
   /**
    * Filter customers search results.
    */
@@ -88,7 +88,9 @@ Page({
         .map(t => {
           return {
             id: t.id,
-            display: t.name + ' ' + t.phone.phone + ' [' + t.addresses[0].region + ' ' + t.addresses[0].city + ']'
+            display: t.name + ' '
+              + (!!t.phone ? '' : t.phone.phone)
+              + (!!t.addresses && t.addresses.length > 0 ? ' [' + t.addresses[0].region + ' ' + t.addresses[0].city + ']' : '')
           }
         });
       this.setData({
@@ -96,7 +98,7 @@ Page({
       });
     }
   },
-  
+
   goToCustomerDetails: function (e) {
     var customerId = e.detail.id;
     console.log('go to CustomerDetails for ' + customerId)

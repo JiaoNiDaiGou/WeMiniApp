@@ -13,9 +13,9 @@
 </view>
 
 <view wx:if='{{!!suggestions && suggestions.length > 0}}'>
-  <view class="fui-badge-box weui-flex">
+  <view class="fui-badge-box">
     <view wx:for='{{suggestions}}' wx:key='unique' wx:for-item='suggestion'>
-      <view class="weui-badge fui-badge-box__item weui-flex__item" bindtap='tapSuggestion' data-id='{{suggestion.id}}'>{{suggestion.display}}</view>
+      <view class="weui-badge fui-badge-box__item" bindtap='tapSuggestion' data-id='{{suggestion.id}}'>{{suggestion.display}}</view>
     </view>
   </view>
 </view>

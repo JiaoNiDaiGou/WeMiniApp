@@ -26,7 +26,7 @@ const promiseOfBackendLogin = (app) => {
     }
 
     console.log('CALL wxLogin!');
-    app.globalData.sessionTicketId = 'c1a4e9d8-b1bb-4eee-9942-635f0a2075b6';
+    app.globalData.sessionTicketId = 'e0816abe-275b-4aed-96e3-202b4b8af6b6';
     if (!!app.globalData.sessionTicketId) {
       resolve({
         app: app
@@ -95,17 +95,13 @@ const callBackend = (apiName, app, verb, api) => {
 
 const promiseOfLoadAllCustomers = (app) => {
   return callGet('loadAllCustomers', app, {
-    path: '/api/JiaoNiDaiGou/customers/getAll?limit=1000',
-    onSuccess: res => {
-      console.log('load ' + res.data.results.length + ' customers')
-      app.globalData.customers = res.data.results
-    }
+    path: '/api/JiaoNiDaiGou/customers/all?limit=1000'
   })
 }
 
 const promiseOfGetCustomerById = (app, customerId) => {
   return callGet('getCustomerById', app, {
-    path: '/api/JiaoNiDaiGou/customers/get/' + customerId
+    path: '/api/JiaoNiDaiGou/customers/' + customerId
   })
 }
 
@@ -123,7 +119,7 @@ const promiseOfParseCustomer = (app, texts, mediaIds) => {
 
 const promiseOfCreateCustomer = (app, id, name, phone, address) => {
   return callPut('createCustomer', app, {
-    path: '/api/JiaoNiDaiGou/customers/put',
+    path: '/api/JiaoNiDaiGou/customers/create',
     data: {
       id: id,
       name: name,
@@ -138,35 +134,14 @@ const promiseOfCreateCustomer = (app, id, name, phone, address) => {
 
 const promiseOfUpdateCustomer = (app, customer) => {
   return callPut('updateCustomer', app, {
-    path: '/api/JiaoNiDaiGou/customers/put',
+    path: '/api/JiaoNiDaiGou/customers/update',
     data: customer
   })
 }
 
 const promiseOfLoadProductsHints = (app) => {
   return callGet('loadProductHints', app, {
-    path: '/api/JiaoNiDaiGou/products/hints',
-    onSuccess: res => {
-      var hints = res.data;
-
-      // fulfill
-      hints.forEach(hint => {
-        var category = hint.left;
-        var categoryIndex = utils.findProductCategoryIndexByValue(category);
-        var brand = hint.middle;
-        utils.incTableCount(app.globalData.productBrandToCategoryHints, brand, categoryIndex);
-        var names = hint.right;
-        names.forEach(name => {
-          utils.incTableCount(app.globalData.productNameToBrandHints, name, brand);
-          utils.incTableCount(app.globalData.productNameToCategoryHints, name, categoryIndex);
-        })
-      })
-
-      // sort
-      app.globalData.productBrandToCategoryHints.forEach(t => t.val.sort((a, b) => b.val - a.val))
-      app.globalData.productNameToBrandHints.forEach(t => t.val.sort((a, b) => b.val - a.val))
-      app.globalData.productNameToCategoryHints.forEach(t => t.val.sort((a, b) => b.val - a.val))
-    }
+    path: '/api/JiaoNiDaiGou/products/hints'
   })
 }
 
