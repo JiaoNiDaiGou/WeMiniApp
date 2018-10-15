@@ -1,0 +1,21 @@
+<view class='fui-container'>
+  <view class='fui-container-item'>
+    <icon class='iconfont icon-cart-black-36 fui-icon' />
+    <view class='fui-product-entry-list-box'>
+      <view wx:for="{{products}}" wx:key="unique" wx:for-item="product" wx:for-index='idx'>
+        <view class='fui-badge-box' data-idx='{{idx}}' bindlongpress='onProductEntryLongPress'>
+          <view class="weui-badge fui-badge-box__item">{{product.categoryName}}</view>
+          {{product.brand}} {{product.name}}
+          <view class="weui-badge fui-badge-box__item">{{product.quantity}}件</view>
+          <view class="weui-badge fui-badge-box__item">${{product.price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<modal hidden="{{productEntryModalHidden}}" bindcancel="onProductEntryModalDone" bindconfirm="onProductEntryModalDone">
+  <view class="weui-btn-area">
+    <button type="warn" class='fui-modal-button' bindtap='onCurActionProductEntryDeleteTap'>撤销</button>
+    </view>
+</modal>

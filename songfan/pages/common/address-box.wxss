@@ -3,10 +3,6 @@
 @import '../../lib/weui.wxss';
 @import '../../app.wxss';
 
-.fui-address-box__icon {
-  margin-right: 10px;
-}
-
 .fui-address-box__input {
   margin-left: 10px;
   margin-right: 10px;

@@ -3,12 +3,13 @@
 @import '../../lib/weui.wxss';
 @import '../../app.wxss';
 
-.fui-text-box__icon {
-  margin-right: 10px;
-}
-
 .fui-text-box__prefix {
   margin-left: 10px;
+  font-size: 18px;
+}
+
+.fui-text-box__suffix {
+  margin-right: 10px;
   font-size: 18px;
 }
 
@@ -17,6 +18,9 @@
   margin-right: 10px;
   margin-top: 5px;
   font-size: 18px;
+  height: 25px;
+  border: 1px groove red;
+  width: 100%;
 }
 
 .fui-text-box__border {

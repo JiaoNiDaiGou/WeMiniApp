@@ -1,10 +1,11 @@
 {
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "text-box": "../common/text-box",
+    "text-box": "../core/text-box",
+    "picker-box": "../core/picker-box",
+    "search-bar": "../core/search-bar",
+    "list": "../core/list",
     "address-box": "../common/address-box",
-    "picker-box": "../common/picker-box",
-    "search-bar": "../common/search-bar",
-    "product-entry-list-box": "../common/product-entry-list-box"
+    "product-list-box": "../common/product-list-box"
   }
 }

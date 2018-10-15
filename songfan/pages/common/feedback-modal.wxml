@@ -4,6 +4,8 @@
 <modal title="提交反馈" hidden="{{!show}}" bindcancel="onCancel" bindconfirm="onConfirm">
   <view class='fui-container'>
     <textarea value='{{content}}' bindinput='onInput'></textarea>
-    <image-uploader eagerUpload='{{false}}' images='{{images}}'></image-uploader>
+    <view>
+      <image-uploader eagerUpload='{{false}}' images='{{images}}'></image-uploader>
+    </view>
   </view>
 </modal>

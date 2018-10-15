@@ -32,7 +32,7 @@ App({
     var that = this
     return backend.promiseOfLoadAllCustomers(that)
       .then(r => {
-        var customers = r.res.data.results
+        var customers = r.res.data
         console.log('load ' + customers.length + ' customers')
         that.globalData.customers = customers
       })

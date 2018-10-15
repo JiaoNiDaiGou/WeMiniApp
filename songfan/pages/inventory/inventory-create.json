@@ -1,0 +1,10 @@
+{
+    "usingComponents": {
+      "text-box": "../core/text-box",
+      "picker-box": "../core/picker-box",
+      "search-bar": "../core/search-bar",
+      "image-uploader": "../core/image-uploader",
+      "address-box": "../common/address-box",
+      "product-input-component": "../common/product-input-component"
+    }
+  }

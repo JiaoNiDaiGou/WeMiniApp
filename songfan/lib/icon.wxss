@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'iconfont';  /* project id 838826 */
-  src: url('//at.alicdn.com/t/font_838826_bqsqjccs82u.eot');
-  src: url('//at.alicdn.com/t/font_838826_bqsqjccs82u.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_838826_bqsqjccs82u.woff') format('woff'),
-  url('//at.alicdn.com/t/font_838826_bqsqjccs82u.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_838826_bqsqjccs82u.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_838826_90zswp1myf.eot');
+  src: url('//at.alicdn.com/t/font_838826_90zswp1myf.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_838826_90zswp1myf.woff') format('woff'),
+  url('//at.alicdn.com/t/font_838826_90zswp1myf.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_838826_90zswp1myf.svg#iconfont') format('svg');
 }
 
 
@@ -287,6 +287,12 @@ color: blue;
 
 .icon-moneybag-blue-16:before {
 content: "\e7d1";
+font-size: 16rpx;
+color: blue;
+}
+
+.icon-bear-blue-16:before {
+content: "\e601";
 font-size: 16rpx;
 color: blue;
 }
@@ -591,6 +597,12 @@ font-size: 32rpx;
 color: blue;
 }
 
+.icon-bear-blue-32:before {
+content: "\e601";
+font-size: 32rpx;
+color: blue;
+}
+
 .icon-minus-circle-blue-32:before {
 content: "\e780";
 font-size: 32rpx;
@@ -887,6 +899,12 @@ color: blue;
 
 .icon-moneybag-blue-48:before {
 content: "\e7d1";
+font-size: 48rpx;
+color: blue;
+}
+
+.icon-bear-blue-48:before {
+content: "\e601";
 font-size: 48rpx;
 color: blue;
 }
@@ -1191,6 +1209,12 @@ font-size: 36rpx;
 color: blue;
 }
 
+.icon-bear-blue-36:before {
+content: "\e601";
+font-size: 36rpx;
+color: blue;
+}
+
 .icon-minus-circle-blue-36:before {
 content: "\e780";
 font-size: 36rpx;
@@ -1491,6 +1515,12 @@ font-size: 42rpx;
 color: blue;
 }
 
+.icon-bear-blue-42:before {
+content: "\e601";
+font-size: 42rpx;
+color: blue;
+}
+
 .icon-minus-circle-blue-42:before {
 content: "\e780";
 font-size: 42rpx;
@@ -1512,6 +1542,312 @@ color: blue;
 .icon-plus-circle-fill-blue-42:before {
 content: "\e845";
 font-size: 42rpx;
+color: blue;
+}
+
+.icon-edit-blue-96:before {
+content: "\e649";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-favor-blue-96:before {
+content: "\e64c";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-locationfill-blue-96:before {
+content: "\e650";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-location-blue-96:before {
+content: "\e651";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-phone-blue-96:before {
+content: "\e652";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-search-blue-96:before {
+content: "\e65c";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-timefill-blue-96:before {
+content: "\e65e";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-time-blue-96:before {
+content: "\e65f";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-camerafill-blue-96:before {
+content: "\e664";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-camera-blue-96:before {
+content: "\e665";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-comment-blue-96:before {
+content: "\e667";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-deliver-blue-96:before {
+content: "\e671";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-evaluate-blue-96:before {
+content: "\e672";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-pay-blue-96:before {
+content: "\e673";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-send-blue-96:before {
+content: "\e675";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-shop-blue-96:before {
+content: "\e676";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-cascades-blue-96:before {
+content: "\e67c";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-list-blue-96:before {
+content: "\e682";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-more-blue-96:before {
+content: "\e684";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-settings-blue-96:before {
+content: "\e68a";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-shopfill-blue-96:before {
+content: "\e697";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-pic-blue-96:before {
+content: "\e69b";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-cart-blue-96:before {
+content: "\e6af";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-profile-blue-96:before {
+content: "\e6b7";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-home-blue-96:before {
+content: "\e6b8";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-homefill-blue-96:before {
+content: "\e6bb";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-addressbook-blue-96:before {
+content: "\e6bd";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-friendadd-blue-96:before {
+content: "\e6ca";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-friend-blue-96:before {
+content: "\e6cc";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-goods-blue-96:before {
+content: "\e6cd";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-explore-blue-96:before {
+content: "\e6d2";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-round-blue-96:before {
+content: "\e6d7";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-infofill-blue-96:before {
+content: "\e6e4";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-info-blue-96:before {
+content: "\e6e5";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-recharge-blue-96:before {
+content: "\e6ed";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-1212-blue-96:before {
+content: "\e702";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-mobile-blue-96:before {
+content: "\e704";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-mobilefill-blue-96:before {
+content: "\e706";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-brandfill-blue-96:before {
+content: "\e712";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-brand-blue-96:before {
+content: "\e713";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-friendfill-blue-96:before {
+content: "\e726";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-peoplefill-blue-96:before {
+content: "\e735";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-people-blue-96:before {
+content: "\e736";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-tagfill-blue-96:before {
+content: "\e751";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-tag-blue-96:before {
+content: "\e752";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-moneybag-blue-96:before {
+content: "\e7d1";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-bear-blue-96:before {
+content: "\e601";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-minus-circle-blue-96:before {
+content: "\e780";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-plus-circle-blue-96:before {
+content: "\e781";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-minus-circle-fill-blue-96:before {
+content: "\e844";
+font-size: 96rpx;
+color: blue;
+}
+
+.icon-plus-circle-fill-blue-96:before {
+content: "\e845";
+font-size: 96rpx;
 color: blue;
 }
 
@@ -1787,6 +2123,12 @@ color: lightgrey;
 
 .icon-moneybag-lightgrey-16:before {
 content: "\e7d1";
+font-size: 16rpx;
+color: lightgrey;
+}
+
+.icon-bear-lightgrey-16:before {
+content: "\e601";
 font-size: 16rpx;
 color: lightgrey;
 }
@@ -2091,6 +2433,12 @@ font-size: 32rpx;
 color: lightgrey;
 }
 
+.icon-bear-lightgrey-32:before {
+content: "\e601";
+font-size: 32rpx;
+color: lightgrey;
+}
+
 .icon-minus-circle-lightgrey-32:before {
 content: "\e780";
 font-size: 32rpx;
@@ -2387,6 +2735,12 @@ color: lightgrey;
 
 .icon-moneybag-lightgrey-48:before {
 content: "\e7d1";
+font-size: 48rpx;
+color: lightgrey;
+}
+
+.icon-bear-lightgrey-48:before {
+content: "\e601";
 font-size: 48rpx;
 color: lightgrey;
 }
@@ -2691,6 +3045,12 @@ font-size: 36rpx;
 color: lightgrey;
 }
 
+.icon-bear-lightgrey-36:before {
+content: "\e601";
+font-size: 36rpx;
+color: lightgrey;
+}
+
 .icon-minus-circle-lightgrey-36:before {
 content: "\e780";
 font-size: 36rpx;
@@ -2991,6 +3351,12 @@ font-size: 42rpx;
 color: lightgrey;
 }
 
+.icon-bear-lightgrey-42:before {
+content: "\e601";
+font-size: 42rpx;
+color: lightgrey;
+}
+
 .icon-minus-circle-lightgrey-42:before {
 content: "\e780";
 font-size: 42rpx;
@@ -3012,6 +3378,312 @@ color: lightgrey;
 .icon-plus-circle-fill-lightgrey-42:before {
 content: "\e845";
 font-size: 42rpx;
+color: lightgrey;
+}
+
+.icon-edit-lightgrey-96:before {
+content: "\e649";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-favor-lightgrey-96:before {
+content: "\e64c";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-locationfill-lightgrey-96:before {
+content: "\e650";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-location-lightgrey-96:before {
+content: "\e651";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-phone-lightgrey-96:before {
+content: "\e652";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-search-lightgrey-96:before {
+content: "\e65c";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-timefill-lightgrey-96:before {
+content: "\e65e";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-time-lightgrey-96:before {
+content: "\e65f";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-camerafill-lightgrey-96:before {
+content: "\e664";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-camera-lightgrey-96:before {
+content: "\e665";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-comment-lightgrey-96:before {
+content: "\e667";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-deliver-lightgrey-96:before {
+content: "\e671";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-evaluate-lightgrey-96:before {
+content: "\e672";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-pay-lightgrey-96:before {
+content: "\e673";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-send-lightgrey-96:before {
+content: "\e675";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-shop-lightgrey-96:before {
+content: "\e676";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-cascades-lightgrey-96:before {
+content: "\e67c";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-list-lightgrey-96:before {
+content: "\e682";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-more-lightgrey-96:before {
+content: "\e684";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-settings-lightgrey-96:before {
+content: "\e68a";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-shopfill-lightgrey-96:before {
+content: "\e697";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-pic-lightgrey-96:before {
+content: "\e69b";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-cart-lightgrey-96:before {
+content: "\e6af";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-profile-lightgrey-96:before {
+content: "\e6b7";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-home-lightgrey-96:before {
+content: "\e6b8";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-homefill-lightgrey-96:before {
+content: "\e6bb";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-addressbook-lightgrey-96:before {
+content: "\e6bd";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-friendadd-lightgrey-96:before {
+content: "\e6ca";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-friend-lightgrey-96:before {
+content: "\e6cc";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-goods-lightgrey-96:before {
+content: "\e6cd";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-explore-lightgrey-96:before {
+content: "\e6d2";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-round-lightgrey-96:before {
+content: "\e6d7";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-infofill-lightgrey-96:before {
+content: "\e6e4";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-info-lightgrey-96:before {
+content: "\e6e5";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-recharge-lightgrey-96:before {
+content: "\e6ed";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-1212-lightgrey-96:before {
+content: "\e702";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-mobile-lightgrey-96:before {
+content: "\e704";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-mobilefill-lightgrey-96:before {
+content: "\e706";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-brandfill-lightgrey-96:before {
+content: "\e712";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-brand-lightgrey-96:before {
+content: "\e713";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-friendfill-lightgrey-96:before {
+content: "\e726";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-peoplefill-lightgrey-96:before {
+content: "\e735";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-people-lightgrey-96:before {
+content: "\e736";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-tagfill-lightgrey-96:before {
+content: "\e751";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-tag-lightgrey-96:before {
+content: "\e752";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-moneybag-lightgrey-96:before {
+content: "\e7d1";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-bear-lightgrey-96:before {
+content: "\e601";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-minus-circle-lightgrey-96:before {
+content: "\e780";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-plus-circle-lightgrey-96:before {
+content: "\e781";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-minus-circle-fill-lightgrey-96:before {
+content: "\e844";
+font-size: 96rpx;
+color: lightgrey;
+}
+
+.icon-plus-circle-fill-lightgrey-96:before {
+content: "\e845";
+font-size: 96rpx;
 color: lightgrey;
 }
 
@@ -3287,6 +3959,12 @@ color: black;
 
 .icon-moneybag-black-16:before {
 content: "\e7d1";
+font-size: 16rpx;
+color: black;
+}
+
+.icon-bear-black-16:before {
+content: "\e601";
 font-size: 16rpx;
 color: black;
 }
@@ -3591,6 +4269,12 @@ font-size: 32rpx;
 color: black;
 }
 
+.icon-bear-black-32:before {
+content: "\e601";
+font-size: 32rpx;
+color: black;
+}
+
 .icon-minus-circle-black-32:before {
 content: "\e780";
 font-size: 32rpx;
@@ -3887,6 +4571,12 @@ color: black;
 
 .icon-moneybag-black-48:before {
 content: "\e7d1";
+font-size: 48rpx;
+color: black;
+}
+
+.icon-bear-black-48:before {
+content: "\e601";
 font-size: 48rpx;
 color: black;
 }
@@ -4191,6 +4881,12 @@ font-size: 36rpx;
 color: black;
 }
 
+.icon-bear-black-36:before {
+content: "\e601";
+font-size: 36rpx;
+color: black;
+}
+
 .icon-minus-circle-black-36:before {
 content: "\e780";
 font-size: 36rpx;
@@ -4491,6 +5187,12 @@ font-size: 42rpx;
 color: black;
 }
 
+.icon-bear-black-42:before {
+content: "\e601";
+font-size: 42rpx;
+color: black;
+}
+
 .icon-minus-circle-black-42:before {
 content: "\e780";
 font-size: 42rpx;
@@ -4512,6 +5214,312 @@ color: black;
 .icon-plus-circle-fill-black-42:before {
 content: "\e845";
 font-size: 42rpx;
+color: black;
+}
+
+.icon-edit-black-96:before {
+content: "\e649";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-favor-black-96:before {
+content: "\e64c";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-locationfill-black-96:before {
+content: "\e650";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-location-black-96:before {
+content: "\e651";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-phone-black-96:before {
+content: "\e652";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-search-black-96:before {
+content: "\e65c";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-timefill-black-96:before {
+content: "\e65e";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-time-black-96:before {
+content: "\e65f";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-camerafill-black-96:before {
+content: "\e664";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-camera-black-96:before {
+content: "\e665";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-comment-black-96:before {
+content: "\e667";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-deliver-black-96:before {
+content: "\e671";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-evaluate-black-96:before {
+content: "\e672";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-pay-black-96:before {
+content: "\e673";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-send-black-96:before {
+content: "\e675";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-shop-black-96:before {
+content: "\e676";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-cascades-black-96:before {
+content: "\e67c";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-list-black-96:before {
+content: "\e682";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-more-black-96:before {
+content: "\e684";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-settings-black-96:before {
+content: "\e68a";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-shopfill-black-96:before {
+content: "\e697";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-pic-black-96:before {
+content: "\e69b";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-cart-black-96:before {
+content: "\e6af";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-profile-black-96:before {
+content: "\e6b7";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-home-black-96:before {
+content: "\e6b8";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-homefill-black-96:before {
+content: "\e6bb";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-addressbook-black-96:before {
+content: "\e6bd";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-friendadd-black-96:before {
+content: "\e6ca";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-friend-black-96:before {
+content: "\e6cc";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-goods-black-96:before {
+content: "\e6cd";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-explore-black-96:before {
+content: "\e6d2";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-round-black-96:before {
+content: "\e6d7";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-infofill-black-96:before {
+content: "\e6e4";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-info-black-96:before {
+content: "\e6e5";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-recharge-black-96:before {
+content: "\e6ed";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-1212-black-96:before {
+content: "\e702";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-mobile-black-96:before {
+content: "\e704";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-mobilefill-black-96:before {
+content: "\e706";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-brandfill-black-96:before {
+content: "\e712";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-brand-black-96:before {
+content: "\e713";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-friendfill-black-96:before {
+content: "\e726";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-peoplefill-black-96:before {
+content: "\e735";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-people-black-96:before {
+content: "\e736";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-tagfill-black-96:before {
+content: "\e751";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-tag-black-96:before {
+content: "\e752";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-moneybag-black-96:before {
+content: "\e7d1";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-bear-black-96:before {
+content: "\e601";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-minus-circle-black-96:before {
+content: "\e780";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-plus-circle-black-96:before {
+content: "\e781";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-minus-circle-fill-black-96:before {
+content: "\e844";
+font-size: 96rpx;
+color: black;
+}
+
+.icon-plus-circle-fill-black-96:before {
+content: "\e845";
+font-size: 96rpx;
 color: black;
 }
 
@@ -4787,6 +5795,12 @@ color: grey;
 
 .icon-moneybag-grey-16:before {
 content: "\e7d1";
+font-size: 16rpx;
+color: grey;
+}
+
+.icon-bear-grey-16:before {
+content: "\e601";
 font-size: 16rpx;
 color: grey;
 }
@@ -5091,6 +6105,12 @@ font-size: 32rpx;
 color: grey;
 }
 
+.icon-bear-grey-32:before {
+content: "\e601";
+font-size: 32rpx;
+color: grey;
+}
+
 .icon-minus-circle-grey-32:before {
 content: "\e780";
 font-size: 32rpx;
@@ -5387,6 +6407,12 @@ color: grey;
 
 .icon-moneybag-grey-48:before {
 content: "\e7d1";
+font-size: 48rpx;
+color: grey;
+}
+
+.icon-bear-grey-48:before {
+content: "\e601";
 font-size: 48rpx;
 color: grey;
 }
@@ -5691,6 +6717,12 @@ font-size: 36rpx;
 color: grey;
 }
 
+.icon-bear-grey-36:before {
+content: "\e601";
+font-size: 36rpx;
+color: grey;
+}
+
 .icon-minus-circle-grey-36:before {
 content: "\e780";
 font-size: 36rpx;
@@ -5991,6 +7023,12 @@ font-size: 42rpx;
 color: grey;
 }
 
+.icon-bear-grey-42:before {
+content: "\e601";
+font-size: 42rpx;
+color: grey;
+}
+
 .icon-minus-circle-grey-42:before {
 content: "\e780";
 font-size: 42rpx;
@@ -6012,5 +7050,311 @@ color: grey;
 .icon-plus-circle-fill-grey-42:before {
 content: "\e845";
 font-size: 42rpx;
+color: grey;
+}
+
+.icon-edit-grey-96:before {
+content: "\e649";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-favor-grey-96:before {
+content: "\e64c";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-locationfill-grey-96:before {
+content: "\e650";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-location-grey-96:before {
+content: "\e651";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-phone-grey-96:before {
+content: "\e652";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-search-grey-96:before {
+content: "\e65c";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-timefill-grey-96:before {
+content: "\e65e";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-time-grey-96:before {
+content: "\e65f";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-camerafill-grey-96:before {
+content: "\e664";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-camera-grey-96:before {
+content: "\e665";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-comment-grey-96:before {
+content: "\e667";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-deliver-grey-96:before {
+content: "\e671";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-evaluate-grey-96:before {
+content: "\e672";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-pay-grey-96:before {
+content: "\e673";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-send-grey-96:before {
+content: "\e675";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-shop-grey-96:before {
+content: "\e676";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-cascades-grey-96:before {
+content: "\e67c";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-list-grey-96:before {
+content: "\e682";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-more-grey-96:before {
+content: "\e684";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-settings-grey-96:before {
+content: "\e68a";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-shopfill-grey-96:before {
+content: "\e697";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-pic-grey-96:before {
+content: "\e69b";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-cart-grey-96:before {
+content: "\e6af";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-profile-grey-96:before {
+content: "\e6b7";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-home-grey-96:before {
+content: "\e6b8";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-homefill-grey-96:before {
+content: "\e6bb";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-addressbook-grey-96:before {
+content: "\e6bd";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-friendadd-grey-96:before {
+content: "\e6ca";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-friend-grey-96:before {
+content: "\e6cc";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-goods-grey-96:before {
+content: "\e6cd";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-explore-grey-96:before {
+content: "\e6d2";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-round-grey-96:before {
+content: "\e6d7";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-infofill-grey-96:before {
+content: "\e6e4";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-info-grey-96:before {
+content: "\e6e5";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-recharge-grey-96:before {
+content: "\e6ed";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-1212-grey-96:before {
+content: "\e702";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-mobile-grey-96:before {
+content: "\e704";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-mobilefill-grey-96:before {
+content: "\e706";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-brandfill-grey-96:before {
+content: "\e712";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-brand-grey-96:before {
+content: "\e713";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-friendfill-grey-96:before {
+content: "\e726";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-peoplefill-grey-96:before {
+content: "\e735";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-people-grey-96:before {
+content: "\e736";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-tagfill-grey-96:before {
+content: "\e751";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-tag-grey-96:before {
+content: "\e752";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-moneybag-grey-96:before {
+content: "\e7d1";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-bear-grey-96:before {
+content: "\e601";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-minus-circle-grey-96:before {
+content: "\e780";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-plus-circle-grey-96:before {
+content: "\e781";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-minus-circle-fill-grey-96:before {
+content: "\e844";
+font-size: 96rpx;
+color: grey;
+}
+
+.icon-plus-circle-fill-grey-96:before {
+content: "\e845";
+font-size: 96rpx;
 color: grey;
 }

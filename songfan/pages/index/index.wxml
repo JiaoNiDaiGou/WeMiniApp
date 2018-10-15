@@ -1,12 +1,13 @@
-<!--index.wxml-->
-<view class='flex-ui'>
+<view class='fui-container'>
   <view class="weui-btn-area">
     <button class="weui-btn fui-button" type="normal" bindtap='goToCustomersList'>发货</button>
     <button class="weui-btn fui-button" type="normal" bindtap='goToShippingOrdersList'>快递单详情</button>
     <button class="weui-btn fui-button" type="normal" bindtap='goToShoppingListsList'>采购</button>
+    <button class="weui-btn fui-button" type="normal" bindtap='goToInventoryList'>库存</button>
   </view>
-  <image-uploader style='scroll-x' eagerUpload='{{true}}' bind:imgUploaded='onImgUploaded' bind:imgListChanged='onImgListChanged'></image-uploader>
-  
 </view>
-<feedback-modal show='{{showFeedback}}' bind:done='onFeedbackDone' />
 
+Fits:
+<image-viewer images='{{images}}'></image-viewer>
+
+<feedback-modal show='{{showFeedback}}' bind:done='onFeedbackDone' />

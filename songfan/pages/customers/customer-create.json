@@ -1,8 +1,8 @@
 {
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "search-bar": "../common/search-bar",
-    "text-box": "../common/text-box",
+    "search-bar": "../core/search-bar",
+    "text-box": "../core/text-box",
     "address-box": "../common/address-box"
   }
 }

@@ -1,4 +1,3 @@
-// pages/common/address-box.js
 Component({
   /**
    * Component properties
@@ -42,41 +41,41 @@ Component({
    * Component methods
    */
   methods: {
-    onRegionTypingEvent: function (e) {
+    onRegionInput: function (e) {
       this.setData({
         region: e.detail.value
       });
       var detail = {
         value: this.buildThisAddress()
       }
-      this.triggerEvent('typingEvent', detail, {});
+      this.triggerEvent('input', detail, {});
     },
-    onCityTypingEvent: function (e) {
+    onCityInput: function (e) {
       this.setData({
         city: e.detail.value
       });
       var detail = {
         value: this.buildThisAddress()
       }
-      this.triggerEvent('typingEvent', detail, {});
+      this.triggerEvent('input', detail, {});
     },
-    onZoneTypingEvent: function (e) {
+    onZoneInput: function (e) {
       this.setData({
         zone: e.detail.value
       });
       var detail = {
         value: this.buildThisAddress()
       }
-      this.triggerEvent('typingEvent', detail, {});
+      this.triggerEvent('input', detail, {});
     },
-    onAddressTypingEvent: function (e) {
+    onAddressInput: function (e) {
       this.setData({
         address: e.detail.value
       });
       var detail = {
         value: this.buildThisAddress()
       }
-      this.triggerEvent('typingEvent', detail, {});
+      this.triggerEvent('input', detail, {});
     },
 
     buildThisAddress: function () {

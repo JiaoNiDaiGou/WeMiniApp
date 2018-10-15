@@ -1,5 +1,3 @@
-const BE_SERVER = 'https://dev-dot-fluid-crane-200921.appspot.com';
-
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -82,6 +80,35 @@ const productCategories = [
   { name: '玩具', value: 'TOYS' },
   { name: '手表', value: 'WATCHES' },
   { name: '未知类别', value: 'UNKONWN' }
+]
+
+const sizeSpecs = [
+  "大", "中", "小", "XXS", "XS", "S", "M", "L", "XL", "XXL"
+]
+
+const colorSpecs = [
+  { name: "桃", bgcolor: "peachpuff", color: "black" },
+  { name: "粉", bgcolor: "pink", color: "black" },
+  { name: "红", bgcolor: "red", color: "white" },
+  { name: "棕", bgcolor: "brown", color: "white" },
+  { name: "栗", bgcolor: "maroon", color: "white" },
+  { name: "褐", bgcolor: "brown", color: "white" },
+  { name: "驼", bgcolor: "tan", color: "black" },
+  { name: "橙", bgcolor: "orange", color: "black" },
+  { name: "橘", bgcolor: "orange", color: "black" },
+  { name: "绿", bgcolor: "green", color: "white" },
+  { name: "翠", bgcolor: "lawngreen", color: "black" },
+  { name: "碧", bgcolor: "palegreen", color: "black" },
+  { name: "黄", bgcolor: "yellow", color: "black" },
+  { name: "金", bgcolor: "golden", color: "black" },
+  { name: "紫", bgcolor: "purple", color: "white" },
+  { name: "蓝", bgcolor: "blue", color: "white" },
+  { name: "青", bgcolor: "cyan", color: "black" },
+  { name: "兰", bgcolor: "blue", color: "white" },
+  { name: "黑", bgcolor: "black", color: "white" },
+  { name: "白", bgcolor: "white", color: "black" },
+  { name: "灰", bgcolor: "grey", color: "white" },
+  { name: "银", bgcolor: "silver", color: "black" }
 ]
 
 const findProductCategoryIndexByValue = (val) => {
@@ -188,7 +215,7 @@ const removeItemsById = (list, idToDelete, extractId) => {
   return toReturn
 }
 
-const enableFeedbackShake= (page) => {
+const enableFeedbackShake = (page) => {
   wx.onAccelerometerChange(function (e) {
     if (e.x > 0.8 && e.y > 0.8 && !page.data.showFeedback) {
       page.setData({
@@ -229,5 +256,7 @@ module.exports = {
   removeItemsById: removeItemsById,
   enableFeedbackShake: enableFeedbackShake,
   onFeedbackDone: onFeedbackDone,
-  uuid: uuid
+  uuid: uuid,
+  colorSpecs: colorSpecs,
+  sizeSpecs: sizeSpecs
 }

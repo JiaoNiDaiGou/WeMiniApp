@@ -7,11 +7,24 @@ view {
 }
 
 .fui-container {
+  display: flex;
   margin-left: 10px;
   margin-right: 10px;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  border: 2px groove lightblue;
+  border: 1px solid lightblue;
+}
+
+.fui-container-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  vertical-align: middle;
+  align-items: center;
+}
+
+.fui-icon {
+  margin-right: 10px;
 }
 
 .fui-button {
@@ -19,9 +32,7 @@ view {
 }
 
 .fui-lightborder {
-  border-bottom-color: lightgrey;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
+  border-bottom: 1px solid lightgrey;
 }
 
 .fui-separator-above {
@@ -35,15 +46,18 @@ view {
 .fui-badge-box {
   display: flex;
   flex-direction: row;
-  justify-content:flex-start;
+  justify-content: flex-start;
   vertical-align: middle;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .fui-badge-box__item {
   margin-left: 5px;
   margin-right: 5px;
   background-color: green;
+  color: white;
+  font-size: 14px;
 }
 
 .fui-modal-button {

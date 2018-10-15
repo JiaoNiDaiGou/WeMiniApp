@@ -1,0 +1,23 @@
+<view class='fui-container'>
+  <view class='fui-container-item' style='justify-content: center;'>
+    <view wx:for='{{3}}' wx:key='unique' wx:for-index='j'>
+      <view wx:for='{{imageKeys.length/3}}' wx:key='unique' wx:for-index='i'>
+        <view data-imageidx='{{i*3+j}}' bindtap='onImageTap' bindlongpress='onImageLongTap' style="position: relative;margin-left:2px; margin-right:2px;">
+          <image wx:if='{{i*3+j < imageKeys.length - 1}}' class='fui-image-uploader-image' src='{{images[imageKeys[i*3+j]].path}}' mode='aspectFit'></image>
+          <view wx:elif='{{i*3+j==imageKeys.length - 1}}' class='fui-image-uploader-image fui-image-uploader-image__last' bindtouchstart='onLastImgTouchStart' bindtouchend='onLastImgTouchEnd'>
+            <icon class='iconfont icon-camera{{lastImgActive ? "-fill" : ""}}-black-96 fui-image-uploader-image__last_icon' />
+          </view>
+          <view wx:else class='fui-image-uploader-image fui-image-uploader-image__empty'></view>
+          <view wx:if='{{i*3+j<imageKeys.length-1}}' class="weui-badge fui-image-uploader-image-progress" style="background-color: {{images[imageKeys[i*3+j]].uploadingProgress==100?'green':'red'}}">
+            {{images[imageKeys[i*3+j]].uploadingProgress != 100 ? images[imageKeys[i*3+j]].uploadingProgress : "✓"}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<modal title="图片 {{curActionImageIdx}}" hidden="{{modalHidden}}" bindcancel="onModalDone" bindconfirm="onModalDone">
+  <view class="weui-btn-area">
+    <button type="warn" class='fui-modal-button' bindtap='onCurImageDelete'>撤销</button>
+  </view>
+</modal>

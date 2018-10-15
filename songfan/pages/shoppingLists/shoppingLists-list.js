@@ -126,7 +126,7 @@ Page({
   },
 
   filterShoppingList: function (e) {
-    var searchText = e.detail.inputValue;
+    var searchText = e.detail.value;
     var shoppingList = this.data.shoppingList[this.data.curPageIndex];
     var displayedShoppingList = this.buildDisplayedShoppingList(searchText, shoppingList);
     this.setData({
@@ -180,10 +180,14 @@ Page({
 
   onPageIndexChange: function (e) {
     var pageIndex = e.detail.value;
+    this.setData({
+      curPageIndex: pageIndex
+    })
     wx.showLoading({
       title: '加载购物单',
     })
     this.loadShoppingList(pageIndex, () => wx.hideLoading())
+    console.log(this.data.pageNames[this.data.curPageIndex])
   },
 
   actionShoppingList: function (e) {
@@ -209,7 +213,7 @@ Page({
     })
   },
 
-  curActionItemAssign: function (e) {
+  onCurActionItemAssignTap: function (e) {
     var that = this;
     var id = this.data.curAcitonItem.id;
     backend.promiseOfAssignShoppingList(app, id)
@@ -229,7 +233,7 @@ Page({
       })
   },
 
-  curActionItemPurchase: function (e) {
+  onCurActionItemPurchaseTap: function (e) {
     console.log('purcahse');
     this.setData({
       modalHidden: true
@@ -239,7 +243,7 @@ Page({
     })
   },
 
-  curActionItemInHouse: function (e) {
+  onCurActionItemInHouseTap: function (e) {
     var that = this;
     var id = this.data.curAcitonItem.id;
     backend.promiseOfAssignShoppingList(app, id)
@@ -259,7 +263,7 @@ Page({
       })
   },
 
-  curActionItemExpire: function (e) {
+  onCurActionItemExpireTap: function (e) {
     var that = this;
     var id = this.data.curAcitonItem.id;
     backend.promiseOfExpireShoppingList(app, id)
@@ -324,10 +328,7 @@ Page({
 
     allShoppingList[pageIndex] = mergedShoppingList;
     var displayedShoppingList = that.buildDisplayedShoppingList(that.data.curSearchText, mergedShoppingList)
-
-    console.log('refresh displayedShoppingList');
-    console.log(displayedShoppingList);
-
+    console.log('refresh displayedShoppingList: ' + displayedShoppingList.length);
     this.setData({
       shoppingList: allShoppingList,
       displayedShoppingList: displayedShoppingList

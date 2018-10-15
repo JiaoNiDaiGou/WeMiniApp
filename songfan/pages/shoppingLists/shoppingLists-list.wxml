@@ -29,17 +29,13 @@
       </view>
     </view>
   </view>
-
-  <!-- <view class="weui-btn-area">
-    <button class="weui-btn fui-button" type="primary" bindtap='goToCustomerCreate'>创建新客户</button>
-  </view> -->
 </view>
 
 <modal title="订购单 {{curAcitonItem.id}}" hidden="{{modalHidden}}" bindcancel="onModalCancel" bindconfirm="onModalConfirm">
   <view class="weui-btn-area">
-    <button wx:if='{{curAcitonItem.canAssign}}' type="normal" class='fui-modal-button' style='color: green' bindtap='curActionItemAssign'>我来处理</button>
-    <button wx:if='{{curAcitonItem.canPurchase}}' type="normal" class='fui-modal-button' style='color: green' bindtap='curActionItemPurchase'>购买</button>
-    <button wx:if='{{curAcitonItem.canInHouse}}' type="normal" class='fui-modal-button' style='color: green' bindtap='curActionItemInHouse'>入库</button>
-    <button wx:if='{{curAcitonItem.canExpire}}' type="normal" class='fui-modal-button' style='color: red' bindtap='curActionItemExpire'>撤销</button>
+    <button wx:if='{{curAcitonItem.canAssign}}' type="normal" class='fui-modal-button' style='color: green' bindtap='onCurActionItemAssignTap'>我来处理</button>
+    <button wx:if='{{curAcitonItem.canPurchase}}' type="normal" class='fui-modal-button' style='color: green' bindtap='onCurActionItemPurchaseTap'>购买</button>
+    <button wx:if='{{curAcitonItem.canInHouse}}' type="normal" class='fui-modal-button' style='color: green' bindtap='onCurActionItemInHouseTap'>入库</button>
+    <button wx:if='{{curAcitonItem.canExpire}}' type="normal" class='fui-modal-button' style='color: red' bindtap='onCurActionItemExpireTap'>撤销</button>
   </view>
 </modal>

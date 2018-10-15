@@ -17,6 +17,7 @@ Page({
 
     curActionAddressIdx: -1,
     modalHidden: true,
+    updateAddressModalHidden: true,
   },
 
   /**
@@ -89,6 +90,14 @@ Page({
 
   },
 
+  onAddressTap: function (e) {
+    var curActionAddressIdx = e.currentTarget.dataset.addressidx
+    this.setData({
+      defaultShippingAddressIdx: curActionAddressIdx,
+      modalHidden: true
+    })
+  },
+
   onAddressLongPress: function (e) {
     var curActionAddressIdx = e.currentTarget.dataset.addressidx
     this.setData({
@@ -99,7 +108,22 @@ Page({
 
   onModalDone: function (e) {
     this.setData({
-      modalHidden: true
+      modalHidden: true,
+    })
+  },
+
+  onUpdateAddressModalCancel: function (e) {
+    this.setData({
+      modalHidden: true,
+      updateAddressModalHidden: true
+    })
+  },
+
+  onUpdateAddressModalConfirm: function (e) {
+    this.updateCustomer()
+    this.setData({
+      modalHidden: true,
+      updateAddressModalHidden: true
     })
   },
 
@@ -128,14 +152,14 @@ Page({
     }
   },
 
-  curActionAddressSetDefault: function (e) {
+  onCurActionAddressUpdateTap: function (e) {
     this.setData({
-      defaultShippingAddressIdx: this.data.curActionAddressIdx,
-      modalHidden: true
+      modelHidden: true,
+      updateAddressModalHidden: false
     })
   },
 
-  curActionAddressDelete: function (e) {
+  onCurActionAddressDeleteTap: function (e) {
     var customer = this.data.customer
     var addresses = customer.addresses
     if (addresses.length <= 1) {
@@ -146,21 +170,21 @@ Page({
     if (defaultShippingAddressIdx == idx) {
       defaultShippingAddressIdx = 0
     }
-    customer.addresses.splice(idx, 1)
-    this.updateCustomer(customer)
+    customer.addresses.splice(idx, 1)    
     this.setData({
+      customer: customer,
       modalHidden: true,
       defaultShippingAddressIdx: defaultShippingAddressIdx
     })
+    this.updateCustomer()
   },
 
-  updateCustomer: function (customer) {
+  updateCustomer: function () {
     var that = this
-    backend.promiseOfUpdateCustomer(app, customer)
+    backend.promiseOfUpdateCustomer(app, this.data.customer)
       .then(r => {
-        var updatedCustomer = r.res.data
         that.setData({
-          customer: updatedCustomer
+          customer: r.res.data
         })
         wx.showToast({
           title: '客户信息已更新',

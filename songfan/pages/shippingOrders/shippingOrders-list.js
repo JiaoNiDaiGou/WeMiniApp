@@ -18,7 +18,7 @@ Page({
     curActionItemTotalWeight: '',
 
     modalHidden: true,
-    shippingOrderCreateModalHidden: true,
+    shippingOrderModalHidden: true,
   },
 
   /**
@@ -149,7 +149,7 @@ Page({
     var that = this;
     this.setData({
       modalHidden: true,
-      shippingOrderCreateModalHidden: false
+      shippingOrderModalHidden: false
     })
   },
 
@@ -182,13 +182,7 @@ Page({
       })
   },
 
-  onModalConfirm: function (e) {
-    this.setData({
-      modalHidden: true
-    })
-  },
-
-  onModalCancel: function (e) {
+  onModalDone: function (e) {
     this.setData({
       modalHidden: true
     })
@@ -201,6 +195,15 @@ Page({
   },
 
   onShippingOrderModalConfirm: function (e) {
+    if (!!this.data.curActionItemTotalWeight) {
+      wx.showToast({
+        title: '❌  重量不完整 ❌ ',
+        duration: 800,
+        icon: 'none'
+      })
+      return
+    }
+
     this.setData({
       shippingOrderModalHidden: true
     })
@@ -228,7 +231,7 @@ Page({
       })
   },
 
-  onCurActionItemTotalWeightTyping: function (e) {
+  onCurActionItemTotalWeightInput: function (e) {
     this.setData({
       curActionItemTotalWeight: e.detail.value
     });

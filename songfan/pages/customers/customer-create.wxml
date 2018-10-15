@@ -1,18 +1,17 @@
-<!--pages/customers/customer-create.wxml-->
-<view>
-  <view wx:if='{{!!rawImagePath}}'>
-    <image class='raw-image' mode="widthFix" src='{{rawImagePath}}' />
+<view class='fui-container'>
+
+  <view class='fui-container-item'>
+    <image wx:if='{{!!rawImagePath}}' class='raw-image' mode="widthFix" src='{{rawImagePath}}' />
+    <textarea wx:else class='customer-create-raw-text-textarea' placeholder='客户信息' value="{{rawText}}" bindinput="onRawTextInput" />
   </view>
-  <view wx:else>
-    <textarea class='raw-text-textarea' placeholder='客户信息' value="{{rawText}}" bindinput="onRawTextInputTyping" />
-  </view>
+
   <view class="weui-btn-area">
-    <button class="weui-btn fui-button" type="normal" bindtap='chooseRawImage'>选择图片</button>
-    <button class="weui-btn fui-button" type="primary" bindtap='parseRawTextOrImage'>智能解析</button>
+    <button class="weui-btn fui-button" type="normal" bindtap='onChooseRawImageTap'>选择图片</button>
+    <button class="weui-btn fui-button" type="primary" bindtap='onParseRawTextOrImageTap'>智能解析</button>
   </view>
 
   <view wx:for="{{parsingCandidates}}" wx:key="unique" wx:for-item="parsingCandidate">
-    <view data-tmpindex='{{parsingCandidate.tmpindex}}' bindtap='onParsingCandidatesSelected' class="weui-cell" hover-class="weui-cell_active">
+    <view data-tmpindex='{{parsingCandidate.tmpindex}}' bindtap='onParsingCandidateSelect' class="weui-cell" hover-class="weui-cell_active">
       <view class="weui-cell__bd">
         <view class='weui-flex'>
           <text-box class='weui-flex__item' iconClass='icon-profile-black-36' placeholder='姓名' value='{{parsingCandidate.name}}'></text-box>
@@ -22,12 +21,12 @@
       </view>
     </view>
   </view>
-  
-  <text-box iconClass='icon-profile-black-36' placeholder='姓名' value='{{name}}' editable='true' bind:typingEvent='onNameTyping'></text-box>
-  <text-box iconClass='icon-phone-black-36' placeholder='电话' value='{{phone}}' editable='true' bind:typingEvent='onPhoneTyping'></text-box>
-  <address-box region='{{address.region}}' city='{{address.city}}' zone='{{address.zone}}' address='{{address.address}}' editable='true' bind:typingEvent='onAddressTyping'></address-box>
+
+  <text-box iconClass='icon-profile-black-36' placeholder='姓名' value='{{name}}' editable='true' bind:input='onNameInput'></text-box>
+  <text-box iconClass='icon-phone-black-36' placeholder='电话' value='{{phone}}' editable='true' bind:input='onPhoneInput'></text-box>
+  <address-box region='{{address.region}}' city='{{address.city}}' zone='{{address.zone}}' address='{{address.address}}' editable='true' bind:input='onAddressInput'></address-box>
 
   <view class="weui-btn-area">
-    <button class="weui-btn fui-button" type="primary" bindtap='createCustomer' disabled='{{!readyToCreate}}'>创建新用户</button>
+    <button class="weui-btn fui-button" type="primary" bindtap='onCreateCustomerTap' disabled='{{!readyToCreate}}'>创建新用户</button>
   </view>
 </view>

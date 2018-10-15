@@ -1,0 +1,19 @@
+<view class='fui-container'>
+  <text-box iconClass='icon-goods-black-36' placeholder='商品名称' value='{{curProductName}}' editable='true' bind:input='onCurProductNameInput' hasBottomBorder='true'></text-box>
+
+  <text-box iconClass='icon-brand-black-36' placeholder='商品品牌' value='{{curProductBrand}}' editable='true' bind:input='onCurProductBrandInput' suggestions='{{suggestedProductBrands}}' bind:suggestionTap='onSuggestedProductBrandTap' hasBottomBorder='true'></text-box>
+
+  <picker-box iconClass='icon-list-black-36' range='{{productCategoryNames}}' curIdx='{{curProductCategoryIndex}}' placeholder='商品类别' suggestions='{{suggestedCategoryIndexes}}' bind:suggestionTap='onSuggestedProductCategoryTap' bind:change='onCurProductCategoryChange'
+    hasBottomBorder='true'></picker-box>
+
+  <picker-box wx:if='{{quantityType == "picker" }}' iconClass='icon-1212-black-36' range='{{[1,2,3,4,5,6,7,8,9,10]}}' curIdx='{{curProductQuantity - 1}}' bind:change='onCurProductQuantityChange' hasBottomBorder='true' valueSuffix='件'></picker-box>
+  <text-box wx:else iconClass='icon-1212-black-36' type='number' placeholder='1' value='{{curProductQuantity}}' editable bind:input='onCurProductQuantityInput' hasBottomBorder='true' valueSuffix='件'></text-box>
+
+  <text-box iconClass='icon-moneybag-black-36' placeholder='单价' type='digit' valuePrefix='$' value='{{curProductPrice}}' editable='true' bind:input='onCurProductPriceInput' hasBottomBorder='true'></text-box>
+
+  <product-list-box products='{{products}}' bind:productEntriesChange='onProductEntriesChange' productEntryActionable='{{true}}' />
+
+  <view class="weui-btn-area">
+    <button class="weui-btn fui-button" type="normal" style='color: green;' bindtap='onAddCurrentProductTap'>添加货物</button>
+  </view>
+</view>

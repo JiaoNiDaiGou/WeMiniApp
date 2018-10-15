@@ -1,11 +1,10 @@
-<!--pages/customers/customer-details.wxml-->
 <view class='fui-container'>
   <text-box iconClass='icon-tag-black-36' placeholder='ID' value='{{customer.id}}' hasBottomBorder='true'></text-box>
-  <text-box iconClass='icon-profile-black-36' placeholder='姓名' value='{{customer.name}}' editable='true' hasBottomBorder='true'></text-box>
-  <text-box iconClass='icon-phone-black-36' placeholder='电话' value='{{customer.phone.phone}}' editable='true' hasBottomBorder='true'></text-box>
+  <text-box iconClass='icon-profile-black-36' placeholder='姓名' value='{{customer.name}}' hasBottomBorder='true'></text-box>
+  <text-box iconClass='icon-phone-black-36' placeholder='电话' value='{{customer.phone.phone}}' hasBottomBorder='true'></text-box>
   <view wx:for="{{customer.addresses}}" wx:key="unique" wx:for-item="address" wx:for-index='idx'>
     <view style="position: relative;">
-      <address-box data-addressidx='{{idx}}' region='{{address.region}}' city='{{address.city}}' zone='{{address.zone}}' address='{{address.address}}' editable='true' bindlongpress='onAddressLongPress'> </address-box>
+      <address-box data-addressidx='{{idx}}' region='{{address.region}}' city='{{address.city}}' zone='{{address.zone}}' address='{{address.address}}' bindtap='onAddressTap' bindlongpress='onAddressLongPress'> </address-box>
       <view wx:if='{{idx==defaultShippingAddressIdx}}' class="weui-badge fui-customer-details-default-address" style="background-color: green;}}">优先发货地址</view>
     </view>
   </view>
@@ -19,7 +18,12 @@
 
 <modal hidden="{{modalHidden}}" bindcancel="onModalDone" bindconfirm="onModalDone">
   <view class="weui-btn-area">
-    <button wx:if='{{curActionAddressIdx > 0}}' type="normal" class='fui-modal-button' style='color: green' bindtap='curActionAddressSetDefault'>设为优先发货地址</button>
-    <button wx:if='{{customer.addresses.length > 1}}' type="warn" class='fui-modal-button' bindtap='curActionAddressDelete'>删除</button>
+    <button wx:if='{{customer.addresses.length > 1}}' type="warn" class='fui-modal-button' bindtap='onCurActionAddressDeleteTap'>删除地址</button>
+  </view>
+</modal>
+
+<modal hidden="{{updateAddressModalHidden}}" bindcancel="onUpdateAddressModalCancel" bindconfirm="onUpdateAddressModalConfirm">
+  <view class="weui-btn-area">
+    <address-box region='{{customer.addresses[curActionAddressIdx].region}}' city='{{customer.addresses[curActionAddressIdx].city}}' zone='{{customer.addresses[curActionAddressIdx].zone}}' address='{{customer.addresses[curActionAddressIdx].address}}' editable></address-box>
   </view>
 </modal>

@@ -1,0 +1,4 @@
+<view class="fui-container">
+    <image-uploader bind:imagesChange='onImagesChange' />
+    <product-input-component bind:productsChange='onProductsChange' />
+</view>

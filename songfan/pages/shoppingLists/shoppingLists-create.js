@@ -10,7 +10,15 @@ Page({
    */
   data: {
     content: '',
-    images: []
+    images: [],
+    tags: [],
+
+    hasQuantityTag: false,
+    hasColorTag: false,
+    hasSizeTag: false,
+    possibleTags: [],
+
+    allColor: utils.cnColors
   },
 
   /**
@@ -92,14 +100,90 @@ Page({
   },
 
   onContentInput: function (e) {
+    var content = e.detail.value
+    if (!content) {
+      return
+    }
+    // Check last 10 chars
+    content = content.replace(/\s/g, "")
+    content = content.substring(content.length - 10, content.length)
+
+    var possibleTags = this.parseContentTags(content)
+    var hasImageTags = possibleTags.some(t => t.type == 'i')
     this.setData({
-      content: e.detail.value
+      content: e.detail.value,
+      possibleTags: possibleTags
     })
   },
 
   onImagesChanged: function (e) {
     this.setData({
-      images: e.detail.images
+      images: e.detail.value
     })
   },
+
+  onPossibleTagTap: function(e) {
+    var tag = e.currentTarget.dataset.tag
+    var tags = this.data.tags
+    tags.push(tag)
+    var hasColorTag = this.data.hasColorTag
+    if (tag.type == 'color') {
+      hasColorTag = true
+    }
+    var hasSizeTag = this.data.hasSizeTag
+    if (tag.type == 'size') {
+      hasSizeTag = true
+    }
+    var hasQuantityTag = this.data.hasQuantityTag
+    if (tag.type == 'quantity') {
+      hasQuantityTag = true
+    }
+    this.setData({
+      tags: tags,
+      hasColorTag: hasColorTag,
+      hasSizeTag: hasSizeTag,
+      hasQuantityTag: hasQuantityTag
+    })
+  },
+
+  parseContentProducts: function (content) {
+
+  },
+
+  // Tag is
+  // { tag: 'xxx', type: 'color', 'size', 'quantity', 'pbrand', 'pname' }
+  parseContentTags: function (content) {
+    var allTags = []
+
+    // check possible color tags
+    utils.colorSpecs
+      .filter(t => content.includes(t.name))
+      .forEach(t => allTags.push({
+        tag: t.name + '色',
+        bgcolor: t.bgcolor,
+        color: t.color,
+        type: 'color'
+      }))
+    
+    // check possible size tags
+    utils.sizeSpecs
+      .filter(t => content.toLowerCase().includes(t.toLowerCase()))
+      .forEach(t => allTags.push({
+        tag: t,
+        type: 'size'
+      }))
+
+    // check possible quantity tags
+    var possibleQuantityTags = content.match(/\d+(.\d+)?/g)
+    if (!!possibleQuantityTags) {
+      possibleQuantityTags = possibleQuantityTags
+        .map(t => t + '件')
+        .forEach(t => allTags.push({
+          tag: t,
+          type: 'quantity'
+        }))
+    }
+
+    return allTags
+  }
 })

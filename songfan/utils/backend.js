@@ -1,7 +1,7 @@
 const utils = require('./util.js')
 
-// const SERVER = 'https://fluid-crane-200921.appspot.com';
-const SERVER = 'https://dev-dot-fluid-crane-200921.appspot.com';
+// const SERVER = 'https://prod-dot-daigou-dot-fluid-crane-200921.appspot.com';
+const SERVER = 'https://dev-dot-daigou-dot-fluid-crane-200921.appspot.com';
 
 const LOCAL_SESSION_TICKET_ID_KEY = "sys.sessionTicketId";
 
@@ -22,6 +22,7 @@ const promiseOfBackendLogin = (app) => {
       console.log('fetch userinfo')
       wx.getUserInfo({
         success: res => {
+          console.log('fetch user info success. nickname: ' + res.userInfo.nickName)
           app.globalData.userInfo = res.userInfo
         }
       })
@@ -43,13 +44,13 @@ const promiseOfBackendLogin = (app) => {
       }
     }
 
-    console.log('CALL wxLogin!');
+    console.log('CALL backend wxLogin')
     wx.login({
       success: res => {
         console.log('fetch client jscode ' + res.code);
         wx.request({
           method: 'POST',
-          url: SERVER + '/api/wx/SongFan/login',
+          url: SERVER + '/api/wx/login',
           data: {
             code: res.code
           },
@@ -109,13 +110,13 @@ const callBackend = (apiName, app, verb, api) => {
 
 const promiseOfLoadAllCustomers = (app) => {
   return callGet('loadAllCustomers', app, {
-    path: '/api/JiaoNiDaiGou/customers/all?limit=1000'
+    path: '/api/customers/all?limit=1000'
   })
 }
 
 const promiseOfGetCustomerById = (app, customerId) => {
   return callGet('getCustomerById', app, {
-    path: '/api/JiaoNiDaiGou/customers/' + customerId
+    path: '/api/customers/' + customerId
   })
 }
 
@@ -131,9 +132,20 @@ const promiseOfParseCustomer = (app, texts, mediaIds) => {
   })
 }
 
+const promiseOfParseProduct = (app, mediaIds) => {
+  return callPost('parseProduct', app, {
+    path: '/api/parse',
+    data: {
+      domain: 'PRODUCT',
+      mediaIds: mediaIds,
+      limit: 5
+    }
+  })
+}
+
 const promiseOfCreateCustomer = (app, id, name, phone, address) => {
   return callPost('createCustomer', app, {
-    path: '/api/JiaoNiDaiGou/customers/create',
+    path: '/api/customers/create',
     data: {
       id: id,
       name: name,
@@ -148,14 +160,14 @@ const promiseOfCreateCustomer = (app, id, name, phone, address) => {
 
 const promiseOfUpdateCustomer = (app, customer) => {
   return callPost('updateCustomer', app, {
-    path: '/api/JiaoNiDaiGou/customers/update',
+    path: '/api/customers/update',
     data: customer
   })
 }
 
 const promiseOfLoadProductsHints = (app) => {
   return callGet('loadProductHints', app, {
-    path: '/api/JiaoNiDaiGou/products/hints'
+    path: '/api/products/hints'
   })
 }
 
@@ -228,7 +240,7 @@ const promiseOfInitShippingOrder = (app, receiverCustomerId, address, products, 
 const promiseOfQueryShoppingList = (app, status, onlyActive) => {
   var path = '/api/shoppingLists/query?onlyActive=' + onlyActive;
   if (!!status) {
-    path += 'status=' + status
+    path += '&status=' + status
   }
   return callGet('queryShoppingList', app, {
     path: path
@@ -307,6 +319,19 @@ const promiseOfPostFeedback = (app, content, mediaIds) => {
   })
 }
 
+const promiseOfLoadAllInventoryItems = (app) => {
+  return callGet('loadAllInventoryItems', app, {
+    path: '/api/inventory/all'
+  })
+}
+
+const promiseOfCreateInventoryItem = (app, item) => {
+  return callPost('createInventoryItem', app, {
+    path: '/api/inventory/create',
+    data: item
+  })
+}
+
 const buildMediaDownloadUrl = (mediaId) => {
   return SERVER + '/api/media/directDownload?mediaId=' + mediaId
 }
@@ -330,5 +355,8 @@ module.exports = {
   promiseOfQueryShoppingList: promiseOfQueryShoppingList,
   promiseOfUploadMedia: promiseOfUploadMedia,
   promiseOfPostFeedback: promiseOfPostFeedback,
-  promiseOfUpdateCustomer: promiseOfUpdateCustomer
+  promiseOfUpdateCustomer: promiseOfUpdateCustomer,
+  promiseOfLoadAllInventoryItems: promiseOfLoadAllInventoryItems,
+  promiseOfCreateInventoryItem: promiseOfCreateInventoryItem,
+  promiseOfParseProduct: promiseOfParseProduct
 }

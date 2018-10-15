@@ -1,7 +1,9 @@
 {
   "usingComponents": {
-    "text-box": "../common/text-box",
-    "image-uploader": "../common/image-uploader",
-    "feedback-modal": "../common/feedback-modal"
+    "text-box": "../core/text-box",
+    "textarea-box": "../core/textarea-box",
+    "search-bar": "../core/search-bar",
+    "list": "../core/list",
+    "image-viewer": "../core/image-viewer"
   }
 }

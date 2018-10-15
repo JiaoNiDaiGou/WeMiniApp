@@ -32,7 +32,7 @@ import sys
 import xml.etree.ElementTree as ET
 
 colors = [ "blue", "lightgrey", "black", "grey" ]
-sizes = [ "16", "32", "48", "36", "42" ]
+sizes = [ "16", "32", "48", "36", "42", "96" ]
 to_file_paths = [ "../songfan/lib/icon.wxss" ]
 
 print('Create icon.wxss ...')

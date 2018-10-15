@@ -3,11 +3,17 @@
 @import '../../lib/weui.wxss';
 @import '../../app.wxss';
 
-.fui-picker-box__icon {
-  margin-right: 10px;
-}
-
 .fui-picker-box__picker {
   margin-left: 10px;
+  margin-right: 10px;
   font-size: 18px;
+  border: 1px groove red;
+  width: 100%;
+  /* height: 25px; */
+  align-items: center;
 }
+
+/* .fui-picker-box__picker-input {
+  width: 100%;
+  margin-bottom: 20px;
+} */

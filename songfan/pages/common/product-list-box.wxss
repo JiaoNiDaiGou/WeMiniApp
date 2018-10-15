@@ -2,14 +2,8 @@
 @import '../../lib/weui.wxss';
 @import '../../app.wxss';
 
-.fui-product-entry-list-box__icon {
-  margin-right: 10px;
-}
-
 .fui-product-entry-list-box {
+  display: flex;
+  flex-direction: column;
   justify-content: flex-start;
-}
-
-.fui-product-entry-list-box-badge {
-  display: inline-block
 }

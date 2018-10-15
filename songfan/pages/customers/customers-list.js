@@ -76,7 +76,7 @@ Page({
    * Filter customers search results.
    */
   filterCustomersSearchCandidates: function (e) {
-    var inputValue = e.detail.inputValue
+    var inputValue = e.detail.value
     if (!inputValue) {
       this.setData({
         customerSearchCandidates: []
@@ -89,7 +89,7 @@ Page({
           return {
             id: t.id,
             display: t.name + ' '
-              + (!!t.phone ? '' : t.phone.phone)
+              + (!!t.phone && !!t.phone.phone ? '' : t.phone.phone)
               + (!!t.addresses && t.addresses.length > 0 ? ' [' + t.addresses[0].region + ' ' + t.addresses[0].city + ']' : '')
           }
         });
@@ -100,16 +100,13 @@ Page({
   },
 
   goToCustomerDetails: function (e) {
-    var customerId = e.detail.id;
+    var customerId = e.detail.value;
     console.log('go to CustomerDetails for ' + customerId)
     wx.navigateTo({
       url: './customer-details?id=' + customerId,
     })
   },
 
-  /**
-   * Nagigate to customer create page.
-   */
   goToCustomerCreate: function (e) {
     console.log('go to customerCreate.');
     wx.navigateTo({

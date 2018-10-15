@@ -5,34 +5,20 @@ const app = getApp();
 
 const LAST_KEY = '@last';
 
+/**
+ * properties:
+ * eagerUpload: boolean: If upload image immediately once image selected. default to true
+ * 
+ * events:
+ * imagesChange: imageChange.
+ */
 Component({
-  /**
-   * Component properties
-   */
   properties: {
-    /**
-     * If upload image immediately once image selected.
-     */
     eagerUpload: {
       type: Boolean,
-      value: false
-    },
-
-    columnSize: {
-      type: Number,
-      value: 3,
-    },
-
-    // Possible values are : grid, scroll-x
-    style: {
-      type: String,
-      value: 'grid'
+      value: true
     }
   },
-
-  /**
-   * Component initial data
-   */
   data: {
     // imageKeys are an array of image keys, which has order.
     // images is a map[imageKey, image object]
@@ -50,17 +36,14 @@ Component({
         mediaId: null,
         uploading: false,
         uplodingProgress: 0
-      }
+      },
+      lastImgActive: false
     },
 
     modalHidden: true,
 
     curActionImageIdx: -1
   },
-
-  /**
-   * Component methods
-   */
   methods: {
     onCurImageDelete: function (e) {
       var curActionImageIdx = this.data.curActionImageIdx
@@ -79,13 +62,13 @@ Component({
       })
     },
 
-    onModalTap: function (e) {
+    onModalDone: function (e) {
       this.setData({
         modalHidden: true
       })
     },
 
-    onImageLongTap: function (e) {
+    onImageLongPress: function (e) {
       var idx = e.currentTarget.dataset.imageidx
       var imageKeys = this.data.imageKeys
       var isLastImage = idx == imageKeys.length - 1
@@ -98,9 +81,18 @@ Component({
       })
     },
 
-    /**
-     * When user press the image.
-     */
+    onLastImgTouchStart: function (e) {
+      this.setData({
+        lastImgActive: true
+      })
+    },
+
+    onLastImgTouchEnd: function (e) {
+      this.setData({
+        lastImgActive: false
+      })
+    },
+
     onImageTap: function (e) {
       this.refreshAllUploadingProgress()
 
@@ -259,7 +251,9 @@ Component({
           mediaId: image.mediaId
         }
       })
-      this.triggerEvent('imagesChanged', { images: event })
+      this.triggerEvent('imagesChange', {
+        value: event
+      })
     }
   },
 })

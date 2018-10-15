@@ -8,7 +8,9 @@
     "pages/customers/customer-create",
     "pages/shippingOrders/shippingOrders-list",
     "pages/shoppingLists/shoppingLists-list",
-    "pages/shoppingLists/shoppingLists-create"
+    "pages/shoppingLists/shoppingLists-create",
+    "pages/inventory/inventory-list",
+    "pages/inventory/inventory-create"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,28 @@
+<view class='fui-container'>
+  <search-bar bind:inputTypingEvent='filterProduct' />
+
+  <view class="weui-btn-area">
+    <button type="primary" bindtap='onCreateInventoryItemTagp' class='fui-modal-button'>添加库存</button>
+  </view>
+
+  <view wx:for='{{inventoryItems}}' wx:key='unique' wx:for-item='item'>
+    <view data-itemid='{{item.id}}' class='fui-active-box fui-lightborder' bindlongpress='onInventoryItemLongPress'>
+
+    <product-list-box wx:if='{{!!item.renderableProducts && item.renderableProducts.length > 0}}' products='{{item.renderableProducts}}' />
+
+
+      <view wx:if='{{!!item.mediaUrls && item.mediaUrls.length > 0}}' wx:for='{{item.mediaUrls}}' wx:key='unique' wx:for-item='url'>
+        <image data-itemid='{{item.id}}' data-url='{{url}}' src='{{url}}' mode='aspectFit' bindtap='onImageTap' />
+      </view>
+    </view>
+  </view>
+</view>
+
+<modal title="订购单 {{curAcitonItem.id}}" hidden="{{!actionModalShow}}" bindcancel="onActionModalCancel" bindconfirm="onActionModalConfirm">
+  <view class="weui-btn-area">
+    <button wx:if='{{curAcitonItem.canAssign}}' type="normal" class='fui-modal-button' style='color: green' bindtap='onCurActionItemAssignTap'>我来处理</button>
+    <button wx:if='{{curAcitonItem.canPurchase}}' type="normal" class='fui-modal-button' style='color: green' bindtap='onCurActionItemPurchaseTap'>购买</button>
+    <button wx:if='{{curAcitonItem.canInHouse}}' type="normal" class='fui-modal-button' style='color: green' bindtap='onCurActionItemInHouseTap'>入库</button>
+    <button wx:if='{{curAcitonItem.canExpire}}' type="normal" class='fui-modal-button' style='color: red' bindtap='onCurActionItemExpireTap'>撤销</button>
+  </view>
+</modal>

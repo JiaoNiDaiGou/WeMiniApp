@@ -1,0 +1,8 @@
+@import '../../lib/icon.wxss';
+@import '../../lib/weui.wxss';
+@import '../../app.wxss';
+
+.fui-image-viewer-image {
+    width: 5rem;
+    height: 7rem;
+  }

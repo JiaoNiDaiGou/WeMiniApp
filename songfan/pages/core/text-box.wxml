@@ -1,0 +1,18 @@
+<view class='fui-container'>
+  <view class="fui-container-item {{hasBottomBorder?'fui-lightborder':''}} {{ editable && inputFocus ? 'fui-text-box__border' : '' }}">
+    <view wx:if='{{iconClass}}'>
+      <icon class='iconfont fui-icon {{iconClass}}' />
+    </view>
+    <text wx:if='{{!!valuePrefix}}' class='fui-text-box__prefix'>{{valuePrefix}}</text>
+    <input type='text' type='{{type}}' class='fui-text-box__input' placeholder='{{placeholder}}' value='{{value}}' disabled='{{!editable}}' bindinput='onInput' bindtap='onInputTap' bindblur='onInputBlur'></input>
+    <text wx:if='{{!!valueSuffix}}' class='fui-text-box__suffix'>{{valueSuffix}}</text>
+  </view>
+
+  <view wx:if='{{!!suggestions && suggestions.length > 0}}'>
+    <view class="fui-badge-box">
+      <view wx:for='{{suggestions}}' wx:key='unique' wx:for-item='suggestion'>
+        <view class="weui-badge fui-badge-box__item" bindtap='onSuggestionTap' data-id='{{suggestion.id}}'>{{suggestion.display}}</view>
+      </view>
+    </view>
+  </view>
+</view>

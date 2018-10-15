@@ -85,27 +85,27 @@ Page({
   /**
    * When user typing in rawText textarea.
    */
-  onRawTextInputTyping: function (e) {
+  onRawTextInput: function (e) {
     this.setData({
       rawText: e.detail.value
     });
   },
 
-  onNameTyping: function (e) {
+  onNameInput: function (e) {
     this.setData({
       name: e.detail.value
     });
     this.checkReadyToCreate();
   },
 
-  onPhoneTyping: function (e) {
+  onPhoneInput: function (e) {
     this.setData({
       phone: e.detail.value
     });
     this.checkReadyToCreate();
   },
 
-  onAddressTyping: function (e) {
+  onAddressInput: function (e) {
     this.setData({
       address: e.detail.value
     });
@@ -115,9 +115,9 @@ Page({
   /**
    * When user select one parsing candidate.
    */
-  onParsingCandidatesSelected: function (e) {
+  onParsingCandidateSelect: function (e) {
     var customer = this.data.parsingCandidates
-      .filter(t => t.tmpindex === e.currentTarget.dataset.tmpindex)[0];
+      .find(t => t.tmpindex === e.currentTarget.dataset.tmpindex);
     if (!!customer) {
       var id = !!customer.id ? customer.id : this.data.id;
       var name = !!customer.name ? customer.name : this.data.name;
@@ -137,7 +137,7 @@ Page({
   /**
    * Parse raw receiver info
    */
-  parseRawTextOrImage: function () {
+  onParseRawTextOrImageTap: function () {
     var that = this;
     console.log('parse raw customer. text=' + this.data.rawText + ', mediaId=' + this.data.rawImageMediaId);
     wx.showLoading({
@@ -228,10 +228,8 @@ Page({
   /**
    * When user press uploadImage.
    */
-  chooseRawImage: function (e) {
-    //把this对象复制到临时变量that.因为在函数返回response以后，this的值会被改变。
+  onChooseRawImageTap: function (e) {
     var that = this;
-    //选择图片
     wx.chooseImage({
       count: 1, // 默认1张图片
       sizeType: 'original', // 可以指定是原图还是压缩图，默认二者都有
@@ -259,7 +257,7 @@ Page({
     });
   },
 
-  createCustomer: function (e) {
+  onCreateCustomerTap: function (e) {
     if (!!this.data.id) {
       console.log('update customer ' + this.data.id + ':' + this.data.name);
     } else {
@@ -275,8 +273,10 @@ Page({
       this.data.phone,
       this.data.address
     ).then(r => {
+      var customerId = r.res.data.id
+      console.log('created customer id ' + customerId)
       that.setData({
-        id: r.res.id
+        id: customerId
       });
       backend.promiseOfLoadAllCustomers(r.app)
         .then(r => {
