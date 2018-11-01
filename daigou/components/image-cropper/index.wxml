@@ -1,0 +1,21 @@
+<view wx:if='{{imgPath}}' class="fui-image-cropper__container">
+  <view wx:if="{{ isShowImg }}" class="wx-corpper" style="width:{{ outerBoxW }}rpx;height:{{ outerBoxH }}rpx;background:#000">
+    <view class="fui-image-cropper__content" style="width:{{cropperW}}rpx;height:{{cropperH}}rpx;left:{{cropperL}}rpx;top:{{cropperT}}rpx;">
+      <image src="{{imgPath}}" style="width:{{cropperW}}rpx;height:{{cropperH}}rpx"></image>
+      <view class="wx-corpper-crop-box" data-drag="all" catchtouchstart="onDragStart" catchtouchmove="onDragMove" style="left:{{cutL}}rpx;top:{{cutT}}rpx;right:{{cutR}}rpx;bottom:{{cutB}}rpx">
+        <view class="wx-cropper-view-box">
+          <view class="fui-image-cropper__dashed-h"></view>
+          <view class="fui-image-cropper__dashed-v"></view>
+          <view class="fui-image-cropper__p fui-image-cropper__p-tl" data-drag="tl" catchtouchstart="onDragStart" catchtouchmove="onDragMove"></view>
+          <view class="fui-image-cropper__p fui-image-cropper__p-tr" data-drag="tr" catchtouchstart="onDragStart" catchtouchmove="onDragMove"></view>
+          <view class="fui-image-cropper__p fui-image-cropper__p-bl" data-drag="bl" catchtouchstart="onDragStart" catchtouchmove="onDragMove"></view>
+          <view class="fui-image-cropper__p fui-image-cropper__p-br" data-drag="br" catchtouchstart="onDragStart" catchtouchmove="onDragMove"></view>
+        </view>
+      </view>
+    </view>
+    <i-button type="primary" size="small" class='fui-image-cropper__crop_btn' bind:click='onCropClick'>
+      剪裁
+    </i-button>
+  </view>
+  <canvas canvas-id="image-cropper-canvas" style="position:absolute;width:{{qualityWidth}}px;height:{{qualityWidth/innerAspectRadio}}px;top:-9999px;left:-9999px;"></canvas>
+</view>

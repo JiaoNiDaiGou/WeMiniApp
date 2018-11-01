@@ -1,18 +1,31 @@
-<view class="fui-container {{hasBottomBorder?'fui-lightborder':''}}">
+<view class='fui-container'>
 
   <view class='fui-container-item'>
     <view wx:if='{{iconClass}}'>
       <icon class='iconfont fui-icon {{iconClass}}' />
     </view>
+
+    <text wx:if='{{!!valuePrefix}}' class='fui-picker-box__prefix'>{{valuePrefix}}</text>
+
     <picker bindchange="onChange" value="{{curIdx}}" range="{{range}}" class='fui-picker-box__picker'>
-      <view class="weui-select weui-select_in-select-after fui-picker-box__picker-input" style='color: {{curIdx==-1?"grey":"black"}};'>{{valuePrefix}}{{curIdx==-1?placeholder:range[curIdx]}}{{valueSuffix}}</view>
+      <view 
+        class="fui-picker-box__picker-input" 
+        style='color: {{curIdx==-1?"grey":"black"}};'>
+        {{curIdx==-1?placeholder:range[curIdx]}}
+      </view>
     </picker>
+
+    <text wx:if='{{!!valueSuffix}}' class='fui-picker-box__suffix'>{{valueSuffix}}</text>
+
   </view>
 
   <view wx:if='{{!!suggestions && suggestions.length > 0}}'>
     <view class='fui-badge-box'>
       <view wx:for='{{suggestions}}' wx:key='unique' wx:for-item='suggestion'>
-        <view class="weui-badge fui-badge-box__item" bindtap='onSuggestionTap' data-idx='{{suggestion}}'>{{range[suggestion]}}</view>
+        <view
+          class="weui-badge fui-badge-box__item" 
+          bindtap='onSuggestionTap' 
+          data-idx='{{suggestion}}'>{{range[suggestion]}}</view>
       </view>
     </view>
   </view>

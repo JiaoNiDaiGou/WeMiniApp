@@ -6,10 +6,14 @@ App({
   onLaunch: function () {
     var that = this
 
-    wx.showLoading({ title: '登陆娇妮代购' })
+    wx.showLoading({
+      title: '登陆娇妮代购'
+    })
     backend.promiseOfBackendLogin(this)
       .then(r => {
-        wx.showLoading({ title: '正在加载信息' })
+        wx.showLoading({
+          title: '正在加载信息'
+        })
         Promise.all([
           that.syncCustomers(),
           that.syncProductHints()

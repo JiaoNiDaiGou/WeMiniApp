@@ -1,0 +1,15 @@
+<view class="fui-container">
+  <text-box icon='eit' placeholder='ID' value='{{customer.id}}' disabled></text-box>
+  <text-box icon='mine' placeholder='姓名' value='{{customer.name}}' disabled></text-box>
+  <text-box icon='mobilephone' placeholder='电话' value='{{customer.phone.phone}}' disabled></text-box>
+  <view wx:for='{{customer.addresses}}' wx:key='unique' wx:for-item='address' wx:for-index='idx'>
+    <badge value='{{idx == defaultShippingAddressIdx ? "优先发货地址" : ""}}' bgColor='green'>
+      <address-box data-addressidx='{{idx}}' region="{{address.region}}" city='{{address.city}}' zone='{{address.zone}}' address='{{address.address}}' bindtap='onAddressTap' bindlongpress='onAddressLongPress' disabled />
+    </badge>
+  </view>
+  <view class="weui-btn-area">
+    <i-button type='primary' bind:click='onCreateShippingOrderClick'>发货</i-button>
+  </view>
+</view>
+<i-action-sheet visible="{{ addressActionSheetVisible }}" actions="{{ addressActions }}" show-cancel bind:cancel="onAddressActionSheetCancel" bind:click="onAddressActionSheetClick" />
+<i-message id="message" />

@@ -1,0 +1,19 @@
+<view class='fui-container'>
+  <view class="fui-container-item">
+    <view wx:if='{{icon}}'>
+      <i-icon type='{{ icon }}' size="20" />
+    </view>
+    <text wx:if='{{ prefix }}' class='fui-text-box__prefix'>{{ prefix }}</text>
+    <i-input type='{{type}}' bind:change='onInput' disabled='{{disabled}}' placeholder='{{placeholder}}' value='{{value}}' class="fui-text-box__input"></i-input>
+    <text wx:if='{{ suffix }}' class='fui-text-box__suffix'>{{ suffix }}</text>
+  </view>
+  <view wx:if='{{ suggestions && suggestions.length > 0 }}'>
+    <view class="fui-badge-box">
+      <view wx:for='{{suggestions}}' wx:key='unique' wx:for-item='suggestion'>
+        <i-tag bind:tap='onSuggestionTap' data-id='{{suggestion.id}}' class='fui-badge-box__item' name="{{suggestion.id}}" color="blue">
+          {{suggestion.display}}
+        </i-tag>
+      </view>
+    </view>
+  </view>
+</view>

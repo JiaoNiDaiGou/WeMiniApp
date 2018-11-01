@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "image-cropper": "../../../components/image-cropper/index",
+    "text-box": "../../../components/text-box/index",
+    "address-box": "../../../components/address-box/index",
+    "i-button": "../../../components/iview/button/index",
+    "i-input": "../../../components/iview/input/index"
+  }
+}

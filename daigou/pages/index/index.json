@@ -1,9 +1,13 @@
 {
   "usingComponents": {
-    "text-box": "../core/text-box",
-    "textarea-box": "../core/textarea-box",
-    "search-bar": "../core/search-bar",
-    "list": "../core/list",
-    "image-viewer": "../core/image-viewer"
+    "i-button": "../../components/iview/button/index",
+    "i-input": "../../components/iview/input/index",
+    "i-toast": "../../components/iview/toast/index",
+    "product-creator": "../../components/product-creator/index",
+    "products-list": "../../components/products-list/index",
+    "text-box": "../../components/text-box/index",
+    "image-uploader": "../../components/image-uploader/index",
+    "image-viewer": "../../components/image-viewer/index",
+    "image-cropper": "../../components/image-cropper/index"
   }
 }

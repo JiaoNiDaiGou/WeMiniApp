@@ -1,10 +1,7 @@
-// pages/common/text-box.js
-
 /**
  * properties:
  * - editable: boolean
  * - iconClass: icon class: string
- * - hasBottomBorder: boolean
  * - suggestions: array. element must be { id:xx, display: yy}
  * - suggestionsLimit: number: the limit of number to display suggestions
  * - type: type of input: text(default), number, digit, etc
@@ -15,19 +12,15 @@
  * events:
  * input: when input typing
  * suggestionTap: when some suggestion is tapped.
- * 
  */
 Component({
-  /**
-   * Component properties
-   */
   properties: {
     iconClass: {
       type: String,
       value: ''
     },
     inputStyle: {
-      type: 'String',
+      type: String,
       value: 'text'
     },
     placeholder: {
@@ -49,10 +42,6 @@ Component({
     suggestionsLimit: {
       type: Number,
       value: 4
-    },
-    hasBottomBorder: {
-      type: Boolean,
-      value: false
     },
     valuePrefix: {
       type: String,

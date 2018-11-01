@@ -1,0 +1,31 @@
+<view class='fui-container'>
+  <view class='fui-container-item fui-customers-create__raw_text_or_image_area'>
+    <image-cropper wx:if='{{ rawImagePath }}' imgPath='{{ rawImagePath }}' bind:imageChange='onImageChange' />
+    <i-input wx:else type='textarea' placeholder='客户信息' value="{{ rawText }}" bindinput="onRawTextInput"></i-input>
+  </view>
+  <view class="weui-btn-area">
+    <view class='fui-container-item' style="justify-content: space-around;">
+      <i-button bind:click="onSelectImageClick" style='width: 45%;'>选择图片</i-button>
+      <i-button bind:click="onParseClick" type="success" style='width: 45%;'>智能解析</i-button>
+    </view>
+  </view>
+  <view wx:for="{{ parsingCandidates }}" wx:key="unique" wx:for-item="candidate">
+    <view class='fui-card'>
+      <view data-tmpindex='{{candidate.tmpindex}}' bindtap='onParsingCandidateSelect'>
+        <view class='fui-container-item' style="justify-content: space-around;">
+          <text-box icon='mine' placeholder='姓名' value='{{ candidate.name }}' disabled></text-box>
+          <text-box icon='mobilephone' placeholder='电话' value='{{ candidate.phone }}' disabled></text-box>
+        </view>
+        <address-box wx:if='{{ candidate.address }}' region="{{candidate.address.region}}" city='{{candidate.address.city}}' zone='{{candidate.address.zone}}' address='{{candidate.address.address}}' disabled />
+      </view>
+    </view>
+  </view>
+  <view class='fui-container-item' style="justify-content: space-around;">
+    <text-box icon='mine' placeholder='姓名' value='{{ name }}' bind:change='onNameInput'></text-box>
+    <text-box icon='mobilephone' placeholder='电话' value='{{ phone }}' bind:change='onPhoneInput'></text-box>
+  </view>
+  <address-box region="{{ address.region }}" city='{{ address.city }}' zone='{{ address.zone }}' address='{{ address.address }}' bind:change='onAddressInput' />
+  <view class="weui-btn-area">
+    <i-button bind:click="onCreateCustomerClick" type="primary">创建新用户</i-button>
+  </view>
+</view>

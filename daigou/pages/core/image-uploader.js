@@ -1,4 +1,3 @@
-// pages/common/image-uploader.js
 const backend = require('../../utils/backend.js');
 const utils = require('../../utils/util.js');
 const app = getApp();
@@ -7,16 +6,17 @@ const LAST_KEY = '@last';
 
 /**
  * properties:
- * eagerUpload: boolean: If upload image immediately once image selected. default to true
+ * - lazy: boolean: If upload image lazy. Default to false. 
+ * Otherwise, will upload image immediately once image selected.
  * 
  * events:
- * imagesChange: imageChange.
+ * - imagesChange: imageChange.
  */
 Component({
   properties: {
-    eagerUpload: {
+    lazy: {
       type: Boolean,
-      value: true
+      value: false
     }
   },
   data: {
@@ -156,7 +156,7 @@ Component({
               images: thatImages
             });
 
-            if (!!that.data.eagerUpload) {
+            if (!that.data.lazy) {
               for (var idx = newUploadStartIdx; idx <= newUploadEndIdx; idx++) {
                 that.uploadImage(idx)
               }

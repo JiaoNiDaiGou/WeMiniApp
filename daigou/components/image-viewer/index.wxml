@@ -1,0 +1,9 @@
+<view wx:if='{{!!images && images.length > 0}}' class='fui-container'>
+    <scroll-view scroll-x="{{true}}">
+        <view class='fui-container-item' style="content-justify: flex-start;">
+            <view wx:for="{{images}}" wx:key="unique" wx:for-item="image">
+                <image class='fui-image-viewer-image' src="{{image.path}}" mode='aspectFit' data-imageid='{{image.id}}' bindtap='onImageTap'></image>
+            </view>
+        </view>
+    </scroll-view>
+</view>

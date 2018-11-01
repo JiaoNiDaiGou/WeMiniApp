@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "address-box": "../../../components/address-box/index",
+    "badge": "../../../components/badge/index",
+    "text-box": "../../../components/text-box/index",
+    "i-action-sheet": "../../../components/iview/action-sheet/index",
+    "i-badge": "../../../components/iview/badge/index",
+    "i-button": "../../../components/iview/button/index",
+    "i-input": "../../../components/iview/input/index",
+    "i-message": "../../../components/iview/message/index"
+  }
+}

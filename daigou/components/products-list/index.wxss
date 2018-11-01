@@ -1,0 +1,7 @@
+@import '../../lib/fui.wxss';
+
+.fui-product-entry-list-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}

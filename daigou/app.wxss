@@ -12,7 +12,7 @@ view {
   margin-right: 10px;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid lightblue;
+  /* border: 1px solid lightblue; */
 }
 
 .fui-container-item {
@@ -32,7 +32,7 @@ view {
 }
 
 .fui-lightborder {
-  border-bottom: 1px solid lightgrey;
+  /* border: 1px solid red; */
 }
 
 .fui-separator-above {

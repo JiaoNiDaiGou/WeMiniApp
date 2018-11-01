@@ -1,0 +1,55 @@
+/* This is My CSS */
+
+.fui-container {
+  display: flex;
+  margin-left: 10px;
+  margin-right: 10px;
+  flex-direction: column;
+  justify-content: center;
+  /* border: 1px solid lightblue */
+}
+
+.fui-container-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  vertical-align: middle;
+  align-items: center;
+}
+
+.fui-icon {
+  margin-right: 10px;
+}
+
+.fui-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+  transition: 0.3s;
+  padding-top: 10px;
+  margin-top: 5px;
+  padding-bottom: 10px;
+  margin-bottom: 5px;
+  width: 100%
+}
+
+.fui-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.fui-badge-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  vertical-align: middle;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.fui-badge-box__item {
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+.fui-step-text {
+  font-size: 14px;
+}

@@ -1,0 +1,28 @@
+@import '../../lib/fui.wxss';
+@import '../../lib/icon.wxss';
+@import '../../lib//weui.wxss';
+
+.fui-image-uploader-image {
+  width: 5rem;
+  height: 7rem;
+  border: 2px solid rebeccapurple;
+}
+
+.fui-image-uploader-image__last {
+  width: 5rem;
+  height: 7rem;
+  display: flex;
+  border: 2px dashed black;
+  align-items: center;
+  justify-content: center;
+}
+
+.fui-image-uploader-image__empty {
+  border: 2px dashed black;
+}
+
+.fui-image-uploader-image-progress {
+  position: absolute;
+  top: -0.4em;
+  right: -.4em;
+}

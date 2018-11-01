@@ -186,6 +186,8 @@ const promiseOfUploadMedia = (app, path, progressHandle) => {
         console.log('CALL uploadMedia SUCCESS!');
         // wx.uploadFile response is text.
         // convert it to json.
+        console.log(res)
+        console.log(res.data)
         resolve({
           app: app,
           res: {
@@ -225,14 +227,19 @@ const promiseOfExternalCreateShippingOrder = (app, id, totalWeight) => {
   })
 }
 
-const promiseOfInitShippingOrder = (app, receiverCustomerId, address, products, totalWeight) => {
+const promiseOfInitShippingOrder = (app, receiverCustomerId, address, products, totalWeight, totalSellPrice) => {
+  console.log('totalSellPrice: ' + totalSellPrice)
   return callPost('initShippingOrder', app, {
     path: '/api/shippingOrders/init',
     data: {
       receiverCustomerId: receiverCustomerId,
       address: address,
       productEntries: products,
-      total_weight_lb: !!totalWeight ? totalWeight : 0
+      totalWeightLb: !!totalWeight ? totalWeight : 0,
+      totalSellPrice: {
+        unit: 'RMB',
+        value: totalSellPrice
+      } 
     }
   })
 }

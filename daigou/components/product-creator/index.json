@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "text-box": "../text-box/index",
+    "picker-box": "../picker-box/index",
+    "i-button": "../iview/button/index",
+    "i-icon": "../iview/icon/index",
+    "i-input": "../iview/input/index",
+    "i-input-number": "../iview/input-number/index"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-icon": "../iview/icon/index",
+    "i-input": "../iview/input/index",
+    "i-tag": "../iview/tag/index"
+  }
+}

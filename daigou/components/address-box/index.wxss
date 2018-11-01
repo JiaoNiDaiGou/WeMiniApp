@@ -1,0 +1,6 @@
+@import '../../lib/fui.wxss';
+
+.fui-address-box__textarea {
+  width: 100%;
+  word-break: break-all;
+}

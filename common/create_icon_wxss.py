@@ -31,9 +31,7 @@ import requests
 import sys
 import xml.etree.ElementTree as ET
 
-colors = [ "blue", "lightgrey", "black", "grey" ]
-sizes = [ "16", "32", "48", "36", "42", "96" ]
-to_file_paths = [ "../songfan/lib/icon.wxss" ]
+to_file_paths = [ "../daigou/lib/icon.wxss" ]
 
 print('Create icon.wxss ...')
 
@@ -83,16 +81,12 @@ color: #9e9595;\n\
 }\n\
 ')
 
-    for color in colors:
-        for size in sizes:
-            for icon in icons:
-                icon_name = icon[0] + '-' + color + '-' + size
-                icon_unicode = icon[1]
-                to_file.writelines('\n\
-.icon-' + icon_name + ':before {\n\
+    for icon in icons:
+        icon_name = 'fui-' + icon[0]
+        icon_unicode = icon[1]
+        to_file.writelines('\n\
+.' + icon_name + ':before {\n\
 content: "' + icon_unicode + '";\n\
-font-size: ' + size + 'rpx;\n\
-color: ' + color + ';\n\
 }\n\
 ')
 

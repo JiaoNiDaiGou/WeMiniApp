@@ -1,0 +1,6 @@
+<view style="position: relative;">
+  <slot></slot>
+  <view wx:if='{{value}}' class="weui-badge fui-badge-up-right" style="background-color: {{bgColor}};}}">
+    {{value}}
+  </view>
+</view>

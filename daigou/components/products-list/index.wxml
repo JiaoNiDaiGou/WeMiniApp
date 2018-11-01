@@ -1,0 +1,16 @@
+<view class='fui-container'>
+  <view class='fui-container-item'>
+    <i-icon type='fui-cart' size="20" />
+    <view class='fui-product-entry-list-box'>
+      <view wx:for="{{products}}" wx:key="unique" wx:for-item="product" wx:for-index='idx'>
+        <view class='fui-badge-box' data-idx='{{idx}}' bindlongpress='onLongPress' style="font-size: 14px;">
+          <i-tag class='fui-badge-box__item' color="blue">{{ CATEGORY_NAMES[product.categoryIndex] }}</i-tag>
+          {{product.brand}} {{product.name}}
+          <i-tag class='fui-badge-box__item' color="blue">{{ product.quantity }}件</i-tag>
+          <i-tag class='fui-badge-box__item' color="blue">${{ product.price }}</i-tag>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<i-action-sheet visible="{{ actionSheetVisible }}" actions="{{ ACTIONS }}" show-cancel bind:cancel="onActionCancel" bind:click="onActionClick" />

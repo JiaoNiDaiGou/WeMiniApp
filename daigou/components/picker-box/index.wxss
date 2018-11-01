@@ -1,0 +1,30 @@
+@import '../../lib/fui.wxss';
+@import '../../lib/icon.wxss';
+
+.fui-picker-box__picker {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  padding:9px 15px;
+}
+
+.fui-picker-box__picker-display {
+  margin-right: 3px;
+  font-size: 14px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fui-picker-box__prefix {
+  margin-left: 5x;
+  font-size: 14px;
+}
+
+.fui-picker-box__suffix {
+  margin-right: 5px;
+  font-size: 14px;
+}

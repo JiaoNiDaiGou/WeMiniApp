@@ -1,0 +1,7 @@
+@import '../../lib/weui.wxss';
+
+.fui-badge-up-right {
+  position: absolute;
+  top: -0.4em;
+  right: -.4em;
+}

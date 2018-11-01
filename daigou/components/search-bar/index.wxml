@@ -1,0 +1,26 @@
+<view>
+  <view class="weui-search-bar">
+    <view class="weui-search-bar__form">
+      <view class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box" type="search" size="16"></icon>
+        <input type="text" class="weui-search-bar__input" placeholder="{{placeholder}}" value="{{value}}" focus="{{inputShow}}" bindinput="onInput" />
+      </view>
+      <label class="weui-search-bar__label" hidden="{{inputShow}}" bindtap="onInputFocus">
+        <icon class="weui-icon-search" type="search" size="16"></icon>
+        <view class="weui-search-bar__text">{{placeholder}}</view>
+      </label>
+    </view>
+    <view class="weui-search-bar__cancel-btn" style="font-size: 14px" hidden="{{!inputShow}}" bindtap="onInputHide">
+      取消
+    </view>
+  </view>
+  <view wx:if='{{!!options && options.length > 0}}' class="weui-cells">
+    <view wx:for="{{options}}" wx:key="unique" wx:for-item="option">
+      <view id='{{option.id}}' bindtap='onOptionSelect' class="weui-cell" hover-class="weui-cell_active">
+        <view class="weui-cell__bd fui-search-bar__searchbar-option">
+          <view>{{option.text}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

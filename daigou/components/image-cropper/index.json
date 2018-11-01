@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "i-button": "../iview/button/index"
+  }
+}

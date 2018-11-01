@@ -1,6 +1,0 @@
-<view class='fui-container'>
-  <search-bar candidates='{{customerSearchCandidates}}' bind:input='filterCustomersSearchCandidates' bind:candidateSelect='goToCustomerDetails' />
-  <view class="weui-btn-area">
-    <button class="weui-btn fui-button" type="primary" bindtap='goToCustomerCreate'>创建新客户</button>
-  </view>
-</view>

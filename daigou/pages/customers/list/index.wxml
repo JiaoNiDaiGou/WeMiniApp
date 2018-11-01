@@ -1,0 +1,6 @@
+<view class='fui-container'>
+  <search-bar options='{{customerCandidates}}' bind:input='onCustomerSearchInput' bind:optionSelect='onCustomerCandidateSelect' />
+  <view class="weui-btn-area">
+    <i-button bind:click="onCreateCustomerClick" type="primary">创建新客户</i-button>
+  </view>
+</view>

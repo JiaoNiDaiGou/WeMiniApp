@@ -1,7 +1,0 @@
-{
-  "enablePullDownRefresh": true,
-  "usingComponents": {
-    "text-box": "../core/text-box",
-    "address-box": "../common/address-box"
-  }
-}

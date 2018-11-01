@@ -1,0 +1,6 @@
+@import '../../../lib/fui.wxss';
+@import '../../../lib/weui.wxss';
+
+.fui-customers-create__raw_text_or_image_area {
+  justify-content: center;
+}

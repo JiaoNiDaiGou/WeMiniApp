@@ -2,7 +2,6 @@
  * properties:
  * - curIdx: current selected index: default to -1: not selected: display the placeholder
  * - iconClass: string
- * - hasBottomBorder: boolean
  * - placeholder: string
  * - suggestions: array[number]. The suggested indexes from range.
  * - suggestionsLimit: number: limit of suggestions to show
@@ -11,8 +10,8 @@
  * - valueSuffix: string
  * 
  * events:
- * suggestionTap: when suggestion tapped
- * change: when picker value changed
+ * - suggestionTap: when suggestion tapped
+ * - change: when picker value changed
  */
 Component({
   properties: {
@@ -22,7 +21,7 @@ Component({
     },
     range: {
       type: Array,
-      value: ['a', 'b', 'c']
+      value: []
     },
     curIdx: {
       type: Number,
@@ -39,10 +38,6 @@ Component({
     suggestionsLimit: {
       type: Number,
       value: 4
-    },
-    hasBottomBorder: {
-      type: Boolean,
-      value: false
     },
     valuePrefix: {
       type: String,

@@ -1,0 +1,13 @@
+@import '../../lib/fui.wxss';
+
+.fui-products-creator__btn-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.fui-products-creator__quantity-area {
+    display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

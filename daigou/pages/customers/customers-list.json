@@ -1,6 +1,0 @@
-{
-  "enablePullDownRefresh": true,
-  "usingComponents": {
-    "search-bar": "../core/search-bar"
-  }
-}

@@ -1,0 +1,16 @@
+@import '../../lib/fui.wxss';
+@import '../../lib/icon.wxss';
+
+.fui-text-box__input {
+  width: 100%;
+}
+
+.fui-text-box__prefix {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.fui-text-box__suffix {
+  margin-right: 5px;
+  font-size: 14px;
+}

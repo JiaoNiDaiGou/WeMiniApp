@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "address-box": "../../../components/address-box/index",
+    "product-creator": "../../../components/product-creator/index",
+    "products-list": "../../../components/products-list/index",
+    "badge": "../../../components/badge/index",
+    "text-box": "../../../components/text-box/index",
+    "i-badge": "../../../components/iview/badge/index",
+    "i-button": "../../../components/iview/button/index",
+    "i-input": "../../../components/iview/input/index",
+    "i-message": "../../../components/iview/message/index",
+    "i-steps": "../../../components/iview/steps/index",
+    "i-step": "../../../components/iview/step/index"
+  }
+}

@@ -1,0 +1,24 @@
+<view class='fui-container'>
+  <view class='fui-container-item'>
+    <view wx:if='{{icon}}'>
+      <i-icon type='{{ icon }}' size="20" />
+    </view>
+    <text wx:if='{{ prefix }}' class='fui-picker-box__prefix'>{{ prefix }}</text>
+    <picker bindchange="onChange" value="{{ curIdx }}" range="{{ range }}" class='fui-picker-box__picker'>
+      <view class="fui-picker-box__picker-display" style='color: {{ curIdx === -1 ? "grey" : "black" }};'>
+        {{ curIdx === -1 ? placeholder : range[curIdx] }}
+        <i-icon type='more' size="18" color="grey" />
+      </view>
+    </picker>
+    <text wx:if='{{ suffix }}' class='fui-picker-box__suffix'>{{ suffix }}</text>
+  </view>
+  <view wx:if='{{ suggestions && suggestions.length > 0 }}'>
+    <view class="fui-badge-box">
+      <view wx:for='{{suggestions}}' wx:key='unique' wx:for-item='suggestion'>
+        <i-tag bind:tap='onSuggestionTap' data-idx='{{suggestion}}' class='fui-badge-box__item' name="{{suggestion.id}}" color="blue">
+          {{range[suggestion]}}
+        </i-tag>
+      </view>
+    </view>
+  </view>
+</view>
