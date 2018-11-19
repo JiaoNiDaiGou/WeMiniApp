@@ -1,6 +1,7 @@
 // pages/customers/list/list.js
 
-const backend = require('../../../utils/backend.js')
+const backend = require('../../../utils/Backend.js')
+const syncCustomers = require('../../../utils/SyncCustomers.js')
 const app = getApp()
 
 Page({
@@ -51,7 +52,13 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
-
+    syncCustomers.sync(app)
+      .then(() => {
+        wx.showToast({
+          title: '客户列表已刷新',
+          duration: 1000
+        })
+      })
   },
 
   /**

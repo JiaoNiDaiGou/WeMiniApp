@@ -1,5 +1,4 @@
-// pages/customers/create/index.js
-const backend = require('../../../utils/backend.js')
+const backend = require('../../../utils/Backend.js')
 const app = getApp()
 
 Page({
@@ -22,68 +21,68 @@ Page({
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad: function (options) {},
+  onLoad: function(options) {},
 
   /**
    * Lifecycle function--Called when page is initially rendered
    */
-  onReady: function () {},
+  onReady: function() {},
 
   /**
    * Lifecycle function--Called when page show
    */
-  onShow: function () {},
+  onShow: function() {},
 
   /**
    * Lifecycle function--Called when page hide
    */
-  onHide: function () {},
+  onHide: function() {},
 
   /**
    * Lifecycle function--Called when page unload
    */
-  onUnload: function () {},
+  onUnload: function() {},
 
   /**
    * Page event handler function--Called when user drop down
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function() {},
 
   /**
    * Called when page reach bottom
    */
-  onReachBottom: function () {},
+  onReachBottom: function() {},
 
   /**
    * Called when user click on the top right corner to share
    */
-  onShareAppMessage: function () {},
+  onShareAppMessage: function() {},
 
-  onRawTextInput: function (e) {
+  onRawTextInput: function(e) {
     this.setData({
       rawText: e.detail.value
     });
   },
 
-  onNameInput: function (e) {
+  onNameInput: function(e) {
     this.setData({
       name: e.detail.value
     });
   },
 
-  onPhoneInput: function (e) {
+  onPhoneInput: function(e) {
     this.setData({
       phone: e.detail.value
     });
   },
 
-  onAddressInput: function (e) {
+  onAddressInput: function(e) {
     this.setData({
       address: e.detail.value
     });
   },
 
-  onSelectImageClick: function () {
+  onSelectImageClick: function() {
     var that = this
     wx.chooseImage({
       count: 1,
@@ -97,13 +96,13 @@ Page({
     })
   },
 
-  onImageChange: function (e) {
+  onImageChange: function(e) {
     this.setData({
       rawImagePath: e.detail.value
     })
   },
 
-  onCreateCustomerClick: function (e) {
+  onCreateCustomerClick: function(e) {
     if (!this.readyToCreate()) {
       wx.showToast({
         title: '客户信息不完整',
@@ -122,7 +121,7 @@ Page({
     wx.showLoading({
       title: '创建新客户'
     })
-    backend.promiseOfCreateCustomer(
+    backend.createCustomer(
       app,
       id,
       name,
@@ -140,12 +139,12 @@ Page({
       wx.redirectTo({
         url: '../details/index?id=' + customer.id
       })
-      backend.promiseOfLoadAllCustomers(r.app)
+      backend.loadAllCustomers(r.app)
         .then(r => console.log('sync all customers'))
     })
   },
 
-  onParseClick: function () {
+  onParseClick: function() {
     var that = this
     var {
       rawText,
@@ -168,7 +167,7 @@ Page({
 
     var texts = !!rawText ? [rawText] : []
     if (!!rawImagePath) {
-      backend.promiseOfUploadMedia(app, rawImagePath, progressHandle)
+      backend.uploadMedia(app, rawImagePath, progressHandle)
         .then(r => {
           var mediaId = r.res.data.id
           console.log('upload media success. get mediaId:' + mediaId)
@@ -182,7 +181,7 @@ Page({
     }
   },
 
-  onParsingCandidateSelect: function (e) {
+  onParsingCandidateSelect: function(e) {
     var {
       parsingCandidates
     } = this.data
@@ -202,8 +201,8 @@ Page({
     }
   },
 
-  parseRawCustomer: function (texts, mediaIds) {
-    backend.promiseOfParseCustomer(app, texts, mediaIds)
+  parseRawCustomer: function(texts, mediaIds) {
+    backend.parseCustomer(app, texts, mediaIds)
       .then(r => {
         var results = r.res.data.results
         wx.hideLoading()
@@ -232,7 +231,7 @@ Page({
                 id: id,
                 name: name,
                 phone: phone,
-                address: address
+                address: address,
               })
             }
           } else {
@@ -252,7 +251,7 @@ Page({
       })
   },
 
-  readyToCreate: function () {
+  readyToCreate: function() {
     var {
       name,
       phone,

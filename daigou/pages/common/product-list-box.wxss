@@ -1,9 +1,0 @@
-/* pages/common/product-list-box.wxss */
-@import '../../lib/weui.wxss';
-@import '../../app.wxss';
-
-.fui-product-entry-list-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}

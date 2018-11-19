@@ -1,7 +1,0 @@
-/* pages/shippingOrders/shippingOrders-list.wxss */
-@import '../../lib/weui.wxss';
-
-.fui-shippingOrders-list__main_box {
-  margin-left: 15px;
-  margin-right: 15px;
-}

@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "text-box": "../common/text-box",
-    "image-uploader": "../common/image-uploader",
-    "product-entry-list-box": "../common/product-entry-list-box"
-  }
-}

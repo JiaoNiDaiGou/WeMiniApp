@@ -1,0 +1,8 @@
+<modal title="提交反馈" hidden="{{ !show }}" bindcancel="onCancel" bindconfirm="onConfirm">
+  <view class='fui-container'>
+    <i-input title='反馈:' type='textarea' value='{{ content }}' bind:change='onInput'></i-input>
+    <view>
+      <image-uploader images='{{ images }}' col='{{ 3 }}'></image-uploader>
+    </view>
+  </view>
+</modal>

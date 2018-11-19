@@ -1,0 +1,6 @@
+@import '../../lib/fui.wxss';
+
+.fui-sum-box__num {
+  margin-left: 2px;
+  margin-right: 2px;
+}

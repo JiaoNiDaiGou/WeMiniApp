@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "image-uploader": "../../../components/image-uploader/index",
+    "i-button": "../../../components/iview/button/index",
+    "i-input": "../../../components/iview/input/index",
+    "i-modal": "../../../components/iview/modal/index"
+  }
+}

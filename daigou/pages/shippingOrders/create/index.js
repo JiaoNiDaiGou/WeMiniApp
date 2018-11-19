@@ -1,5 +1,5 @@
-const utils = require('../../../utils/util.js')
-const backend = require('../../../utils/backend.js')
+const utils = require('../../../utils/Utils.js')
+const backend = require('../../../utils/Backend.js')
 const app = getApp()
 
 Page({
@@ -11,8 +11,10 @@ Page({
     curStep: 0,
 
     products: [],
-    totalWeight: 0,
-    totalSellPrice: 200,
+    editingProduct: null,
+    editingProductValid: false,
+    totalWeight: '',
+    totalSellPrice: '',
 
     customerId: '',
     name: '',
@@ -35,6 +37,7 @@ Page({
       region,
       city,
       zone,
+      postalCode,
       address
     } = options
     this.setData({
@@ -45,6 +48,7 @@ Page({
         region,
         city,
         zone,
+        postalCode,
         address
       }
     })
@@ -85,6 +89,12 @@ Page({
    */
   onShareAppMessage: function () {},
 
+  onConfirmModalCancel: function (e) {
+    this.setData({
+      confirmModelHidden: true
+    })
+  },
+
   onConfirmModalConfirm: function (e) {
     var {
       customerId,
@@ -115,12 +125,12 @@ Page({
     wx.showLoading({
       title: '正在下单'
     })
-    backend.promiseOfInitShippingOrder(app,
+    backend.initShippingOrder(app,
         customerId,
         address,
         reqProducts,
         reqTotalWeight,
-        totalSellPrice)
+        parseFloat(totalSellPrice))
       .then(r => {
         wx.hideLoading()
         if (r.res.statusCode != 200) {
@@ -134,7 +144,7 @@ Page({
             content: '快递单号:' + r.res.data.teddyFormattedId,
             success: res => {
               wx.redirectTo({
-                url: './shippingOrders-list?statusIndex=2'
+                url: '../list/index'
               })
             }
           })
@@ -144,7 +154,7 @@ Page({
             content: '单号:' + r.res.data.id,
             success: res => {
               wx.redirectTo({
-                url: '../shippingOrders-list?statusIndex=0'
+                url: '../list/index'
               })
             }
           })
@@ -189,6 +199,15 @@ Page({
     }
   },
 
+  onEditingProductChange: function (e) {
+    var value = e.detail.value;
+    this.setData({
+      editingProduct: value.canAdd ? value.product : null,
+      editingProductValid: value.canAdd
+    })
+    console.log(value)
+  },
+
   readyToInit: function (e) {
     var {
       customerId,
@@ -201,14 +220,14 @@ Page({
     return customerId &&
       name &&
       phone &&
-      products &&
       address &&
       address.region &&
       address.city &&
       address.zone &&
       address.address &&
-      address && products.length > 0 &&
-      !!totalSellPrice &&
-      totalSellPrice > 0
+      address &&
+      products.length > 0 &&
+      totalSellPrice &&
+      parseFloat(totalSellPrice) > 0
   }
 })

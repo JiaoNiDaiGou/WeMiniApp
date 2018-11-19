@@ -5,6 +5,7 @@
  * - region: String,
  * - city: String,
  * - zone: String,
+ * - postalCode: string,
  * - address: String,
  * - disabled: boolean: default to false
  */
@@ -22,6 +23,10 @@ Component({
       value: ''
     },
     zone: {
+      type: String,
+      value: ''
+    },
+    postalCode: {
       type: String,
       value: ''
     },
@@ -48,33 +53,41 @@ Component({
   methods: {
     onRegionInput: function (e) {
       this.setData({
-        region: e.detail.value
+        region: e.detail.detail.value
       });
-      this.triggerEvent('regionInput', {
+      this.triggerEvent('input', {
         value: this.buildThisAddress()
       });
     },
     onCityInput: function (e) {
       this.setData({
-        city: e.detail.value
+        city: e.detail.detail.value
       });
-      this.triggerEvent('cityInput', {
+      this.triggerEvent('input', {
         value: this.buildThisAddress()
       });
     },
     onZoneInput: function (e) {
       this.setData({
-        zone: e.detail.value
+        zone: e.detail.detail.value
       });
-      this.triggerEvent('zoneInput', {
+      this.triggerEvent('input', {
+        value: this.buildThisAddress()
+      });
+    },
+    onPostalCodeInput: function (e) {
+      this.setData({
+        postalCode: e.detail.detail.value
+      });
+      this.triggerEvent('input', {
         value: this.buildThisAddress()
       });
     },
     onAddressInput: function (e) {
       this.setData({
-        address: e.detail.value
+        address: e.detail.detail.value
       });
-      this.triggerEvent('addressInput', {
+      this.triggerEvent('input', {
         value: this.buildThisAddress()
       });
     },
@@ -84,12 +97,14 @@ Component({
         region,
         city,
         zone,
+        postalCode,
         address
       } = this.data
       return {
         region,
         city,
         zone,
+        postalCode,
         address
       }
     },

@@ -5,6 +5,7 @@
     "products-list": "../../../components/products-list/index",
     "badge": "../../../components/badge/index",
     "text-box": "../../../components/text-box/index",
+    "sum-box": "../../../components/sum-box/index",
     "i-badge": "../../../components/iview/badge/index",
     "i-button": "../../../components/iview/button/index",
     "i-input": "../../../components/iview/input/index",

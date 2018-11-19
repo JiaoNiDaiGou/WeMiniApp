@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "i-button": "../../../components/iview/button/index",
+    "i-input": "../../../components/iview/input/index",
+    "i-avatar": "../../../components/iview/avatar/index",
+    "i-tag": "../../../components/iview/tag/index",
+    "i-swipeout": "../../../components/iview/swipeout/index",
+    "i-cell": "../../../components/iview/cell/index"
+  }
+}

@@ -1,7 +1,7 @@
 <view class="i-class i-cell i-input {{ error ? 'i-input-error' : '' }} {{ mode === 'wrapped' ? 'i-input-wrapped' : '' }}">
-    <view wx:if="{{ title }}" class="i-cell-hd i-input-title">{{ title }}</view>
+    <view wx:if="{{ title }}" class="i-cell-hd i-input-title" style="font-size: 14px;">{{ title }}</view>
     <textarea
-        wx:if="{{ type === 'textarea' }}"
+        wx:if="{{ type === 'textarea' && !disabled }}"
         auto-height
         disabled="{{ disabled }}"
         focus="{{ autofocus }}"
@@ -13,6 +13,7 @@
         bindfocus="handleInputFocus"
         bindblur="handleInputBlur"
     ></textarea>
+    <view wx:elif="{{ type === 'textarea' && disabled }}" class="i-input-input i-cell-bd {{ right ? 'i-input-input-right' : '' }}">{{ value ? value : placeholder }}</view>
     <input
         wx:else
         type="{{ type }}"

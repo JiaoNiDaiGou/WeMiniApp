@@ -1,4 +1,5 @@
 {
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "i-input": "../../../components/iview/input/index",
     "i-button": "../../../components/iview/button/index",

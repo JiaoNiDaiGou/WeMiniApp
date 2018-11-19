@@ -1,15 +1,15 @@
 <view class='fui-container'>
   <view class='fui-container-item' style='justify-content: center;'>
-    <view wx:for='{{3}}' wx:key='unique' wx:for-index='j'>
-      <view wx:for='{{ imageKeys.length / 3}}' wx:key='unique' wx:for-index='i'>
+    <view wx:for='{{ col }}' wx:key='unique' wx:for-index='j'>
+      <view wx:for='{{ (images.length + 1) / col }}' wx:key='unique' wx:for-index='i'>
         <view style="position: relative;margin-left:2px; margin-right:2px;">
-          <image wx:if='{{ i*3+j < imageKeys.length - 1 }}' data-imageidx='{{i*3+j}}' class='fui-image-uploader-image' src='{{images[imageKeys[i*3+j]].path}}' mode='aspectFit' bindtap='onImageTap' bindlongpress='onImageLongPress' />
-          <view wx:elif='{{i*3+j==imageKeys.length - 1}}' class='fui-image-uploader-image__last' bindtap='onLastImageTap'>
-            <i-icon type='camera' size="48" />
+          <image wx:if='{{ i*col+j < images.length }}' data-imgkey='{{ images[i*col+j].key }}' class='fui-image-uploader-image' src='{{images[i*col+j].path}}' mode='aspectFill' bindtap='onImageTap' bindlongpress='onImageLongPress' />
+          <view wx:elif='{{ i*col+j === images.length}}' class='fui-image-uploader-image__last' bindtap='onLastImageTap'>
+            <i-icon type='camera' size="36" color='black' />
           </view>
           <view wx:else class='fui-image-uploader-image fui-image-uploader-image__empty'></view>
-          <view wx:if='{{i*3+j<imageKeys.length-1}}' class="weui-badge fui-image-uploader-image-progress" style="background-color: {{images[imageKeys[i*3+j]].uploadingProgress==100?'green':'red'}}">
-            {{images[imageKeys[i*3+j]].uploadingProgress != 100 ? images[imageKeys[i*3+j]].uploadingProgress : "✓"}}
+          <view wx:if='{{ i*col+j < images.length }}' class="weui-badge fui-image-uploader-image-progress" style="background-color: {{images[i*col+j].uploadingProgress==100?'green':'red'}}">
+            {{images[i*col+j].uploadingProgress != 100 ? images[i*col+j].uploadingProgress : "✓"}}
           </view>
         </view>
       </view>

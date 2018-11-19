@@ -1,6 +1,4 @@
-// components/products-list/index.js
-
-const utils = require("../../utils/util.js");
+const utils = require("../../utils/Utils.js");
 
 Component({
   /**

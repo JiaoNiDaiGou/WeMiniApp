@@ -1,8 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "product-list-box": "./product-list-box",
-    "text-box": "../core/text-box",
-    "picker-box": "../core/picker-box"
-  }
-}

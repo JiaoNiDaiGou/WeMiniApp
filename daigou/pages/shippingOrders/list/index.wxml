@@ -1,0 +1,36 @@
+<view class='fui-container'>
+  <view wx:for='{{ orders }}' wx:key='unique' wx:for-item='order'>
+    <view data-id='{{ order.id }}' class='fui-card'>
+      <view class='fui-container'>
+        <view class='fui-shipping-orders-list__status_bar'>
+          <i-tag class="i-tags fui-shipping-orders-list__tag" color='yellow'>
+            {{ order.teddyFormattedId ? order.teddyFormattedId : "无小熊单号" }}
+          </i-tag>
+          <i-tag class="i-tags fui-shipping-orders-list__tag">
+            状态: {{ order.statusName }}
+          </i-tag>
+          <i-tag wx:if='{{ order.creationTs }}' class="i-tags fui-shipping-orders-list__tag">
+            创建时间: {{ order.creationTs }}
+          </i-tag>
+          <i-tag class="i-tags fui-shipping-orders-list__tag">
+            收件人: {{ order.receiver.name }}
+          </i-tag>
+          <i-tag wx:if='{{ order.receiver.phone }}' class="i-tags fui-shipping-orders-list__tag">
+            电话: {{ order.receiver.phone.phone }}
+          </i-tag>
+          <i-tag class="i-tags fui-shipping-orders-list__tag">
+            总售价: ¥{{ order.totalSellPrice.value }}
+          </i-tag>
+          <i-tag wx:if='{{ order.totalWeightLb }}' class="i-tags fui-shipping-orders-list__tag">
+            总重量: {{ order.totalWeightLb }}磅
+          </i-tag>
+        </view>
+        <view class='fui-container-item'>
+          <i-icon type="commodity" size="20" />
+          <products-list products='{{ order.renderableProducts }}' />
+        </view>
+      </view>
+    </view>
+  </view>
+  <i-load-more loading='{{ loadingMore }}' class='fui-font' />
+</view>

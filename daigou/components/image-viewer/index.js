@@ -7,6 +7,10 @@ Component({
     images: {
       type: Array,
       value: []
+    },
+    size: {
+      type: String,
+      value: 'normal'
     }
   },
   data: {},

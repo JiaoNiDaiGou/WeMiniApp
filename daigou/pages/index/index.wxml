@@ -1,5 +1,8 @@
 <view class='fui-container'>
   <view class="weui-btn-area">
     <i-button bind:click='goToCustomersList'>发货</i-button>
+    <i-button bind:click='goToShippingOrdersList'>发货列表</i-button>
+    <i-button bind:click='goToFeedbackList'>反馈</i-button>
   </view>
 </view>
+<feedback-modal show='{{ showFeedback }}' bind:cancel='onFeedbackDone' bind:confirm='onFeedbackDone' />

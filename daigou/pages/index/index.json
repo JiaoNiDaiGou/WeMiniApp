@@ -6,8 +6,10 @@
     "product-creator": "../../components/product-creator/index",
     "products-list": "../../components/products-list/index",
     "text-box": "../../components/text-box/index",
+    "feedback-modal": "../feedback/modal/index",
     "image-uploader": "../../components/image-uploader/index",
     "image-viewer": "../../components/image-viewer/index",
-    "image-cropper": "../../components/image-cropper/index"
+    "image-cropper": "../../components/image-cropper/index",
+    "sum-box": "../../components/sum-box/index"
   }
 }

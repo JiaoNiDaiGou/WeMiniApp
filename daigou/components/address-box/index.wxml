@@ -3,12 +3,15 @@
     <i-icon type="coordinates" size="20" />
     <view class='fui-container'>
       <view class='fui-container-item'>
-        <i-input placeholder='省' value='{{region}}' disabled='{{ disabled }}' bindinput='onRegionInput'></i-input>
-        <i-input placeholder='市' value='{{city}}' disabled='{{ disabled }}' bindinput='onCityInput'></i-input>
-        <i-input placeholder='区' value='{{zone}}' disabled='{{ disabled }}' bindinput='onZoneInput'></i-input>
+        <i-input placeholder='省' value='{{region}}' disabled='{{ disabled }}' bind:change='onRegionInput'></i-input>
+        <i-input placeholder='市' value='{{city}}' disabled='{{ disabled }}' bind:change='onCityInput'></i-input>
       </view>
       <view class='fui-container-item'>
-        <i-input class="fui-address-box__textarea" type='textarea' placeholder='地址' value='{{address + address}}' disabled='{{ disabled }}' bindinput='onAddressInput'></i-input>
+        <i-input placeholder='区' value='{{zone}}' disabled='{{ disabled }}' bind:change='onZoneInput'></i-input>
+        <i-input placeholder='邮编' value='{{ postalCode }}' disabled='{{ disabled }}' bind:change='onPostalCodeInput'></i-input>
+      </view>
+      <view class='fui-container-item'>
+        <i-input class="fui-address-box__textarea" type='textarea' placeholder='地址' value='{{address }}' disabled='{{ disabled }}' bind:change='onAddressInput'></i-input>
       </view>
     </view>
   </view>

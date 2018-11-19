@@ -4,20 +4,22 @@
       <text-box icon='eit' placeholder='ID' value='{{customerId}}'></text-box>
       <text-box icon='mine' placeholder='姓名' value='{{name}}'></text-box>
       <text-box icon='mobilephone' placeholder='电话' value='{{phone}}'></text-box>
-      <address-box region="{{address.region}}" city='{{address.city}}' zone='{{address.zone}}' address='{{address.address}}' disabled />
+      <address-box region="{{address.region}}" city='{{address.city}}' zone='{{address.zone}}' postalCode='{{ address.postalCode }}' address='{{address.address}}' disabled />
     </view>
   </view>
   <view class='fui-card'>
-    <product-creator bind:productCreate='onProductCreate' />
-    <products-list products='{{ products }}' />
-    <text-box icon='fui-moneybag' placeholder='总售价' value='{{ totalSellPrice }}' type='digit' prefix='￥' suffix='(记账售价)' bind:input='onTotalSellPriceInput' />
+    <view class='fui-container'>
+      <sum-box icon='coupons' placeholder='记账总售价￥' value='{{ totalSellPrice }}' bind:change='onTotalSellPriceInput' />
+      <product-creator bind:productCreate='onProductCreate' />
+      <products-list products='{{ products }}' />
+    </view>
   </view>
   <view class="weui-btn-area">
     <i-button bind:click="onInitShippingOrderClick" type="success">下单</i-button>
   </view>
 </view>
-<modal title="确认发货吗 重量(Lb)可之后再填)" hidden="{{ confirmModelHidden }}" bindcancel="onConfirmModalCancel" bindconfirm="onConfirmModalConfirm">
+<modal title="确认发货吗" hidden="{{ confirmModelHidden }}" bindcancel="onConfirmModalCancel" bindconfirm="onConfirmModalConfirm">
   <view>
-    <input class="input" type='digit' value="{{ totalWeight }}" focus='{{ !confirmModelHidden }}' bindinput="onTotalWeightInput"></input>
+    <input class="input" type='digit' placeholder='重量(Lb)可之后再填' value="{{ totalWeight }}" focus='{{ !confirmModelHidden }}' bindinput="onTotalWeightInput"></input>
   </view>
 </modal>

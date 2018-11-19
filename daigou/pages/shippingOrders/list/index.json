@@ -1,0 +1,22 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "address-box": "../../../components/address-box/index",
+    "product-creator": "../../../components/product-creator/index",
+    "products-list": "../../../components/products-list/index",
+    "badge": "../../../components/badge/index",
+    "text-box": "../../../components/text-box/index",
+    "i-avatar": "../../../components/iview/avatar/index",
+    "i-badge": "../../../components/iview/badge/index",
+    "i-button": "../../../components/iview/button/index",
+    "i-input": "../../../components/iview/input/index",
+    "i-message": "../../../components/iview/message/index",
+    "i-steps": "../../../components/iview/steps/index",
+    "i-step": "../../../components/iview/step/index",
+    "i-tabs": "../../../components/iview/tabs/index",
+    "i-tab": "../../../components/iview/tab/index",
+    "i-tag": "../../../components/iview/tag/index",
+    "i-icon": "../../../components/iview/icon/index",
+    "i-load-more": "../../../components/iview/load-more/index"
+  }
+}

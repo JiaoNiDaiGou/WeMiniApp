@@ -1,0 +1,13 @@
+@import '../../../lib/fui.wxss';
+
+.fui-feedback-list__entry {
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+  /* align-items: baseline; */
+}
+
+.fui-feedback-list__entry-item {
+  margin-left: 5px;
+  margin-right: 5px;
+}

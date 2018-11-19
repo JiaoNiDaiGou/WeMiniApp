@@ -2,20 +2,17 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/shippingOrders/shippingOrders-list",
-    "pages/shoppingLists/shoppingLists-list",
-    "pages/shoppingLists/shoppingLists-create",
-    "pages/inventory/inventory-list",
-    "pages/inventory/inventory-create",
     "pages/customers/create/index",
     "pages/customers/details/index",
     "pages/customers/list/index",
-    "pages/shippingOrders/create/index"
+    "pages/shippingOrders/create/index",
+    "pages/shippingOrders/list/index",
+    "pages/feedback/list/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "娇妮代购",
     "navigationBarTextStyle": "black"
   }
 }

@@ -1,0 +1,18 @@
+<view class="fui-container">
+  <view wx:for="{{ feedbacks }}" wx:key="unique" wx:for-item="feedback">
+    <i-swipeout bind:cancel="onActionCancel" toggle="{{ toggle }}" unclosable="{{true}}" bindchange="onActionClick" actions='{{ ACTIONS }}' data-feedbackid='{{ feedback.id }}'>
+      <view slot="content" class='fui-feedback-list__entry'>
+        <i-avatar class='fui-feedback-list__entry-item' size="small">
+          {{ feedback.avatar }}
+        </i-avatar>
+        <i-tag class="i-tags fui-feedback-list__entry-item" name="tag1" color="green">
+          {{ feedback.id }}
+        </i-tag>
+        <i-tag class="i-tags fui-feedback-list__entry-item" name="tag2" color="blue">
+          {{ feedback.ts }}
+        </i-tag>
+        <i-input type='textarea' disabled value='{{ feedback.content}}' />
+      </view>
+    </i-swipeout>
+  </view>
+</view>

@@ -3,5 +3,5 @@
 
 .fui-image-viewer-image {
   width: 5rem;
-  height: 7rem;
+  height: 5rem;
 }

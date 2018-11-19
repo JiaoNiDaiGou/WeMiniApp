@@ -1,6 +1,4 @@
-// pages/customers/details/index.js
-
-const backend = require("../../../utils/backend.js");
+const backend = require("../../../utils/Backend.js");
 const app = getApp();
 const {
   $Message
@@ -26,10 +24,13 @@ Page({
    */
   onLoad: function (options) {
     var id = options.id;
+    console.log('customerId: ' + id)
     var customerFromApp = app.globalData.customers.find(t => t.id === id);
-    this.setData({
-      customer: customerFromApp
-    });
+    if (customerFromApp) {
+      this.setData({
+        customer: customerFromApp
+      });
+    }
     this.refreshCustomer(id, () => $Message({
       content: '客户信息已加载',
       type: 'success',
@@ -85,6 +86,7 @@ Page({
         '&region=' + address.region +
         '&city=' + address.city +
         '&zone=' + address.zone +
+        '&postalCode=' + address.postalCode +
         '&address=' + address.address
     })
   },
@@ -176,7 +178,7 @@ Page({
 
   updateCustomer: function (callback) {
     var that = this;
-    backend.promiseOfUpdateCustomer(app, this.data.customer).then(r => {
+    backend.updateCustomer(app, this.data.customer).then(r => {
       that.setData({
         customer: r.res.data
       });
@@ -188,7 +190,7 @@ Page({
 
   refreshCustomer: function (id, callback) {
     var that = this;
-    backend.promiseOfGetCustomerById(app, id).then(r => {
+    backend.getCustomerById(app, id).then(r => {
       var customer = r.res.data;
       that.setData({
         customer: customer

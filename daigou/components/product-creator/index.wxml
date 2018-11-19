@@ -1,8 +1,8 @@
 <view class='fui-container'>
-  <text-box icon='fui-goods' placeholder='商品名称' value='{{ curName }}' bind:input='onCurNameInput' />
-  <text-box icon='fui-evaluate' placeholder='商品品牌' value='{{ curBrand }}' bind:input='onCurBrandInput' suggestions='{{ hintBrands }}' bind:suggestionTap='onHintBrandTap' />
-  <picker-box icon='fui-list' range='{{ CATEGORY_NAMES }}' curIdx='{{ curCategoryIndex }}' placeholder='商品类别' suggestions='{{ hintCategoryIndexes }}' bind:suggestionTap='onHintCategoryTap' bind:change='onCurCategoryChange'></picker-box>
-  <text-box icon='fui-moneybag' prefix='$' placeholder='单价' type='digit' value='{{ curPrice }}' bind:input='onCurPriceInput' />
+  <text-box icon='commodity' placeholder='商品名称' value='{{ curName }}' bind:input='onCurNameInput' />
+  <text-box icon='service' placeholder='商品品牌' value='{{ curBrand }}' bind:input='onCurBrandInput' suggestions='{{ hintBrands }}' bind:suggestionTap='onHintBrandTap' />
+  <picker-box icon='createtask' range='{{ CATEGORY_NAMES }}' curIdx='{{ curCategoryIndex }}' placeholder='商品类别' suggestions='{{ hintCategoryIndexes }}' bind:suggestionTap='onHintCategoryTap' bind:change='onCurCategoryChange'></picker-box>
+  <text-box icon='coupons' prefix='$' placeholder='单价' type='digit' value='{{ curPrice }}' bind:input='onCurPriceInput' />
   <view class='fui-products-creator__btn-area'>
     <view class='fui-products-creator__quantity-area'>
       <text style='margin-right: 5px; font-size: 14px;'>个数</text>

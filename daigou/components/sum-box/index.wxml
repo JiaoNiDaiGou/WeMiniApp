@@ -1,0 +1,22 @@
+<view class='fui-container'>
+  <view class="fui-container-item">
+    <view wx:if='{{icon}}'>
+      <i-icon type='{{ icon }}' size="20" />
+    </view>
+    <text wx:if='{{ prefix }}' class='fui-text-box__prefix'>{{ prefix }}</text>
+    <i-input type='digit' bind:change='onInput' bind:blur='onBlur' disabled='{{ disabled }}' placeholder='{{ placeholder }}' value='{{ curNum }}' class="fui-text-box__input"></i-input>
+    <text wx:if='{{ suffix }}' class='fui-text-box__suffix'>{{ suffix }}</text>
+  </view>
+  <view wx:if='{{ nums && nums.length > 0 }}'>
+    <view class="fui-badge-box">
+      <view wx:for='{{ nums }}' wx:key='unique' wx:for-item='num' wx:for-index='idx'>
+        <i-tag class='fui-badge-box__item fui-sum-box__num' color='{{ nums.length == 1 ? "green" : "lightgrey" }}'>
+          {{ num }}
+        </i-tag>
+        <i-tag wx:if='{{ idx < nums.length - 1 }}' class='fui-badge-box__item fui-sum-box__num'>+</i-tag>
+      </view>
+      <i-tag wx:if='{{ nums.length > 1 }}' class='fui-badge-box__item fui-sum-box__num'>=</i-tag>
+      <i-tag wx:if='{{ nums.length > 1 }}' class='fui-badge-box__item fui-sum-box__num' color='green' style='font-style: bold;'>{{ value }}</i-tag>
+    </view>
+  </view>
+</view>

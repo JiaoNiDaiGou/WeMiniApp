@@ -1,24 +1,22 @@
 @import '../../lib/fui.wxss';
-@import '../../lib/icon.wxss';
-@import '../../lib//weui.wxss';
+@import '../../lib/weui.wxss';
 
 .fui-image-uploader-image {
   width: 5rem;
-  height: 7rem;
-  border: 2px solid rebeccapurple;
+  height: 5rem;
 }
 
 .fui-image-uploader-image__last {
   width: 5rem;
-  height: 7rem;
+  height: 5rem;
   display: flex;
-  border: 2px dashed black;
+  border: 1px dashed black;
   align-items: center;
   justify-content: center;
 }
 
 .fui-image-uploader-image__empty {
-  border: 2px dashed black;
+  border: 1px dashed black;
 }
 
 .fui-image-uploader-image-progress {

@@ -1,5 +1,4 @@
 @import '../../lib/fui.wxss';
-@import '../../lib/icon.wxss';
 
 .fui-picker-box__picker {
   width: 100%;

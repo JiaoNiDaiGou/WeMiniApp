@@ -17,8 +17,8 @@
   <view wx:if='{{!!options && options.length > 0}}' class="weui-cells">
     <view wx:for="{{options}}" wx:key="unique" wx:for-item="option">
       <view id='{{option.id}}' bindtap='onOptionSelect' class="weui-cell" hover-class="weui-cell_active">
-        <view class="weui-cell__bd fui-search-bar__searchbar-option">
-          <view>{{option.text}}</view>
+        <view class="weui-cell__bd">
+          <view class="fui-search-bar__searchbar-option">{{option.text}}</view>
         </view>
       </view>
     </view>

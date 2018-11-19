@@ -1,4 +1,0 @@
-/* pages/common/product-prompt-set.wxss */
-@import '../../lib/icon.wxss';
-@import '../../lib/weui.wxss';
-@import '../../app.wxss';

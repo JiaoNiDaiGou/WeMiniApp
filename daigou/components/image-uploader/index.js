@@ -1,8 +1,6 @@
-const backend = require('../../utils/backend.js');
-const utils = require('../../utils/util.js');
+const backend = require('../../utils/Backend.js');
+const utils = require('../../utils/Utils.js');
 const app = getApp();
-
-const LAST_KEY = '@last';
 
 /**
  * properties:
@@ -17,6 +15,21 @@ Component({
     lazy: {
       type: Boolean,
       value: false
+    },
+
+    // single image contains
+    // - key: uuid (external don't care)
+    // - path: local path
+    // - mediaId: cloud mediaId
+    // - uploading: boolean
+    // - uploadingProgress
+    images: {
+      type: Array,
+      value: []
+    },
+    col: {
+      type: Number,
+      value: 3
     }
   },
   data: {
@@ -25,26 +38,8 @@ Component({
       {
         name: '删除',
         color: 'red'
-    }
-  ],
-    // imageKeys are an array of image keys, which has order.
-    // images is a map[imageKey, image object]
-    // A image object contains: 
-    // {
-    //   path: local path
-    //   mediaId: cloud mediaId
-    //   uploading: boolean
-    //   uploadingProgress
-    // }
-    imageKeys: [LAST_KEY],
-    images: {
-      LAST_KEY: {
-        path: '',
-        mediaId: null,
-        uploading: false,
-        uplodingProgress: 0
-      },
-    },
+      }
+    ],
     imgActionSheetVisible: false,
     actionImgIndex: -1
   },
@@ -70,18 +65,13 @@ Component({
       })
     },
 
-    onImgDelete: function () {
-      var { actionImgIndex, images, imageKeys } = this.data
-      if (actionImgIndex < 0 || actionImgIndex >= imageKeys.length - 1) {
-        return
-      }
-      var imageKey = imageKeys[actionImgIndex]
-      imageKeys.splice(actionImgIndex, 1)
-      delete images[imageKey]
+    deleteImg: function (imgKey) {
+      var { images } = this.data
+      var idx = images.findIndex(t => t.key === imgKey)
+      images.splice(idx, 1)
       this.setData({
         actionImgIndex: -1,
         imgActionSheetVisible: false,
-        imageKeys: imageKeys,
         images: images
       })
     },
@@ -98,25 +88,17 @@ Component({
       this.refreshAllUploadingProgress()
       var {
         images,
-        imageKeys
       } = this.data
-      var idx = e.currentTarget.dataset.imageidx
-      var image = images[imageKeys[idx]]
-      var path = image.path
-      var urls = []
-      for (var i = 0; i < imageKeys.length - 1; i++) {
-        var image = images[imageKeys[i]]
-        urls.push(image.path)
-      }
+      var imgkey = e.currentTarget.dataset.imgkey
+      var image = images.find(t => t.key === imgkey)
       wx.previewImage({
-        current: path,
-        urls: urls,
+        current: image.path,
+        urls: images.map(t => t.path)
       })
     },
 
     onLastImageTap: function (e) {
       this.refreshAllUploadingProgress()
-
       var that = this;
       wx.chooseImage({
         count: 9,
@@ -124,130 +106,91 @@ Component({
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
         success: res => {
           if (res.tempFilePaths && res.tempFilePaths.length > 0) {
-
-            var imageKeys = that.data.imageKeys
-            var newUploadStartIdx = imageKeys.length - 1
-            imageKeys = imageKeys.slice(0, imageKeys.length - 1)
-
-            var thatImages = that.data.images
+            var { images, lazy } = that.data
+            var newUploadStartIdx = images.length
             res.tempFilePaths.forEach(t => {
               var key = utils.uuid()
               var imageObj = {
+                key: key,
                 path: t,
                 mediaId: null,
                 uploading: false,
                 uploadingProgress: 0
               }
-              thatImages[key] = imageObj
-              imageKeys.push(key)
+              images.push(imageObj)
             })
-
-            var newUploadEndIdx = imageKeys.length - 1
-            imageKeys.push(LAST_KEY)
-
+            var newUploadEndIdx = images.length - 1
             that.setData({
-              imageKeys: imageKeys,
-              images: thatImages
+              images
             });
-
             if (!that.data.lazy) {
               for (var idx = newUploadStartIdx; idx <= newUploadEndIdx; idx++) {
-                that.uploadImage(idx)
+                that.uploadImage(images[idx].key)
               }
             }
-
             that.triggerImagesChangedEvent()
           }
         }
       })
     },
 
-    uploadImage: function (idx) {
-      var that = this;
-      var imageKeys = this.data.imageKeys
-      var images = this.data.images
-      var imageKey = imageKeys[idx]
-      var image = images[imageKey]
-
-      if (!!image.mediaId || image.uploading) {
+    uploadImage: function (key) {
+      var { images } = this.data
+      var image = images.find(t => t.key === key)
+      if (!image || image.mediaId || image.uploading) {
         return
       }
-
       image.uploding = true
       image.uploadingProgress = 0;
-      images[imageKey] = image
       this.setData({
-        images: images
+        images
       })
 
+      var that = this
       var progressHandle = (res) => {
         var thatImages = that.data.images
-        thatImages[imageKey].uploadingProgress = res.progress
-        that.setData({
-          images: thatImages
-        })
-      }
-
-      backend.promiseOfUploadMedia(app, image.path, progressHandle)
-        .then(r => {
-          var mediaId = r.res.data.id;
-          var thatImages = that.data.images
-          var thatImageKeys = that.data.imageKeys
-          thatImages[imageKey].mediaId = mediaId
-
-          // Sync all images
-          that.data.imageKeys.map(x => thatImages[x]).forEach(x => {
-            if (!!x && !!x.mediaId) {
-              x.uploading = false
-              x.uploadingProgress = 100
-            }
-          })
+        var thatImage = thatImages.find(t => t.key === key)
+        if (thatImage) {
+          thatImage.uploadingProgress = res.progress
           that.setData({
             images: thatImages
           })
+        }
+      }
 
+      backend.uploadMedia(app, image.path, progressHandle)
+        .then(r => {
+          var mediaId = r.res.data.id
+          var thatImages = that.data.images
+          var thatImage = thatImages.find(t => t.key === key)
+          if (thatImage) {
+            thatImage.mediaId = mediaId
+            that.setData({
+              images: thatImages
+            })
+          }
+
+          that.refreshAllUploadingProgress()
           that.triggerImagesChangedEvent()
         })
     },
 
     refreshAllUploadingProgress: function () {
-      var changed = false;
-      var images = this.data.images
-      this.data.imageKeys.forEach(key => {
-        var image = images[key]
-        if (!!image && !!image.mediaId) {
-          if (image.uploading == true || image.uploadingProgress != 100) {
-            changed = true
-            image.uploading = false
-            image.uploadingProgress = 100
-            images[key] = image
-          }
+      var { images } = this.data
+      images.forEach(image => {
+        if (image.mediaId) {
+          image.uploading = true
+          image.uploadingProgress = 100
         }
       })
-      if (changed) {
-        this.setData({
-          images: images
-        })
-      }
+      this.setData({
+        images
+      })
     },
 
     triggerImagesChangedEvent: function () {
-      var imageKeys = this.data.imageKeys
-      if (imageKeys.length <= 1) {
-        return
-      }
-
-      var images = this.data.images
-      var event = imageKeys.slice(0, imageKeys.length - 1).map(key => {
-        var image = images[key]
-        return {
-          path: image.path,
-          mediaId: image.mediaId
-        }
-      })
-      this.triggerEvent('imagesChange', {
-        value: event
-      })
+      var { images } = this.data
+      this.triggerEvent('imagesChange', { value: images })
     }
   },
 })

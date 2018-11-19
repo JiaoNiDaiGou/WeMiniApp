@@ -1,5 +1,4 @@
 /**app.wxss**/
-@import './lib/icon.wxss';
 @import './lib/weui.wxss';
 
 view {

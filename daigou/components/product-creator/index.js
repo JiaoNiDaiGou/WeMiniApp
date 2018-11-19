@@ -1,6 +1,4 @@
-// components/products-creator/index.js
-
-const utils = require("../../utils/util.js");
+const utils = require("../../utils/Utils.js");
 const app = getApp();
 
 /**
@@ -89,7 +87,8 @@ Component({
       return hints
         .sort((a, b) => b.val - a.val)
         .slice(0, 4)
-        .map(t => t.key);
+        .map(t => utils.productCategories.findIndex(x => x.value === t.key))
+        .filter(t => t != -1)
     },
 
     onCurNameInput: function (e) {
@@ -159,39 +158,14 @@ Component({
     },
 
     onAddClick: function (e) {
-      var {
-        curName,
-        curBrand,
-        curCategoryIndex,
-        curQuantity,
-        curPrice,
-        CATEGORY_NAMES
-      } = this.data;
-      const price = parseFloat(curPrice);
-      const canAdd =
-        curName &&
-        curBrand &&
-        curCategoryIndex >= 0 &&
-        curCategoryIndex < CATEGORY_NAMES.length &&
-        curQuantity > 0 &&
-        price > 0 &&
-        price <= 1000;
-      if (!canAdd) {
+      var product = this.canAdd();
+      if (!product) {
         wx.showToast({
           icon: 'none',
           title: '货物输入错误',
         })
         return;
       }
-
-      const product = {
-        name: curName,
-        brand: curBrand,
-        categoryIndex: curCategoryIndex,
-        quantity: curQuantity,
-        price: price
-      };
-
       this.setData({
         curCategoryIndex: -1,
         curBrand: "",
@@ -201,10 +175,39 @@ Component({
         hintBrands: [],
         hintCategoryIndexes: []
       })
-
       this.triggerEvent("productCreate", {
         value: product
       });
+    },
+
+    canAdd: function () {
+      var {
+        curName,
+        curBrand,
+        curCategoryIndex,
+        curQuantity,
+        curPrice,
+        CATEGORY_NAMES
+      } = this.data;
+      const price = parseFloat(curPrice);
+      var canAdd =
+        curName &&
+        curBrand &&
+        curCategoryIndex >= 0 &&
+        curCategoryIndex < CATEGORY_NAMES.length &&
+        curQuantity > 0 &&
+        price > 0 &&
+        price <= 1000;
+      if (canAdd) {
+        const product = {
+          name: curName,
+          brand: curBrand,
+          categoryIndex: curCategoryIndex,
+          quantity: curQuantity,
+          price: price
+        };
+        return product;
+      }
     }
   }
 });
